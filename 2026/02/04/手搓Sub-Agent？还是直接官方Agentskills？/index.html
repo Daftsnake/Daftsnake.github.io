@@ -19,26 +19,23 @@
   <meta name="author" content="Daftsnake">
   <meta name="keywords" content="">
   
-    <meta name="description" content="编程语言本质上是思维的延伸，是逻辑在数字世界的投影。 对于大数据专业的学生或任何试图用代码构建系统的人来说，Python 不仅仅是一个解释器，它是我们与计算交流的翻译器。很多人倒在了第一步——环境配置上，不是因为难，而是因为缺乏对“系统路径”和“环境隔离”的认知。 本文基于 Windows 11 环境，剥离掉那些冗余的废话，只讲如何构建一个干净、可控、逻辑自洽的 Python 开发地基。 一、 核">
+    <meta name="description" content="最近看到一个视频，是有关于构建Agentd的，视频里尝试对Anthropic 和 OpenAI 的 Agent 架构方案手搓一个个人的agent，视频里为他的经验，而文章为我的个人看法和对他视频经验的结合。 一、 核心准则：能用 API 解决的，别碰 Agent很多开发者容易产生“架构幻觉”。比如只是做一个标题总结，却非要上一套 “计划-执行” 模式。 避坑准则： AI 本身具有非确定性，架构每多">
 <meta property="og:type" content="article">
-<meta property="og:title" content="构建思维杠杆：Python 环境配置与避坑指南">
-<meta property="og:url" content="http://example.com/2026/01/30/%E6%9E%84%E5%BB%BA%E6%80%9D%E7%BB%B4%E6%9D%A0%E6%9D%86%EF%BC%9APython%20%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%8E%E9%81%BF%E5%9D%91%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:title" content="手搓Sub-Agent？还是直接官方Agentskills？">
+<meta property="og:url" content="http://example.com/2026/02/04/%E6%89%8B%E6%90%93Sub-Agent%EF%BC%9F%E8%BF%98%E6%98%AF%E7%9B%B4%E6%8E%A5%E5%AE%98%E6%96%B9Agentskills%EF%BC%9F/index.html">
 <meta property="og:site_name" content="Daftsnake的小窝">
-<meta property="og:description" content="编程语言本质上是思维的延伸，是逻辑在数字世界的投影。 对于大数据专业的学生或任何试图用代码构建系统的人来说，Python 不仅仅是一个解释器，它是我们与计算交流的翻译器。很多人倒在了第一步——环境配置上，不是因为难，而是因为缺乏对“系统路径”和“环境隔离”的认知。 本文基于 Windows 11 环境，剥离掉那些冗余的废话，只讲如何构建一个干净、可控、逻辑自洽的 Python 开发地基。 一、 核">
+<meta property="og:description" content="最近看到一个视频，是有关于构建Agentd的，视频里尝试对Anthropic 和 OpenAI 的 Agent 架构方案手搓一个个人的agent，视频里为他的经验，而文章为我的个人看法和对他视频经验的结合。 一、 核心准则：能用 API 解决的，别碰 Agent很多开发者容易产生“架构幻觉”。比如只是做一个标题总结，却非要上一套 “计划-执行” 模式。 避坑准则： AI 本身具有非确定性，架构每多">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-01-29T17:20:00.000Z">
-<meta property="article:modified_time" content="2026-01-29T17:29:12.397Z">
+<meta property="article:published_time" content="2026-02-03T19:30:00.000Z">
+<meta property="article:modified_time" content="2026-02-03T20:05:41.141Z">
 <meta property="article:author" content="Daftsnake">
-<meta property="article:tag" content="Python">
-<meta property="article:tag" content="Windows">
-<meta property="article:tag" content="开发环境">
-<meta property="article:tag" content="教程">
-<meta property="article:tag" content="避坑指南">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="科技">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>构建思维杠杆：Python 环境配置与避坑指南 - Daftsnake的小窝</title>
+  <title>手搓Sub-Agent？还是直接官方Agentskills？ - Daftsnake的小窝</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -204,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="构建思维杠杆：Python 环境配置与避坑指南"></span>
+            <span id="subtitle" data-typed-text="手搓Sub-Agent？还是直接官方Agentskills？"></span>
           
         </div>
 
@@ -215,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-01-30 01:20" pubdate>
-          2026年1月30日 凌晨
+        <time datetime="2026-02-04 03:30" pubdate>
+          2026年2月4日 凌晨
         </time>
       </span>
     
@@ -227,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          814 字
+          904 字
         
       </span>
     
@@ -238,7 +235,7 @@
         
         
         
-          7 分钟
+          8 分钟
         
       </span>
     
@@ -275,41 +272,39 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">构建思维杠杆：Python 环境配置与避坑指南</h1>
+            <h1 id="seo-header">手搓Sub-Agent？还是直接官方Agentskills？</h1>
             
             
               <div class="markdown-body">
                 
-                <p>编程语言本质上是思维的延伸，是逻辑在数字世界的投影。</p>
-<p>对于大数据专业的学生或任何试图用代码构建系统的人来说，Python 不仅仅是一个解释器，它是我们与计算交流的翻译器。很多人倒在了第一步——环境配置上，不是因为难，而是因为缺乏对“系统路径”和“环境隔离”的认知。</p>
-<p>本文基于 Windows 11 环境，剥离掉那些冗余的废话，只讲如何构建一个干净、可控、逻辑自洽的 Python 开发地基。</p>
-<h1 id="一、-核心安装：官方源与路径依赖"><a href="#一、-核心安装：官方源与路径依赖" class="headerlink" title="一、 核心安装：官方源与路径依赖"></a>一、 核心安装：官方源与路径依赖</h1><p>永远不要相信第三方软件管家里的 Python，那是引入麻烦的开始。</p>
-<p>获取安装包</p>
-<p>直接访问 Python 官网。</p>
-<p>避坑：不要盲目追求最新版（如 Python 3.13+），除非你确定你需要的库（如 TensorFlow, PyTorch 等）已经适配。对于大数据和 AI 开发，3.10 或 3.11 目前是兼容性与性能的局部最优解。</p>
-<p>安装过程中的“决定性瞬间”</p>
-<p>运行安装包时，界面底部有一个复选框：Add Python.exe to PATH。</p>
-<p>必须勾选。</p>
-<p>逻辑审计：如果你不勾选，你的系统（CMD&#x2F;PowerShell）就找不到 Python 的位置。你后续在终端输入的每一次 python 指令都会报错。虽然事后可以手动配置环境变量，但那是低效的补救。最好在初始阶段就准备好。</p>
-<p>自定义安装 (Customize installation)</p>
-<p>建议更改安装路径到根目录，例如 C:\Python311，而不是放在 AppData 的用户文件夹里，到时后找路径很麻烦。</p>
-<p>理由：路径越短，字符溢出的风险越低，且在权限管理上更可控。</p>
-<h1 id="二、-验证：测试是否安装成功"><a href="#二、-验证：测试是否安装成功" class="headerlink" title="二、 验证：测试是否安装成功"></a>二、 验证：测试是否安装成功</h1><p>安装完成后，不要想当然地认为它能用。我们需要用终端进行“证伪”。</p>
-<p>打开终端（Win + R，输入 cmd 或 powershell），输入：</p>
-<p><strong>python –version</strong></p>
-<p>预期结果：输出 Python 3.11.x。</p>
-<p>错误现象：没有任何反应，或者跳转到微软应用商店。</p>
-<p>根因：环境变量未生效，或者微软商店的别名拦截了命令。去“设置 -&gt; 应用 -&gt; 高级应用设置 -&gt; 应用执行别名”，关掉 Python 的开关。</p>
-<h1 id="三、-沙盒：虚拟环境-Virtual-Environment"><a href="#三、-沙盒：虚拟环境-Virtual-Environment" class="headerlink" title="三、 沙盒：虚拟环境 (Virtual Environment)"></a>三、 沙盒：虚拟环境 (Virtual Environment)</h1><p>这是很多初学者的噩梦来源。他们把所有的库（NumPy, Pandas, Flask…）都装在全局环境里。</p>
-<p>后果：当你同时开发项目 A（需要 Pandas 1.x）和项目 B（需要 Pandas 2.x）时，全局环境会发生逻辑冲突，系统崩溃。</p>
-<p>解决方案：为每一个项目创造独立的“平行宇宙”。</p>
-<p>在你的项目目录下，执行：</p>
-<h1 id="创建虚拟环境（名为-venv）"><a href="#创建虚拟环境（名为-venv）" class="headerlink" title="创建虚拟环境（名为 .venv）"></a>创建虚拟环境（名为 .venv）</h1><p><strong>python -m venv .venv</strong></p>
-<h1 id="激活虚拟环境-Windows-PowerShell"><a href="#激活虚拟环境-Windows-PowerShell" class="headerlink" title="激活虚拟环境 (Windows PowerShell)"></a>激活虚拟环境 (Windows PowerShell)</h1><p><strong>.venv\Scripts\Activate.ps1</strong></p>
-<p>看到命令行前面出现 (.venv) 字样，说明你已经进入了安全沙箱。此时安装的任何库，都不会污染你的全局环境。</p>
-<h1 id="四、-工具链：VS-Code"><a href="#四、-工具链：VS-Code" class="headerlink" title="四、 工具链：VS Code"></a>四、 工具链：VS Code</h1><p>对于 Windows 11 用户，Visual Studio Code (VS Code) 是目前性价比最高的编辑器。</p>
-<p>插件：安装官方的 Python 插件。</p>
-<p>解释器选择：按 Ctrl + Shift + P，输入 Python: Select Interpreter。务必选择你刚才创建的 虚拟环境 (.venv) 中的 Python，而不是全局的那个。</p>
+                <p>最近看到一个视频，是有关于构建Agentd的，视频里尝试对Anthropic 和 OpenAI 的 Agent 架构方案手搓一个个人的agent，视频里为他的经验，而文章为我的个人看法和对他视频经验的结合。</p>
+<h1 id="一、-核心准则：能用-API-解决的，别碰-Agent"><a href="#一、-核心准则：能用-API-解决的，别碰-Agent" class="headerlink" title="一、 核心准则：能用 API 解决的，别碰 Agent"></a>一、 核心准则：能用 API 解决的，别碰 Agent</h1><p>很多开发者容易产生“架构幻觉”。比如只是做一个标题总结，却非要上一套 “计划-执行” 模式。</p>
+<p>避坑准则： AI 本身具有非确定性，架构每多一层，不确定性就增加一倍。如果一个简单的 API 配合精准的 Prompt 就能搞定，就不要引入 Agent。</p>
+<h1 id="二、-Workflow-vs-Agent：界定“人的参与”"><a href="#二、-Workflow-vs-Agent：界定“人的参与”" class="headerlink" title="二、 Workflow vs Agent：界定“人的参与”"></a>二、 Workflow vs Agent：界定“人的参与”</h1><p>在堆架构前，先判断这是否是一个工作流（Workflow）：</p>
+<p>工作流： 路径固定、结果可预测、无需人干预（如视频转字幕）。这类场景用 N8N 或 Dify 的工作流节点比 Agent 更稳定。</p>
+<p>Agent： 面对“开放性问题”，需要根据场景调用不同技能，且需要用户实时介入纠偏。</p>
+<h1 id="三、-以-Skills-为核心：解决“注意力牺牲”与-Token-浪费"><a href="#三、-以-Skills-为核心：解决“注意力牺牲”与-Token-浪费" class="headerlink" title="三、 以 Skills 为核心：解决“注意力牺牲”与 Token 浪费"></a>三、 以 Skills 为核心：解决“注意力牺牲”与 Token 浪费</h1><p>视频中提到的“上下文工程（Context Engineering）”听起来很深奥，但其工程化落地的最佳实践就是 Agent Skills。</p>
+<p>当你的 Agent 挂载了太多工具，系统提示词会变得臃肿，导致模型注意力涣散（越做越乱）。我的看法是：Agent Skills 就是针对这一问题的特效药。</p>
+<ol>
+<li>模块化技能管理</li>
+</ol>
+<p>与其手撸复杂的 Sub-agent 架构，不如将功能封装成一个个独立的 Skills。</p>
+<p>按需调用： 只有在特定场景下才激活对应的 Skill，避免将所有工具定义一次性塞入 Context，从而大幅节省 Token。</p>
+<p>隔离干扰： 视觉 Skill 只负责视觉，代码 Skill 只负责逻辑。通过 Skill 的颗粒度控制，天然实现了上下文隔离。</p>
+<ol start="2">
+<li>拥抱“官方工具集”</li>
+</ol>
+<p>实战中，很多开发者试图从零构建调度架构。其实，官方提供的 Agent Skills（如 OpenAI 或主流 Agent 平台内置的插件库）往往是更好的选择。 这些官方工具已经针对 Token 消耗、描述精度和调用稳定性做了深度优化。利用成熟的官方 Skills，比自己设计不成熟的 Sub-agent 节点要高效得多。</p>
+<h1 id="四、-从“小”开始：拒绝闭门造车"><a href="#四、-从“小”开始：拒绝闭门造车" class="headerlink" title="四、 从“小”开始：拒绝闭门造车"></a>四、 从“小”开始：拒绝闭门造车</h1><p>不要一上来就用重型框架设计复杂的流转图。</p>
+<p>先建立 Baseline： 用最基础的 AI SDK 跑通对话。</p>
+<p>技能填充： 发现模型能力短板（如缺实时数据）时，再像插拔 U 盘一样接入一个特定的 Skill。</p>
+<p>场景驱动： 只有当现有 Skill 组合无法解决多步骤长任务时，再考虑引入顶层 Planning 逻辑。</p>
+<h1 id="五、-记忆系统：从“读写”转向“引用”"><a href="#五、-记忆系统：从“读写”转向“引用”" class="headerlink" title="五、 记忆系统：从“读写”转向“引用”"></a>五、 记忆系统：从“读写”转向“引用”</h1><p>在多轮对话中，反复传递长文本是极大的浪费。通过 Skills 系统内置的存储管理，我们可以实现：</p>
+<p>引用机制： 告知 Skill “处理文件 ID-001”，而不是把文件内容贴进对话。</p>
+<p>状态保持： 利用 Skills 的内置状态机，让 Agent 记住任务进度，而不是依赖冗长的历史记录。</p>
+<p>结语：优雅不代表复杂</p>
+<p>AI 系统的进化应该是随业务痛点自然生长的过程。“Skills 插件化思维” 能让你在保持架构简洁的同时，拥有极强的扩展能力。</p>
+<p>记住：先用官方 Skills 解决 80% 的问题，再去为剩下的 20% 优化架构。不要让“架构优雅”成为你 AI 落地路上的绊脚石。</p>
 
                 
               </div>
@@ -343,15 +338,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Python/" class="print-no-link">#Python</a>
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
       
-        <a href="/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="print-no-link">#开发环境</a>
-      
-        <a href="/tags/Windows/" class="print-no-link">#Windows</a>
-      
-        <a href="/tags/%E9%81%BF%E5%9D%91%E6%8C%87%E5%8D%97/" class="print-no-link">#避坑指南</a>
-      
-        <a href="/tags/%E6%95%99%E7%A8%8B/" class="print-no-link">#教程</a>
+        <a href="/tags/%E7%A7%91%E6%8A%80/" class="print-no-link">#科技</a>
       
     </div>
   
@@ -363,8 +352,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>构建思维杠杆：Python 环境配置与避坑指南</div>
-      <div>http://example.com/2026/01/30/构建思维杠杆：Python 环境配置与避坑指南/</div>
+      <div>手搓Sub-Agent？还是直接官方Agentskills？</div>
+      <div>http://example.com/2026/02/04/手搓Sub-Agent？还是直接官方Agentskills？/</div>
     </div>
     <div class="license-meta">
       
@@ -376,7 +365,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年1月30日</div>
+          <div>2026年2月4日</div>
         </div>
       
       
@@ -408,18 +397,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/02/04/%E6%89%8B%E6%90%93Sub-Agent%EF%BC%9F%E8%BF%98%E6%98%AF%E7%9B%B4%E6%8E%A5%E5%AE%98%E6%96%B9Agentskills%EF%BC%9F/" title="手搓Sub-Agent？还是直接官方Agentskills？">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">手搓Sub-Agent？还是直接官方Agentskills？</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/01/29/%E5%88%AB%E8%AE%A9%E5%A5%BD%E5%A5%87%E5%BF%83%E6%AD%BB%E5%9C%A8%E8%AF%BE%E6%9C%AC%E9%87%8C%EF%BC%9ANASA%20Space%20Place%EF%BC%8C%E4%B8%80%E4%B8%AA%E6%88%90%E5%B9%B4%E4%BA%BA%E4%B9%9F%E8%AF%A5%E9%80%9B%E7%9A%84%E2%80%9C%E5%AE%87%E5%AE%99%E5%B9%BC%E5%84%BF%E5%9B%AD%E2%80%9D/" title="别让好奇心死在课本里：NASA Space Place，一个成年人也该逛的“宇宙幼儿园”">
-                        <span class="hidden-mobile">别让好奇心死在课本里：NASA Space Place，一个成年人也该逛的“宇宙幼儿园”</span>
+                      <a href="/2026/01/30/%E6%9E%84%E5%BB%BA%E6%80%9D%E7%BB%B4%E6%9D%A0%E6%9D%86%EF%BC%9APython%20%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%8E%E9%81%BF%E5%9D%91%E6%8C%87%E5%8D%97/" title="构建思维杠杆：Python 环境配置与避坑指南">
+                        <span class="hidden-mobile">构建思维杠杆：Python 环境配置与避坑指南</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

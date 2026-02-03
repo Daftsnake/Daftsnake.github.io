@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>手搓Sub-Agent？还是直接官方Agentskills？</title>
+    <link href="/2026/02/04/%E6%89%8B%E6%90%93Sub-Agent%EF%BC%9F%E8%BF%98%E6%98%AF%E7%9B%B4%E6%8E%A5%E5%AE%98%E6%96%B9Agentskills%EF%BC%9F/"/>
+    <url>/2026/02/04/%E6%89%8B%E6%90%93Sub-Agent%EF%BC%9F%E8%BF%98%E6%98%AF%E7%9B%B4%E6%8E%A5%E5%AE%98%E6%96%B9Agentskills%EF%BC%9F/</url>
+    
+    <content type="html"><![CDATA[<p>最近看到一个视频，是有关于构建Agentd的，视频里尝试对Anthropic 和 OpenAI 的 Agent 架构方案手搓一个个人的agent，视频里为他的经验，而文章为我的个人看法和对他视频经验的结合。</p><h1 id="一、-核心准则：能用-API-解决的，别碰-Agent"><a href="#一、-核心准则：能用-API-解决的，别碰-Agent" class="headerlink" title="一、 核心准则：能用 API 解决的，别碰 Agent"></a>一、 核心准则：能用 API 解决的，别碰 Agent</h1><p>很多开发者容易产生“架构幻觉”。比如只是做一个标题总结，却非要上一套 “计划-执行” 模式。</p><p>避坑准则： AI 本身具有非确定性，架构每多一层，不确定性就增加一倍。如果一个简单的 API 配合精准的 Prompt 就能搞定，就不要引入 Agent。</p><h1 id="二、-Workflow-vs-Agent：界定“人的参与”"><a href="#二、-Workflow-vs-Agent：界定“人的参与”" class="headerlink" title="二、 Workflow vs Agent：界定“人的参与”"></a>二、 Workflow vs Agent：界定“人的参与”</h1><p>在堆架构前，先判断这是否是一个工作流（Workflow）：</p><p>工作流： 路径固定、结果可预测、无需人干预（如视频转字幕）。这类场景用 N8N 或 Dify 的工作流节点比 Agent 更稳定。</p><p>Agent： 面对“开放性问题”，需要根据场景调用不同技能，且需要用户实时介入纠偏。</p><h1 id="三、-以-Skills-为核心：解决“注意力牺牲”与-Token-浪费"><a href="#三、-以-Skills-为核心：解决“注意力牺牲”与-Token-浪费" class="headerlink" title="三、 以 Skills 为核心：解决“注意力牺牲”与 Token 浪费"></a>三、 以 Skills 为核心：解决“注意力牺牲”与 Token 浪费</h1><p>视频中提到的“上下文工程（Context Engineering）”听起来很深奥，但其工程化落地的最佳实践就是 Agent Skills。</p><p>当你的 Agent 挂载了太多工具，系统提示词会变得臃肿，导致模型注意力涣散（越做越乱）。我的看法是：Agent Skills 就是针对这一问题的特效药。</p><ol><li>模块化技能管理</li></ol><p>与其手撸复杂的 Sub-agent 架构，不如将功能封装成一个个独立的 Skills。</p><p>按需调用： 只有在特定场景下才激活对应的 Skill，避免将所有工具定义一次性塞入 Context，从而大幅节省 Token。</p><p>隔离干扰： 视觉 Skill 只负责视觉，代码 Skill 只负责逻辑。通过 Skill 的颗粒度控制，天然实现了上下文隔离。</p><ol start="2"><li>拥抱“官方工具集”</li></ol><p>实战中，很多开发者试图从零构建调度架构。其实，官方提供的 Agent Skills（如 OpenAI 或主流 Agent 平台内置的插件库）往往是更好的选择。 这些官方工具已经针对 Token 消耗、描述精度和调用稳定性做了深度优化。利用成熟的官方 Skills，比自己设计不成熟的 Sub-agent 节点要高效得多。</p><h1 id="四、-从“小”开始：拒绝闭门造车"><a href="#四、-从“小”开始：拒绝闭门造车" class="headerlink" title="四、 从“小”开始：拒绝闭门造车"></a>四、 从“小”开始：拒绝闭门造车</h1><p>不要一上来就用重型框架设计复杂的流转图。</p><p>先建立 Baseline： 用最基础的 AI SDK 跑通对话。</p><p>技能填充： 发现模型能力短板（如缺实时数据）时，再像插拔 U 盘一样接入一个特定的 Skill。</p><p>场景驱动： 只有当现有 Skill 组合无法解决多步骤长任务时，再考虑引入顶层 Planning 逻辑。</p><h1 id="五、-记忆系统：从“读写”转向“引用”"><a href="#五、-记忆系统：从“读写”转向“引用”" class="headerlink" title="五、 记忆系统：从“读写”转向“引用”"></a>五、 记忆系统：从“读写”转向“引用”</h1><p>在多轮对话中，反复传递长文本是极大的浪费。通过 Skills 系统内置的存储管理，我们可以实现：</p><p>引用机制： 告知 Skill “处理文件 ID-001”，而不是把文件内容贴进对话。</p><p>状态保持： 利用 Skills 的内置状态机，让 Agent 记住任务进度，而不是依赖冗长的历史记录。</p><p>结语：优雅不代表复杂</p><p>AI 系统的进化应该是随业务痛点自然生长的过程。“Skills 插件化思维” 能让你在保持架构简洁的同时，拥有极强的扩展能力。</p><p>记住：先用官方 Skills 解决 80% 的问题，再去为剩下的 20% 优化架构。不要让“架构优雅”成为你 AI 落地路上的绊脚石。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>科技学习文章</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>AI</tag>
+      
+      <tag>科技</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>构建思维杠杆：Python 环境配置与避坑指南</title>
     <link href="/2026/01/30/%E6%9E%84%E5%BB%BA%E6%80%9D%E7%BB%B4%E6%9D%A0%E6%9D%86%EF%BC%9APython%20%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%8E%E9%81%BF%E5%9D%91%E6%8C%87%E5%8D%97/"/>
     <url>/2026/01/30/%E6%9E%84%E5%BB%BA%E6%80%9D%E7%BB%B4%E6%9D%A0%E6%9D%86%EF%BC%9APython%20%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%8E%E9%81%BF%E5%9D%91%E6%8C%87%E5%8D%97/</url>
@@ -86,13 +113,13 @@
     
     <tags>
       
-      <tag>Python</tag>
-      
       <tag>编程</tag>
       
       <tag>理财</tag>
       
       <tag>自动化</tag>
+      
+      <tag>Python</tag>
       
     </tags>
     
