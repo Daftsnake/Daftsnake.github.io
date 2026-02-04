@@ -1,0 +1,829 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Daftsnake">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="作为一名 Python 开发者（尤其是对运维和 AI 感兴趣的），你是否遇到过这些问题：  “在我的电脑上能跑，在服务器上就报错？”   安装各种库把电脑环境搞得乱七八糟？   想学习 Linux 环境，但不想重装系统或搞复杂的虚拟机？  Docker 就是为了解决这些问题而生的。它就像一个**“轻量级沙盒”**，能把你的代码和运行环境打包在一起，用完即焚，不留垃圾。 本文记录了在 Windows">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 开发者必读：Docker 零基础入门实战指南(Windows版)">
+<meta property="og:url" content="http://example.com/2026/02/05/Python%20%E5%BC%80%E5%8F%91%E8%80%85%E5%BF%85%E8%AF%BB%EF%BC%9ADocker%20%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97(Windows%E7%89%88)/index.html">
+<meta property="og:site_name" content="Daftsnake的小窝">
+<meta property="og:description" content="作为一名 Python 开发者（尤其是对运维和 AI 感兴趣的），你是否遇到过这些问题：  “在我的电脑上能跑，在服务器上就报错？”   安装各种库把电脑环境搞得乱七八糟？   想学习 Linux 环境，但不想重装系统或搞复杂的虚拟机？  Docker 就是为了解决这些问题而生的。它就像一个**“轻量级沙盒”**，能把你的代码和运行环境打包在一起，用完即焚，不留垃圾。 本文记录了在 Windows">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-04T18:09:00.000Z">
+<meta property="article:modified_time" content="2026-02-04T18:36:35.942Z">
+<meta property="article:author" content="Daftsnake">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="开发环境">
+<meta property="article:tag" content="教程">
+<meta property="article:tag" content="避坑指南">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Python 开发者必读：Docker 零基础入门实战指南(Windows版) - Daftsnake的小窝</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Daftsnake&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/137103134_p0.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Python 开发者必读：Docker 零基础入门实战指南(Windows版)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-02-05 02:09" pubdate>
+          2026年2月5日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Python 开发者必读：Docker 零基础入门实战指南(Windows版)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>作为一名 Python 开发者（尤其是对运维和 AI 感兴趣的），你是否遇到过这些问题：</p>
+<ul>
+<li>“在我的电脑上能跑，在服务器上就报错？”  </li>
+<li>安装各种库把电脑环境搞得乱七八糟？  </li>
+<li>想学习 Linux 环境，但不想重装系统或搞复杂的虚拟机？</li>
+</ul>
+<p><strong>Docker</strong> 就是为了解决这些问题而生的。它就像一个**“轻量级沙盒”**，能把你的代码和运行环境打包在一起，用完即焚，不留垃圾。</p>
+<p>本文记录了在 <strong>Windows 系统</strong> 下配合 <strong>VS Code</strong> 从零配置 Docker 的全过程。</p>
+<p>&lt;!– more --&gt;</p>
+<h2 id="🛠️-第一部分：开发环境准备-IDE-与-终端"><a href="#🛠️-第一部分：开发环境准备-IDE-与-终端" class="headerlink" title="🛠️ 第一部分：开发环境准备 (IDE 与 终端)"></a><strong>🛠️ 第一部分：开发环境准备 (IDE 与 终端)</strong></h2><p>在开始 Docker 之前，我们需要把“武器”准备好。</p>
+<h3 id="1-IDE-选择与配置"><a href="#1-IDE-选择与配置" class="headerlink" title="1. IDE 选择与配置"></a><strong>1. IDE 选择与配置</strong></h3><p>我们强烈推荐使用 <strong>VS Code</strong>，它是目前对 Docker 支持最好的轻量级编辑器。</p>
+<ul>
+<li><strong>Visual Studio Code (VS Code)</strong>  <ul>
+<li><strong>推荐插件</strong>：在左侧插件市场搜索并安装 Docker (Microsoft 出品)。  </li>
+<li><strong>作用</strong>：它能让 Dockerfile 高亮显示（变色），不再是黑白文本，还能自动联想命令，极大地降低手写错误的概率。  </li>
+<li><strong>终端快捷键</strong>：Ctrl + ~ (波浪号键) 可快速打开&#x2F;关闭底部终端。</li>
+</ul>
+</li>
+<li><em>(可选) PyCharm 专业版</em>  <ul>
+<li>如果你使用 PyCharm，Docker 插件是内置的，但社区版（免费版）对 Docker 支持有限，需要手动配置更多内容。建议新手先用 VS Code 入门。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-终端-Terminal-的选择：到底该用哪个黑窗口？"><a href="#2-终端-Terminal-的选择：到底该用哪个黑窗口？" class="headerlink" title="2. 终端 (Terminal) 的选择：到底该用哪个黑窗口？"></a><strong>2. 终端 (Terminal) 的选择：到底该用哪个黑窗口？</strong></h3><p>Windows 下有很多种终端，新手容易晕。<strong>做 Docker 开发时，请遵循以下优先级</strong>：</p>
+<ul>
+<li><strong>🥇 PowerShell (推荐)</strong>：功能最全，权限管理方便。VS Code 默认终端通常就是这个。  </li>
+<li><strong>🥈 WSL (Ubuntu&#x2F;Debian)</strong>：如果你已经精通 Linux，可以直接在 WSL 里操作，体验最原生。  </li>
+<li><strong>🥉 CMD (命令提示符)</strong>：老旧，不支持某些新命令，<strong>不推荐</strong>。  </li>
+<li><strong>❌ Git Bash</strong>：在 Docker 交互模式下（-it）有时会出现按键不灵的问题，<strong>慎用</strong>。</li>
+</ul>
+<h2 id="🏗️-第二部分：Docker-安装与设置"><a href="#🏗️-第二部分：Docker-安装与设置" class="headerlink" title="🏗️ 第二部分：Docker 安装与设置"></a><strong>🏗️ 第二部分：Docker 安装与设置</strong></h2><h3 id="1-下载与安装"><a href="#1-下载与安装" class="headerlink" title="1. 下载与安装"></a><strong>1. 下载与安装</strong></h3><ul>
+<li><strong>官方下载地址</strong>：<a target="_blank" rel="noopener" href="https://www.docker.com/products/docker-desktop/">Docker Desktop for Windows</a>  </li>
+<li><strong>安装关键点</strong>：  <ul>
+<li>安装向导中务必勾选 <strong>“Use WSL 2 instead of Hyper-V”</strong>（这是性能的关键）。  </li>
+<li><strong>BIOS 设置</strong>：如果安装后报错，请检查电脑 BIOS 中是否开启了“虚拟化技术” (Virtualization&#x2F;VT-x&#x2F;AMD-V)。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-启动与验证"><a href="#2-启动与验证" class="headerlink" title="2. 启动与验证"></a><strong>2. 启动与验证</strong></h3><ul>
+<li>安装完成后启动 Docker Desktop，点击 <strong>“Accept”</strong>。  </li>
+<li>等待左下角鲸鱼图标变为 <strong>绿色 (Engine Running)</strong>。  </li>
+<li><strong>验证命令</strong>：<br>在 VS Code 终端 (PowerShell) 输入：<br>docker --version<br># 输出示例：Docker version 29.x.x, build … 表示成功</li>
+</ul>
+<h2 id="📦-第三部分：实战——打包-Python-脚本"><a href="#📦-第三部分：实战——打包-Python-脚本" class="headerlink" title="📦 第三部分：实战——打包 Python 脚本"></a><strong>📦 第三部分：实战——打包 Python 脚本</strong></h2><p>假设我们有一个监控服务器的脚本 monitor.py，我们需要将它打包进容器。</p>
+<h3 id="Step-1-编写-Dockerfile-避坑重点！"><a href="#Step-1-编写-Dockerfile-避坑重点！" class="headerlink" title="Step 1: 编写 Dockerfile (避坑重点！)"></a><strong>Step 1: 编写 Dockerfile (避坑重点！)</strong></h3><p>在项目根目录下（与 .py 文件同级），创建一个名为 Dockerfile 的文件。</p>
+<p><strong>🛑 Windows 新手必看：文件后缀名陷阱</strong></p>
+<p>Windows 默认会隐藏文件后缀名。你以为你创建了 Dockerfile，其实系统偷偷把它叫成了 Dockerfile.txt。</p>
+<p><strong>检查方法</strong>：在文件夹里点击“查看” -&gt; 勾选“文件扩展名”。<strong>确保这个文件没有任何 .txt 或 .py 后缀！</strong></p>
+<p><strong>文件内容：</strong></p>
+<p># 1. 基础镜像：使用官方精简版 Python 3.11 (Linux环境)<br>FROM python:3.11-slim</p>
+<p># 2. 工作目录：容器内部的“家”<br>WORKDIR &#x2F;app</p>
+<p># 3. 复制文件：把当前 Windows 文件夹的所有内容放入容器的 &#x2F;app<br>COPY . &#x2F;app</p>
+<p># 4. 安装依赖：使用阿里云镜像源加速，避免卡顿<br>RUN pip install psutil -i [<a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/pypi/simple//](https://mirrors.aliyun.com/pypi/simple/)">https://mirrors.aliyun.com/pypi/simple/\](https://mirrors.aliyun.com/pypi/simple/)</a></p>
+<p># 5. 启动命令：容器启动时执行的指令<br>CMD [“python”, “monitor.py”]</p>
+<h3 id="Step-2-构建镜像-Build"><a href="#Step-2-构建镜像-Build" class="headerlink" title="Step 2: 构建镜像 (Build)"></a><strong>Step 2: 构建镜像 (Build)</strong></h3><p>将“配方”变成“光盘”（镜像）。在终端运行：</p>
+<p># 注意最后那个点 (.) 不能漏，代表“当前目录”<br>docker build -t my-monitor .</p>
+<ul>
+<li>-t my-monitor: 给镜像起个名字。  </li>
+<li><strong>多系统提示</strong>：如果你是在 Mac (M1&#x2F;M2) 芯片上构建，想给 Linux 服务器用，需要加 --platform linux&#x2F;amd64 参数。Windows 用户通常不需要。</li>
+</ul>
+<h3 id="Step-3-运行容器-Run"><a href="#Step-3-运行容器-Run" class="headerlink" title="Step 3: 运行容器 (Run)"></a><strong>Step 3: 运行容器 (Run)</strong></h3><p>启动沙盒运行程序：</p>
+<p>docker run -it --rm my-monitor</p>
+<ul>
+<li>-it: 交互模式（能看到输出，能按 Ctrl+C）。  </li>
+<li>--rm: <strong>用完即删</strong>（停止运行后自动删除容器，不占硬盘）。</li>
+</ul>
+<h2 id="🌍-第四部分：进阶——如何在其他电脑上一键运行？"><a href="#🌍-第四部分：进阶——如何在其他电脑上一键运行？" class="headerlink" title="🌍 第四部分：进阶——如何在其他电脑上一键运行？"></a><strong>🌍 第四部分：进阶——如何在其他电脑上一键运行？</strong></h2><p>这是 Docker 最强大的地方。你不再需要教别人“先装 Python，再 pip install…”，只需要给他一个镜像。</p>
+<h3 id="方法一：使用-Docker-Hub（推荐，类似-GitHub）"><a href="#方法一：使用-Docker-Hub（推荐，类似-GitHub）" class="headerlink" title="方法一：使用 Docker Hub（推荐，类似 GitHub）"></a><strong>方法一：使用 Docker Hub（推荐，类似 GitHub）</strong></h3><p>只要你有 Docker Hub 账号，就可以把镜像推送到云端。</p>
+<ol>
+<li><p><strong>注册与登录</strong>：在终端输入 docker login 登录你的账号。  </p>
+</li>
+<li><p><strong>打标签 (Tag)</strong>：<br># 格式：docker tag [本地镜像名] [你的用户名]&#x2F;[仓库名]:[版本]<br>docker tag my-monitor milen&#x2F;server-monitor:v1</p>
+</li>
+<li><p><strong>上传 (Push)</strong>：<br>docker push milen&#x2F;server-monitor:v1</p>
+</li>
+<li><p><strong>在任意电脑上运行（一键还原）</strong>：<br>无论对方是 Windows、Mac 还是 Linux，只要装了 Docker，只需输入这一行命令，Docker 会自动下载并运行，环境与你完全一致：<br>docker run -it --rm milen&#x2F;server-monitor:v1</p>
+</li>
+</ol>
+<h3 id="方法二：离线文件传输（无需网络）"><a href="#方法二：离线文件传输（无需网络）" class="headerlink" title="方法二：离线文件传输（无需网络）"></a><strong>方法二：离线文件传输（无需网络）</strong></h3><p>如果是在没有外网的服务器上，可以把镜像保存为文件。</p>
+<ol>
+<li><strong>导出</strong>：docker save -o my_monitor.tar my-monitor  </li>
+<li><strong>传输</strong>：把生成的 my_monitor.tar 文件用 U 盘或 scp 传给对方。  </li>
+<li><strong>导入</strong>：docker load -i my_monitor.tar</li>
+</ol>
+<h2 id="🧹-第五部分：日常管理与清理（如何删除容器）"><a href="#🧹-第五部分：日常管理与清理（如何删除容器）" class="headerlink" title="🧹 第五部分：日常管理与清理（如何删除容器）"></a><strong>🧹 第五部分：日常管理与清理（如何删除容器）</strong></h2><p>在使用过程中，如果不加 --rm 参数，停止的容器会一直占用空间。我们需要定期清理。</p>
+<h3 id="1-常用清理命令"><a href="#1-常用清理命令" class="headerlink" title="1. 常用清理命令"></a><strong>1. 常用清理命令</strong></h3><ul>
+<li><strong>查看正在运行</strong>：docker ps  </li>
+<li><strong>查看所有(含已停止)</strong>：docker ps -a  </li>
+<li><strong>停止容器</strong>：docker stop [容器ID前4位]  </li>
+<li><strong>删除容器</strong>：docker rm [容器ID前4位] (注意：运行中的容器不能删，必须先 stop)  </li>
+<li><strong>删除镜像</strong>：docker rmi [镜像名]</li>
+</ul>
+<h3 id="2-核弹级清理：一键释放空间-慎用！"><a href="#2-核弹级清理：一键释放空间-慎用！" class="headerlink" title="2. 核弹级清理：一键释放空间 (慎用！)"></a><strong>2. 核弹级清理：一键释放空间 (慎用！)</strong></h3><p>如果你发现 Docker 占用了几十 GB 空间，想把所有<strong>没在使用</strong>的容器、镜像、缓存全部清空：</p>
+<p>docker system prune</p>
+<ul>
+<li>它会提示你确认，输入 y 即可。</li>
+</ul>
+<h2 id="⚠️-第六部分：新手避坑指南-常见错误与解决方案"><a href="#⚠️-第六部分：新手避坑指南-常见错误与解决方案" class="headerlink" title="⚠️ 第六部分：新手避坑指南 (常见错误与解决方案)"></a><strong>⚠️ 第六部分：新手避坑指南 (常见错误与解决方案)</strong></h2><h3 id="1-PowerShell-脚本无法运行-Activate-ps1-报错"><a href="#1-PowerShell-脚本无法运行-Activate-ps1-报错" class="headerlink" title="1. PowerShell 脚本无法运行 (Activate.ps1 报错)"></a><strong>1. PowerShell 脚本无法运行 (Activate.ps1 报错)</strong></h3><ul>
+<li><strong>现象</strong>：VS Code 打开终端时提示红色报错“在此系统上禁止运行脚本”。  </li>
+<li><strong>解决</strong>：在 PowerShell 中执行以下命令（只需做一次）：<br>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</li>
+</ul>
+<h3 id="2-构建报错-“Dockerfile-cannot-be-empty”"><a href="#2-构建报错-“Dockerfile-cannot-be-empty”" class="headerlink" title="2. 构建报错 “Dockerfile cannot be empty”"></a><strong>2. 构建报错 “Dockerfile cannot be empty”</strong></h3><ul>
+<li><strong>原因</strong>：VS Code 中修改了 Dockerfile 但<strong>忘记保存</strong>（标签栏有小白点）。  </li>
+<li><strong>解决</strong>：养成随手按 Ctrl + S 的好习惯。</li>
+</ul>
+<h3 id="3-环境隔离的“假象”"><a href="#3-环境隔离的“假象”" class="headerlink" title="3. 环境隔离的“假象”"></a><strong>3. 环境隔离的“假象”</strong></h3><ul>
+<li><strong>现象</strong>：Python 脚本在 Docker 里读取到的磁盘空间、CPU 占用与 Windows 本地不一致。  </li>
+<li><strong>原因</strong>：<strong>这是正常的！</strong> Docker 容器看不到宿主机的 C 盘，只能看到容器内的虚拟文件系统。</li>
+</ul>
+<h2 id="📝-附录：Docker-常用命令速查表-Cheat-Sheet"><a href="#📝-附录：Docker-常用命令速查表-Cheat-Sheet" class="headerlink" title="📝 附录：Docker 常用命令速查表 (Cheat Sheet)"></a><strong>📝 附录：Docker 常用命令速查表 (Cheat Sheet)</strong></h2><table>
+<thead>
+<tr>
+<th align="left">场景</th>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>构建与启动</strong></td>
+<td align="left">docker build -t &lt;名字&gt; .</td>
+<td align="left">根据当前目录 Dockerfile 构建镜像</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">docker run -it --rm &lt;名字&gt;</td>
+<td align="left">运行容器，用完自动删除 (推荐测试用)</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">docker run -d &lt;名字&gt;</td>
+<td align="left">后台静默运行 (推荐服务器部署用)</td>
+</tr>
+<tr>
+<td align="left"><strong>查看状态</strong></td>
+<td align="left">docker ps</td>
+<td align="left">查看正在运行的容器</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">docker ps -a</td>
+<td align="left">查看所有容器 (含已停止)</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">docker images</td>
+<td align="left">查看本地所有镜像</td>
+</tr>
+<tr>
+<td align="left"><strong>调试与排错</strong></td>
+<td align="left">docker logs &lt;容器ID&gt;</td>
+<td align="left"><strong>最重要！</strong> 查看程序打印的报错日志</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">docker exec -it &lt;容器ID&gt; bash</td>
+<td align="left"><strong>进入容器内部</strong> (像远程连接一样操作)</td>
+</tr>
+<tr>
+<td align="left"><strong>清理</strong></td>
+<td align="left">docker stop &lt;容器ID&gt;</td>
+<td align="left">停止容器</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">docker rm &lt;容器ID&gt;</td>
+<td align="left">删除容器</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">docker rmi &lt;镜像名&gt;</td>
+<td align="left">删除镜像</td>
+</tr>
+</tbody></table>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%A7%91%E6%8A%80%E5%AD%A6%E4%B9%A0%E6%96%87%E7%AB%A0/" class="category-chain-item">科技学习文章</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Python/" class="print-no-link">#Python</a>
+      
+        <a href="/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="print-no-link">#开发环境</a>
+      
+        <a href="/tags/Windows/" class="print-no-link">#Windows</a>
+      
+        <a href="/tags/%E9%81%BF%E5%9D%91%E6%8C%87%E5%8D%97/" class="print-no-link">#避坑指南</a>
+      
+        <a href="/tags/%E6%95%99%E7%A8%8B/" class="print-no-link">#教程</a>
+      
+        <a href="/tags/Docker/" class="print-no-link">#Docker</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Python 开发者必读：Docker 零基础入门实战指南(Windows版)</div>
+      <div>http://example.com/2026/02/05/Python 开发者必读：Docker 零基础入门实战指南(Windows版)/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Daftsnake</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年2月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/02/04/%E6%89%8B%E6%90%93Sub-Agent%EF%BC%9F%E8%BF%98%E6%98%AF%E7%9B%B4%E6%8E%A5%E5%AE%98%E6%96%B9Agentskills%EF%BC%9F/" title="手搓Sub-Agent？还是直接官方Agentskills？">
+                        <span class="hidden-mobile">手搓Sub-Agent？还是直接官方Agentskills？</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
