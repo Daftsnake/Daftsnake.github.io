@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>一个由 AI 协助构建的“二次元友好型”温馨博客模板</title>
+    <link href="/2026/02/06/%E4%B8%80%E4%B8%AA%E7%94%B1%20AI%20%E5%8D%8F%E5%8A%A9%E6%9E%84%E5%BB%BA%E7%9A%84%E2%80%9C%E4%BA%8C%E6%AC%A1%E5%85%83%E5%8F%8B%E5%A5%BD%E5%9E%8B%E2%80%9D%E6%B8%A9%E9%A6%A8%E5%8D%9A%E5%AE%A2%E6%A8%A1%E6%9D%BF/"/>
+    <url>/2026/02/06/%E4%B8%80%E4%B8%AA%E7%94%B1%20AI%20%E5%8D%8F%E5%8A%A9%E6%9E%84%E5%BB%BA%E7%9A%84%E2%80%9C%E4%BA%8C%E6%AC%A1%E5%85%83%E5%8F%8B%E5%A5%BD%E5%9E%8B%E2%80%9D%E6%B8%A9%E9%A6%A8%E5%8D%9A%E5%AE%A2%E6%A8%A1%E6%9D%BF/</url>
+    
+    <content type="html"><![CDATA[<p>👋 大家好！</p><p>今天想和大家分享一个我最近折腾的小项目：Next.js Warm Starter。</p><p>这是一个基于 Next.js + Tailwind CSS + MDX 构建的轻量级博客&#x2F;作品集模板。特别之处在于，它的核心架构和代码逻辑，是在 Antigravity 环境下，由 AI 根据我的一份详细需求文档辅助生成的。</p><p>🎯 GitHub 仓库地址：<a href="https://github.com/Daftsnake/nextjs-warm-starter">https://github.com/Daftsnake/nextjs-warm-starter</a></p><h1 id="💡-为什么做这个模板？"><a href="#💡-为什么做这个模板？" class="headerlink" title="💡 为什么做这个模板？"></a>💡 为什么做这个模板？</h1><p>原本只是想要试试antigravity里Gemini 3 pro (high)的前端设计水平如何的（虽然我几乎一点都不知道要如何使用Next.js + Tailwind CSS + MDX来构建网站）。</p><p>一开始只是想要考考Gemini但是随着不断的提示修改，测试网页bug，提交修改，越来越觉得网页搞得好像还不错，要不开源出去给别人当模板吧!?于是我把做好的网页开源出来了，虽然简陋，不过GitHub上应该也不乏像我这样的半成品网页吧？</p><p>无论如何网页都是我努力过的产物（虽然就是写了个prompt，剩下的都是Gemini做的😅），是我喜欢的风格。比如：</p><p>二次元友好：方便我以后把背景换成喜欢的插画，而不会让上面的文字看不清。</p><p>写作方便：必须支持 MDX，像写文档一样写博客。</p><p>于是，我尝试利用 AI 编程工具 Antigravity，通过预设好的 Prompt，完成了这个模板的初代版本。</p><h1 id="✨-核心特性"><a href="#✨-核心特性" class="headerlink" title="✨ 核心特性"></a>✨ 核心特性</h1><ol><li>技术栈 (The Tech Stack)</li></ol><p>紧跟目前的现代前端潮流，保证了高性能和开发体验：</p><p>Next.js 14+ (App Router)：最新的路由架构，服务端渲染 (RSR) 带来的极速首屏体验。</p><p>Tailwind CSS：原子化 CSS，修改样式极其方便。</p><p>MDX：在 Markdown 里直接写 React 组件，内容创作的终极形态。</p><p>TypeScript：类型安全，代码维护更放心。</p><ol start="2"><li>设计哲学：Warm &amp; Cozy</li></ol><p>不同于常见的冷色调，这个 Starter 默认采用了一套“奶油色”主题：</p><p>背景色：使用 Cream (#FDFBF7) 代替纯白，护眼且温馨。</p><p>毛玻璃效果 (Glassmorphism)：这是为了“二次元兼容性”特意设计的。所有的卡片和导航栏都采用了半透明 + 背景模糊的处理。这意味着你可以随时在 globals.css 中换上一张大大的全屏背景图（比如你的二次元本命），而内容区域依然清晰可读，且能透出背景的色调。</p><p>圆角与阴影：大量的 rounded-2xl 和柔和的阴影，拒绝尖锐的棱角。</p><ol start="3"><li>开箱即用的架构</li></ol><p>AI 帮我生成了非常标准的目录结构，你不需要操心配置，直接在 src&#x2F;content 文件夹里丢 .mdx 文件就能生成文章。</p><p>src&#x2F;<br>├── app&#x2F;          # Next.js App Router 页面<br>├── components&#x2F;   # UI 组件 (按钮, 卡片, 布局)<br>├── content&#x2F;      # 你的博客文章 (MDX)<br>└── styles&#x2F;       # 全局样式</p><h1 id="🚀-快速开始"><a href="#🚀-快速开始" class="headerlink" title="🚀 快速开始"></a>🚀 快速开始</h1><p>如果你也想拥有一个温馨的个人小站，只需三步：</p><p>克隆仓库</p><p>git clone <a href="https://github.com/Daftsnake/nextjs-warm-starter.git">https://github.com/Daftsnake/nextjs-warm-starter.git</a><br>cd nextjs-warm-starter</p><p>安装依赖</p><p>npm install<br>或者 yarn install &#x2F; pnpm install</p><p>启动项目</p><p>npm run dev</p><p>打开浏览器访问 “<a href="http://localhost:3000/">http://localhost:3000</a> “，你就能看到那个温馨的界面了。</p><p>📝 它是如何构建的？</p><p>这个项目的诞生过程本身就很有趣。我并没有从零开始手写每一个 div，而是编写了一份包含：</p><p>视觉风格定义（颜色代码、圆角大小）</p><p>文件架构树</p><p>功能需求（MDX 集成、响应式布局）</p><p>…的详细 Prompt，然后交给 AI 生成了初始骨架。</p><h1 id="🤝-欢迎-Star-和-PR"><a href="#🤝-欢迎-Star-和-PR" class="headerlink" title="🤝 欢迎 Star 和 PR"></a>🤝 欢迎 Star 和 PR</h1><p>这是一个开源项目，虽然目前还比较简单，但作为一个起步模板（Starter）已经足够好用。</p><p>如果你喜欢这种温馨的风格，或者想找一个干净的 Next.js 模板练手，欢迎来 GitHub 给我点个 Star ⭐️！也欢迎提交 Issue 或 PR 帮助它变得更好。</p><p>👉 传送门：<a href="https://github.com/Daftsnake/nextjs-warm-starter">https://github.com/Daftsnake/nextjs-warm-starter</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>科技学习文章</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>网页</tag>
+      
+      <tag>开源</tag>
+      
+      <tag>教程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Python 开发者必读：Docker 零基础入门实战指南(Windows版)</title>
     <link href="/2026/02/05/Python%20%E5%BC%80%E5%8F%91%E8%80%85%E5%BF%85%E8%AF%BB%EF%BC%9ADocker%20%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97(Windows%E7%89%88)/"/>
     <url>/2026/02/05/Python%20%E5%BC%80%E5%8F%91%E8%80%85%E5%BF%85%E8%AF%BB%EF%BC%9ADocker%20%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97(Windows%E7%89%88)/</url>
@@ -20,6 +49,8 @@
     
     <tags>
       
+      <tag>教程</tag>
+      
       <tag>Python</tag>
       
       <tag>开发环境</tag>
@@ -27,8 +58,6 @@
       <tag>Windows</tag>
       
       <tag>避坑指南</tag>
-      
-      <tag>教程</tag>
       
       <tag>Docker</tag>
       
@@ -82,6 +111,8 @@
     
     <tags>
       
+      <tag>教程</tag>
+      
       <tag>Python</tag>
       
       <tag>开发环境</tag>
@@ -89,8 +120,6 @@
       <tag>Windows</tag>
       
       <tag>避坑指南</tag>
-      
-      <tag>教程</tag>
       
     </tags>
     
@@ -148,13 +177,13 @@
     
     <tags>
       
+      <tag>Python</tag>
+      
       <tag>编程</tag>
       
       <tag>理财</tag>
       
       <tag>自动化</tag>
-      
-      <tag>Python</tag>
       
     </tags>
     
