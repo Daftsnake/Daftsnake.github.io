@@ -1,5 +1,5 @@
 ---
-title: 生存审计：我的第一个 Python 项目 Rational-Auditor
+title: 我的第一个 Python 项目 Rational-Auditor
 
 date: 2026-01-25 03:00:00
 
