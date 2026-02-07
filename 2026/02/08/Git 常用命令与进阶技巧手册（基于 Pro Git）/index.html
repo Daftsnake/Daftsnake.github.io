@@ -19,25 +19,26 @@
   <meta name="author" content="Daftsnake">
   <meta name="keywords" content="">
   
-    <meta name="description" content="还记得小时候看《未解之谜》时的那种战栗感吗？ 那时候，无论是百慕大三角的传说，还是外星人的猜想，都能让我盯着天花板发呆好久。但随着年岁渐长，物理试卷上的引力公式和枯燥的天体运行图，慢慢把这种纯粹的好奇心给磨平了。我们习惯了为了考试去背诵星球的排列顺序，却忘了仰望星空时那种本能的震撼。 最近在整理资料时，我偶然“误入”了一个本来是给小朋友设计的网站——NASA Space Place。 原本我只是想">
+    <meta name="description" content="这份指南参考了 Git 官方权威教材 Pro Git，旨在为你提供一个高效的日常开发备忘录。 一、 基础工作流：从初始化到提交Git 的核心在于“暂存区”（Staging Area）的概念。 1.1 初始化与配置 初始化仓库：git init 克隆远程仓库：git clone  配置用户信息： git config –global user.name “你的名字”git config –globa">
 <meta property="og:type" content="article">
-<meta property="og:title" content="别让好奇心死在课本里：NASA Space Place，一个成年人也该逛的“宇宙幼儿园”">
-<meta property="og:url" content="http://example.com/2026/01/29/%E5%88%AB%E8%AE%A9%E5%A5%BD%E5%A5%87%E5%BF%83%E6%AD%BB%E5%9C%A8%E8%AF%BE%E6%9C%AC%E9%87%8C%EF%BC%9ANASA%20Space%20Place%EF%BC%8C%E4%B8%80%E4%B8%AA%E6%88%90%E5%B9%B4%E4%BA%BA%E4%B9%9F%E8%AF%A5%E9%80%9B%E7%9A%84%E2%80%9C%E5%AE%87%E5%AE%99%E5%B9%BC%E5%84%BF%E5%9B%AD%E2%80%9D/index.html">
+<meta property="og:title" content="Git 常用命令与进阶技巧手册（基于 Pro Git）">
+<meta property="og:url" content="http://example.com/2026/02/08/Git%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B8%8E%E8%BF%9B%E9%98%B6%E6%8A%80%E5%B7%A7%E6%89%8B%E5%86%8C%EF%BC%88%E5%9F%BA%E4%BA%8E%20Pro%20Git%EF%BC%89/index.html">
 <meta property="og:site_name" content="Daftsnake的小窝">
-<meta property="og:description" content="还记得小时候看《未解之谜》时的那种战栗感吗？ 那时候，无论是百慕大三角的传说，还是外星人的猜想，都能让我盯着天花板发呆好久。但随着年岁渐长，物理试卷上的引力公式和枯燥的天体运行图，慢慢把这种纯粹的好奇心给磨平了。我们习惯了为了考试去背诵星球的排列顺序，却忘了仰望星空时那种本能的震撼。 最近在整理资料时，我偶然“误入”了一个本来是给小朋友设计的网站——NASA Space Place。 原本我只是想">
+<meta property="og:description" content="这份指南参考了 Git 官方权威教材 Pro Git，旨在为你提供一个高效的日常开发备忘录。 一、 基础工作流：从初始化到提交Git 的核心在于“暂存区”（Staging Area）的概念。 1.1 初始化与配置 初始化仓库：git init 克隆远程仓库：git clone  配置用户信息： git config –global user.name “你的名字”git config –globa">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-01-29T02:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-28T17:25:37.449Z">
+<meta property="article:published_time" content="2026-02-07T17:19:00.000Z">
+<meta property="article:modified_time" content="2026-02-07T17:16:24.341Z">
 <meta property="article:author" content="Daftsnake">
-<meta property="article:tag" content="天文">
-<meta property="article:tag" content="科普">
-<meta property="article:tag" content="英语学习">
-<meta property="article:tag" content="资源推荐">
+<meta property="article:tag" content="Git">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="开发环境">
+<meta property="article:tag" content="教程">
+<meta property="article:tag" content="避坑指南">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>别让好奇心死在课本里：NASA Space Place，一个成年人也该逛的“宇宙幼儿园” - Daftsnake的小窝</title>
+  <title>Git 常用命令与进阶技巧手册（基于 Pro Git） - Daftsnake的小窝</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +204,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="别让好奇心死在课本里：NASA Space Place，一个成年人也该逛的“宇宙幼儿园”"></span>
+            <span id="subtitle" data-typed-text="Git 常用命令与进阶技巧手册（基于 Pro Git）"></span>
           
         </div>
 
@@ -214,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-01-29 10:00" pubdate>
-          2026年1月29日 上午
+        <time datetime="2026-02-08 01:19" pubdate>
+          2026年2月8日 凌晨
         </time>
       </span>
     
@@ -226,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          860 字
         
       </span>
     
@@ -237,7 +238,7 @@
         
         
         
-          9 分钟
+          8 分钟
         
       </span>
     
@@ -274,49 +275,76 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">别让好奇心死在课本里：NASA Space Place，一个成年人也该逛的“宇宙幼儿园”</h1>
+            <h1 id="seo-header">Git 常用命令与进阶技巧手册（基于 Pro Git）</h1>
             
             
               <div class="markdown-body">
                 
-                <p>还记得小时候看《未解之谜》时的那种战栗感吗？</p>
-<p>那时候，无论是百慕大三角的传说，还是外星人的猜想，都能让我盯着天花板发呆好久。但随着年岁渐长，物理试卷上的引力公式和枯燥的天体运行图，慢慢把这种纯粹的好奇心给磨平了。我们习惯了为了考试去背诵星球的排列顺序，却忘了仰望星空时那种本能的震撼。</p>
-<p>最近在整理资料时，我偶然“误入”了一个本来是给小朋友设计的网站——NASA Space Place。</p>
-<p>原本我只是想随便逛逛，结果竟然在这个“幼儿园”级别的网站里逛了一下午。今天就想把这个宝藏分享出来，不仅是为了学知识，更是为了找回那种久违的、不带功利色彩的探索欲。</p>
-<p>它是谁？</p>
-<p>NASA Space Place (<a target="_blank" rel="noopener" href="https://spaceplace.nasa.gov/">https://spaceplace.nasa.gov/</a>) 是 NASA 专门为小学及初中阶段的学生建立的天文科普启蒙网站。</p>
-<p>第一眼看到它，可能会觉得画风有点“幼齿”。但我必须说：它的交互逻辑和视觉传达，吊打绝大多数成年人的“知识付费”课程。</p>
-<p>为什么推荐它？（哪怕你已经21岁了）</p>
-<ol>
-<li>拒绝“黑话”，把复杂的概念“说人话”</li>
-</ol>
-<p>我们这一代人，受够了那种堆砌术语的“填鸭式”教学。而在 Space Place 里，复杂的科学原理被拆解成了最直观的积木。</p>
-<p>网站主要分为六大板块：</p>
-<p>Universe (宇宙)</p>
-<p>Earth (地球)</p>
-<p>Sun (太阳)</p>
-<p>Solar System (太阳系)</p>
-<p>Science &amp; Tech (科学与技术)</p>
-<p>Educators (教育者资源)</p>
-<p>比如在解释“黑洞”时，它不会一上来就给你甩广义相对论的公式，而是用极简的动画演示恒星塌缩的过程。对于像我这样非物理专业、但又想了解底层逻辑的人来说，这种降维打击式的科普简直是福音。</p>
-<ol start="2">
-<li>游戏化体验：学习本该是玩耍</li>
-</ol>
-<p>我对这种 Gamification（游戏化）的设计毫无抵抗力。</p>
-<p>网站里集成了大量基于 HTML5 的小游戏。比如你可以模拟驾驶探测器，或者通过拼图来理解板块运动。这让我回想起小时候在电视上看科普纪录片的感觉——你不需要痛苦地记忆，知识是随着体验自然流入脑海的。</p>
-<ol start="3">
-<li>意外的收获：低门槛的英语阅读材料</li>
-</ol>
-<p>虽然我现在主力用 Gemini 和 ChatGPT 辅助阅读，但 Space Place 的文本对于想提升英语阅读能力的人来说，是绝佳的材料。</p>
-<p>因为面向受众是青少年，它的用词（Wording）非常地道且精准，句子结构简单清晰。读这里的文章，既能学到天文专有名词（如 Nebula, Supernova），又不会因为长难句而感到挫败。这比死磕四六级阅读理解要有趣得多。</p>
-<p>怎么逛？我的“食用”指南</p>
-<p>如果你想放松大脑：直接点进 “Play” 区域，玩玩那些看起来很傻但很上头的网页小游戏。相信我，在代码跑不通或者改 Bug 改到心态爆炸的时候，看一看卡通版的太阳系，治愈效果满分。</p>
-<p>如果你是视觉动物：浏览 “Galleries”。NASA 拿出了自家的看家本领，哈勃望远镜和韦伯望远镜拍摄的高清深空摄影图，每一张都能直接拿来做壁纸。</p>
-<p>如果你有弟弟妹妹：把这个网站丢给他们。这比让他们刷短视频要有营养一万倍。</p>
-<p>写在最后</p>
-<p>高中那种高压的节奏差点毁了我对学习的热情。后来我意识到，真正的学习不应该是痛苦的，而应该是对世界边界的主动探索。</p>
-<p>NASA Space Place 虽然简单，但它守护的是人类最宝贵的东西——Curiosity (好奇心)。</p>
-<p>无论你是 8 岁还是 80 岁，只要你还会抬头看天，这里就有属于你的位置。</p>
+                <p>这份指南参考了 Git 官方权威教材 Pro Git，旨在为你提供一个高效的日常开发备忘录。</p>
+<h1 id="一、-基础工作流：从初始化到提交"><a href="#一、-基础工作流：从初始化到提交" class="headerlink" title="一、 基础工作流：从初始化到提交"></a>一、 基础工作流：从初始化到提交</h1><p>Git 的核心在于“暂存区”（Staging Area）的概念。</p>
+<p>1.1 初始化与配置</p>
+<p>初始化仓库：git init</p>
+<p>克隆远程仓库：git clone <url></p>
+<p>配置用户信息：</p>
+<p>git config –global user.name “你的名字”<br>git config –global user.email “你的邮箱”</p>
+<p>查看配置列表：git config –list</p>
+<p>1.2 记录更新</p>
+<p>检查当前状态：git status（建议常用，了解哪些文件在暂存区）</p>
+<p>追踪&#x2F;暂存文件：</p>
+<p>暂存单个文件：git add <file></p>
+<p>暂存所有变化：git add .</p>
+<p>提交更新：</p>
+<p>标准提交：git commit -m “提交说明”</p>
+<p>跳过暂存区直接提交（仅限已追踪文件）：git commit -a -m “快速提交”</p>
+<p>查看差异：</p>
+<p>查看尚未暂存的修改：git diff</p>
+<p>查看已暂存待提交的修改：git diff –cached</p>
+<h1 id="二、-分支管理：Git-的灵魂"><a href="#二、-分支管理：Git-的灵魂" class="headerlink" title="二、 分支管理：Git 的灵魂"></a>二、 分支管理：Git 的灵魂</h1><p>分支是 Git 最强大的特性，切换分支几乎是瞬间完成的。</p>
+<p>2.1 分支操作</p>
+<p>查看分支：git branch（加 -v 查看最后一次提交）</p>
+<p>创建分支：git branch <branch-name></p>
+<p>切换分支：git checkout <branch-name> 或新版命令 git switch <branch-name></p>
+<p>创建并切换：git checkout -b <branch-name> 或 git switch -c <branch-name></p>
+<p>删除分支：git branch -d <branch-name></p>
+<p>2.2 合并与变基</p>
+<p>合并分支（将某分支合并进当前分支）：git merge <branch-name></p>
+<p>变基（整理提交历史）：git rebase <master></p>
+<p>注意：不要对已经推送到公共仓库的提交进行变基。</p>
+<h1 id="三、-远程仓库：协作开发"><a href="#三、-远程仓库：协作开发" class="headerlink" title="三、 远程仓库：协作开发"></a>三、 远程仓库：协作开发</h1><p>3.1 远程交互</p>
+<p>查看远程仓库：git remote -v</p>
+<p>拉取更新但不合并：git fetch <remote></p>
+<p>拉取并自动合并：git pull（本质是 fetch + merge）</p>
+<p>推送到远程：git push <remote> <branch></p>
+<p>查看远程分支详情：git remote show origin</p>
+<h1 id="四、-撤消与回滚：后悔药"><a href="#四、-撤消与回滚：后悔药" class="headerlink" title="四、 撤消与回滚：后悔药"></a>四、 撤消与回滚：后悔药</h1><p>Git 几乎所有的操作都是可逆的。</p>
+<p>修补最近一次提交：git commit –amend（可以修改说明或补报文件）</p>
+<p>取消暂存文件：git reset HEAD <file> 或 git restore –staged <file></p>
+<p>撤消对文件的修改（恢复成上次提交状态）：git checkout – <file> 或 git restore <file></p>
+<p>强制回退版本：</p>
+<p>回退到上一个版本（保留修改在工作区）：git reset –soft HEAD~1</p>
+<p>彻底回退（丢弃所有本地修改）：git reset –hard <commit-id></p>
+<h1 id="五、-进阶技巧与常用命令"><a href="#五、-进阶技巧与常用命令" class="headerlink" title="五、 进阶技巧与常用命令"></a>五、 进阶技巧与常用命令</h1><p>5.1 储藏 (Stashing)</p>
+<p>当你正在开发 A 功能，突然需要切换到 B 分支修复 Bug，但 A 功能还没写完不想提交时：</p>
+<p>储藏当前修改：git stash</p>
+<p>查看储藏列表：git stash list</p>
+<p>应用最近的储藏并删除记录：git stash pop</p>
+<p>仅应用不删除：git stash apply</p>
+<p>5.2 历史查询</p>
+<p>简洁日志：git log –oneline –graph –all（以图形化单行显示所有分支历史）</p>
+<p>查看某个文件的历史修改：git log -p <file></p>
+<p>查看谁在什么时候修改了哪一行：git blame <file></p>
+<p>5.3 别名 (Aliases) — 提升效率的神器</p>
+<p>你可以为冗长的命令设置缩写：</p>
+<p>git config –global alias.co checkout<br>git config –global alias.br branch<br>git config –global alias.ci commit<br>git config –global alias.st status<br>甚至可以设置复杂的逻辑<br>git config –global alias.last ‘log -1 HEAD’</p>
+<p>5.4 找回丢失的提交 (Reflog)</p>
+<p>如果你不小心 reset –hard 丢弃了代码，或者误删了分支：</p>
+<p>查看操作记录：git reflog</p>
+<p>找到对应的 commit-id 后，通过 git checkout <id> 即可找回。</p>
+<h1 id="六、-最佳实践建议"><a href="#六、-最佳实践建议" class="headerlink" title="六、 最佳实践建议"></a>六、 最佳实践建议</h1><p>频繁提交，早点推送：小步快跑，降低冲突风险。</p>
+<p>写好 Commit Message：推荐使用 feat:, fix:, docs: 等前缀，让历史清晰可读。</p>
+<p>善用分支：任何新功能或 Bug 修复都应该开启新分支。</p>
+<p>不要提交大二进制文件：如视频、大型模型文件，应使用 Git LFS。</p>
+<p>更多详细内容请参考：Git Book 官网</p>
 
                 
               </div>
@@ -338,13 +366,6 @@
   <a href="/categories/%E7%A7%91%E6%8A%80%E5%AD%A6%E4%B9%A0%E6%96%87%E7%AB%A0/" class="category-chain-item">科技学习文章</a>
   
   
-    <span>></span>
-    
-  <a href="/categories/%E7%A7%91%E6%8A%80%E5%AD%A6%E4%B9%A0%E6%96%87%E7%AB%A0/%E5%AE%9D%E8%97%8F%E7%BD%91%E7%AB%99/" class="category-chain-item">宝藏网站</a>
-  
-  
-
-  
 
       </span>
     
@@ -357,13 +378,15 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%A4%A9%E6%96%87/" class="print-no-link">#天文</a>
+        <a href="/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="print-no-link">#开发环境</a>
       
-        <a href="/tags/%E7%A7%91%E6%99%AE/" class="print-no-link">#科普</a>
+        <a href="/tags/Windows/" class="print-no-link">#Windows</a>
       
-        <a href="/tags/%E8%B5%84%E6%BA%90%E6%8E%A8%E8%8D%90/" class="print-no-link">#资源推荐</a>
+        <a href="/tags/%E9%81%BF%E5%9D%91%E6%8C%87%E5%8D%97/" class="print-no-link">#避坑指南</a>
       
-        <a href="/tags/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0/" class="print-no-link">#英语学习</a>
+        <a href="/tags/%E6%95%99%E7%A8%8B/" class="print-no-link">#教程</a>
+      
+        <a href="/tags/Git/" class="print-no-link">#Git</a>
       
     </div>
   
@@ -375,8 +398,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>别让好奇心死在课本里：NASA Space Place，一个成年人也该逛的“宇宙幼儿园”</div>
-      <div>http://example.com/2026/01/29/别让好奇心死在课本里：NASA Space Place，一个成年人也该逛的“宇宙幼儿园”/</div>
+      <div>Git 常用命令与进阶技巧手册（基于 Pro Git）</div>
+      <div>http://example.com/2026/02/08/Git 常用命令与进阶技巧手册（基于 Pro Git）/</div>
     </div>
     <div class="license-meta">
       
@@ -388,7 +411,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年1月29日</div>
+          <div>2026年2月8日</div>
         </div>
       
       
@@ -420,18 +443,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/01/30/%E6%9E%84%E5%BB%BA%E6%80%9D%E7%BB%B4%E6%9D%A0%E6%9D%86%EF%BC%9APython%20%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%8E%E9%81%BF%E5%9D%91%E6%8C%87%E5%8D%97/" title="构建思维杠杆：Python 环境配置与避坑指南">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">构建思维杠杆：Python 环境配置与避坑指南</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/01/25/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%20Python%20%E9%A1%B9%E7%9B%AE%20Rational-Auditor/" title="我的第一个 Python 项目 Rational-Auditor">
-                        <span class="hidden-mobile">我的第一个 Python 项目 Rational-Auditor</span>
+                      <a href="/2026/02/06/%E4%B8%80%E4%B8%AA%E7%94%B1%20AI%20%E5%8D%8F%E5%8A%A9%E6%9E%84%E5%BB%BA%E7%9A%84%E2%80%9C%E4%BA%8C%E6%AC%A1%E5%85%83%E5%8F%8B%E5%A5%BD%E5%9E%8B%E2%80%9D%E6%B8%A9%E9%A6%A8%E5%8D%9A%E5%AE%A2%E6%A8%A1%E6%9D%BF/" title="一个由 AI 协助构建的“二次元友好型”温馨博客模板">
+                        <span class="hidden-mobile">一个由 AI 协助构建的“二次元友好型”温馨博客模板</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

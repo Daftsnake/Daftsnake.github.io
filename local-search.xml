@@ -4,6 +4,39 @@
   
   
   <entry>
+    <title>Git 常用命令与进阶技巧手册（基于 Pro Git）</title>
+    <link href="/2026/02/08/Git%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B8%8E%E8%BF%9B%E9%98%B6%E6%8A%80%E5%B7%A7%E6%89%8B%E5%86%8C%EF%BC%88%E5%9F%BA%E4%BA%8E%20Pro%20Git%EF%BC%89/"/>
+    <url>/2026/02/08/Git%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B8%8E%E8%BF%9B%E9%98%B6%E6%8A%80%E5%B7%A7%E6%89%8B%E5%86%8C%EF%BC%88%E5%9F%BA%E4%BA%8E%20Pro%20Git%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<p>这份指南参考了 Git 官方权威教材 Pro Git，旨在为你提供一个高效的日常开发备忘录。</p><h1 id="一、-基础工作流：从初始化到提交"><a href="#一、-基础工作流：从初始化到提交" class="headerlink" title="一、 基础工作流：从初始化到提交"></a>一、 基础工作流：从初始化到提交</h1><p>Git 的核心在于“暂存区”（Staging Area）的概念。</p><p>1.1 初始化与配置</p><p>初始化仓库：git init</p><p>克隆远程仓库：git clone <url></p><p>配置用户信息：</p><p>git config –global user.name “你的名字”<br>git config –global user.email “你的邮箱”</p><p>查看配置列表：git config –list</p><p>1.2 记录更新</p><p>检查当前状态：git status（建议常用，了解哪些文件在暂存区）</p><p>追踪&#x2F;暂存文件：</p><p>暂存单个文件：git add <file></p><p>暂存所有变化：git add .</p><p>提交更新：</p><p>标准提交：git commit -m “提交说明”</p><p>跳过暂存区直接提交（仅限已追踪文件）：git commit -a -m “快速提交”</p><p>查看差异：</p><p>查看尚未暂存的修改：git diff</p><p>查看已暂存待提交的修改：git diff –cached</p><h1 id="二、-分支管理：Git-的灵魂"><a href="#二、-分支管理：Git-的灵魂" class="headerlink" title="二、 分支管理：Git 的灵魂"></a>二、 分支管理：Git 的灵魂</h1><p>分支是 Git 最强大的特性，切换分支几乎是瞬间完成的。</p><p>2.1 分支操作</p><p>查看分支：git branch（加 -v 查看最后一次提交）</p><p>创建分支：git branch <branch-name></p><p>切换分支：git checkout <branch-name> 或新版命令 git switch <branch-name></p><p>创建并切换：git checkout -b <branch-name> 或 git switch -c <branch-name></p><p>删除分支：git branch -d <branch-name></p><p>2.2 合并与变基</p><p>合并分支（将某分支合并进当前分支）：git merge <branch-name></p><p>变基（整理提交历史）：git rebase <master></p><p>注意：不要对已经推送到公共仓库的提交进行变基。</p><h1 id="三、-远程仓库：协作开发"><a href="#三、-远程仓库：协作开发" class="headerlink" title="三、 远程仓库：协作开发"></a>三、 远程仓库：协作开发</h1><p>3.1 远程交互</p><p>查看远程仓库：git remote -v</p><p>拉取更新但不合并：git fetch <remote></p><p>拉取并自动合并：git pull（本质是 fetch + merge）</p><p>推送到远程：git push <remote> <branch></p><p>查看远程分支详情：git remote show origin</p><h1 id="四、-撤消与回滚：后悔药"><a href="#四、-撤消与回滚：后悔药" class="headerlink" title="四、 撤消与回滚：后悔药"></a>四、 撤消与回滚：后悔药</h1><p>Git 几乎所有的操作都是可逆的。</p><p>修补最近一次提交：git commit –amend（可以修改说明或补报文件）</p><p>取消暂存文件：git reset HEAD <file> 或 git restore –staged <file></p><p>撤消对文件的修改（恢复成上次提交状态）：git checkout – <file> 或 git restore <file></p><p>强制回退版本：</p><p>回退到上一个版本（保留修改在工作区）：git reset –soft HEAD~1</p><p>彻底回退（丢弃所有本地修改）：git reset –hard <commit-id></p><h1 id="五、-进阶技巧与常用命令"><a href="#五、-进阶技巧与常用命令" class="headerlink" title="五、 进阶技巧与常用命令"></a>五、 进阶技巧与常用命令</h1><p>5.1 储藏 (Stashing)</p><p>当你正在开发 A 功能，突然需要切换到 B 分支修复 Bug，但 A 功能还没写完不想提交时：</p><p>储藏当前修改：git stash</p><p>查看储藏列表：git stash list</p><p>应用最近的储藏并删除记录：git stash pop</p><p>仅应用不删除：git stash apply</p><p>5.2 历史查询</p><p>简洁日志：git log –oneline –graph –all（以图形化单行显示所有分支历史）</p><p>查看某个文件的历史修改：git log -p <file></p><p>查看谁在什么时候修改了哪一行：git blame <file></p><p>5.3 别名 (Aliases) — 提升效率的神器</p><p>你可以为冗长的命令设置缩写：</p><p>git config –global alias.co checkout<br>git config –global alias.br branch<br>git config –global alias.ci commit<br>git config –global alias.st status<br>甚至可以设置复杂的逻辑<br>git config –global alias.last ‘log -1 HEAD’</p><p>5.4 找回丢失的提交 (Reflog)</p><p>如果你不小心 reset –hard 丢弃了代码，或者误删了分支：</p><p>查看操作记录：git reflog</p><p>找到对应的 commit-id 后，通过 git checkout <id> 即可找回。</p><h1 id="六、-最佳实践建议"><a href="#六、-最佳实践建议" class="headerlink" title="六、 最佳实践建议"></a>六、 最佳实践建议</h1><p>频繁提交，早点推送：小步快跑，降低冲突风险。</p><p>写好 Commit Message：推荐使用 feat:, fix:, docs: 等前缀，让历史清晰可读。</p><p>善用分支：任何新功能或 Bug 修复都应该开启新分支。</p><p>不要提交大二进制文件：如视频、大型模型文件，应使用 Git LFS。</p><p>更多详细内容请参考：Git Book 官网</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>科技学习文章</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>开发环境</tag>
+      
+      <tag>Windows</tag>
+      
+      <tag>避坑指南</tag>
+      
+      <tag>教程</tag>
+      
+      <tag>Git</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>一个由 AI 协助构建的“二次元友好型”温馨博客模板</title>
     <link href="/2026/02/06/%E4%B8%80%E4%B8%AA%E7%94%B1%20AI%20%E5%8D%8F%E5%8A%A9%E6%9E%84%E5%BB%BA%E7%9A%84%E2%80%9C%E4%BA%8C%E6%AC%A1%E5%85%83%E5%8F%8B%E5%A5%BD%E5%9E%8B%E2%80%9D%E6%B8%A9%E9%A6%A8%E5%8D%9A%E5%AE%A2%E6%A8%A1%E6%9D%BF/"/>
     <url>/2026/02/06/%E4%B8%80%E4%B8%AA%E7%94%B1%20AI%20%E5%8D%8F%E5%8A%A9%E6%9E%84%E5%BB%BA%E7%9A%84%E2%80%9C%E4%BA%8C%E6%AC%A1%E5%85%83%E5%8F%8B%E5%A5%BD%E5%9E%8B%E2%80%9D%E6%B8%A9%E9%A6%A8%E5%8D%9A%E5%AE%A2%E6%A8%A1%E6%9D%BF/</url>
@@ -20,11 +53,11 @@
     
     <tags>
       
+      <tag>教程</tag>
+      
       <tag>网页</tag>
       
       <tag>开源</tag>
-      
-      <tag>教程</tag>
       
     </tags>
     
@@ -49,17 +82,17 @@
     
     <tags>
       
-      <tag>教程</tag>
-      
       <tag>Python</tag>
       
       <tag>开发环境</tag>
       
       <tag>Windows</tag>
       
+      <tag>Docker</tag>
+      
       <tag>避坑指南</tag>
       
-      <tag>Docker</tag>
+      <tag>教程</tag>
       
     </tags>
     
@@ -111,8 +144,6 @@
     
     <tags>
       
-      <tag>教程</tag>
-      
       <tag>Python</tag>
       
       <tag>开发环境</tag>
@@ -120,6 +151,8 @@
       <tag>Windows</tag>
       
       <tag>避坑指南</tag>
+      
+      <tag>教程</tag>
       
     </tags>
     
@@ -161,7 +194,7 @@
   
   
   <entry>
-    <title>生存审计：我的第一个 Python 项目 Rational-Auditor</title>
+    <title>我的第一个 Python 项目 Rational-Auditor</title>
     <link href="/2026/01/25/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%20Python%20%E9%A1%B9%E7%9B%AE%20Rational-Auditor/"/>
     <url>/2026/01/25/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%20Python%20%E9%A1%B9%E7%9B%AE%20Rational-Auditor/</url>
     
@@ -177,9 +210,9 @@
     
     <tags>
       
-      <tag>Python</tag>
-      
       <tag>编程</tag>
+      
+      <tag>Python</tag>
       
       <tag>理财</tag>
       
