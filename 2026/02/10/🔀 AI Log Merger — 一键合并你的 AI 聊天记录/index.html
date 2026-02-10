@@ -1,0 +1,761 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Daftsnake">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="你用过 ChatGPT 和 Gemini 对话后，是否也面临过聊天记录散落在各种文件里的尴尬？一个 Markdown，一个 Word 文档，又一个纯文本……AI Log Merger 就是为了解决这个痛点而诞生的。   🤔 为什么做这个工具？在 AI 时代，我们与不同模型进行对话已经成为日常：今天用 ChatGPT 头脑风暴，明天用 Gemini 做代码审查，有时还从网页端导出聊天记录做归档">
+<meta property="og:type" content="article">
+<meta property="og:title" content="🔀 AI Log Merger — 一键合并你的 AI 聊天记录">
+<meta property="og:url" content="http://example.com/2026/02/10/%F0%9F%94%80%20AI%20Log%20Merger%20%E2%80%94%20%E4%B8%80%E9%94%AE%E5%90%88%E5%B9%B6%E4%BD%A0%E7%9A%84%20AI%20%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Daftsnake的小窝">
+<meta property="og:description" content="你用过 ChatGPT 和 Gemini 对话后，是否也面临过聊天记录散落在各种文件里的尴尬？一个 Markdown，一个 Word 文档，又一个纯文本……AI Log Merger 就是为了解决这个痛点而诞生的。   🤔 为什么做这个工具？在 AI 时代，我们与不同模型进行对话已经成为日常：今天用 ChatGPT 头脑风暴，明天用 Gemini 做代码审查，有时还从网页端导出聊天记录做归档">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-10T15:30:00.000Z">
+<meta property="article:modified_time" content="2026-02-10T15:32:22.789Z">
+<meta property="article:author" content="Daftsnake">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="工具">
+<meta property="article:tag" content="生活">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>🔀 AI Log Merger — 一键合并你的 AI 聊天记录 - Daftsnake的小窝</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Daftsnake&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/137103134_p0.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="🔀 AI Log Merger — 一键合并你的 AI 聊天记录"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-02-10 23:30" pubdate>
+          2026年2月10日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">🔀 AI Log Merger — 一键合并你的 AI 聊天记录</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <hr>
+<blockquote>
+<p>你用过 ChatGPT 和 Gemini 对话后，是否也面临过聊天记录散落在各种文件里的尴尬？<br>一个 Markdown，一个 Word 文档，又一个纯文本……<br><strong>AI Log Merger</strong> 就是为了解决这个痛点而诞生的。</p>
+</blockquote>
+<hr>
+<h2 id="🤔-为什么做这个工具？"><a href="#🤔-为什么做这个工具？" class="headerlink" title="🤔 为什么做这个工具？"></a>🤔 为什么做这个工具？</h2><p>在 AI 时代，我们与不同模型进行对话已经成为日常：今天用 <strong>ChatGPT</strong> 头脑风暴，明天用 <strong>Gemini</strong> 做代码审查，有时还从网页端导出聊天记录做归档。</p>
+<p>问题随之而来 ——</p>
+<ul>
+<li>ChatGPT 导出的是 <code>.md</code>（Markdown）</li>
+<li>手动复制粘贴的对话存成了 <code>.txt</code></li>
+<li>有些日志被整理到了 <code>.docx</code>（Word）</li>
+</ul>
+<p>当你想把这些散落的碎片 <strong>拼成一份完整的对话归档</strong> 时，手动操作既耗时又容易出错。</p>
+<p>于是我写了 <strong>AI Log Merger</strong>：一个轻量级 Python 命令行 + GUI 工具，专注于「读取 → 合并 → 转换」AI 聊天记录。</p>
+<hr>
+<h2 id="✨-核心功能一览"><a href="#✨-核心功能一览" class="headerlink" title="✨ 核心功能一览"></a>✨ 核心功能一览</h2><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🔄 <strong>多格式读取</strong></td>
+<td>支持 <code>.md</code>、<code>.txt</code>、<code>.docx</code> 三种输入格式</td>
+</tr>
+<tr>
+<td>📦 <strong>多格式输出</strong></td>
+<td>合并后可导出为 Markdown、纯文本或 Word 文档</td>
+</tr>
+<tr>
+<td>🧩 <strong>自定义分隔符</strong></td>
+<td>在合并的文件之间插入分隔符，支持 <code>{filename}</code> 占位符</td>
+</tr>
+<tr>
+<td>📂 <strong>自动模式</strong></td>
+<td>把文件丢到 <code>input/</code> 文件夹，运行一行命令即完成</td>
+</tr>
+<tr>
+<td>🖥️ <strong>图形界面 (GUI)</strong></td>
+<td>提供基于 Tkinter 的暗色主题 GUI，零命令行经验也能用</td>
+</tr>
+<tr>
+<td>⚠️ <strong>友好错误提示</strong></td>
+<td>文件不存在？格式不支持？都有清晰的 emoji 提示</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🏗️-项目架构"><a href="#🏗️-项目架构" class="headerlink" title="🏗️ 项目架构"></a>🏗️ 项目架构</h2><p>项目遵循 Python 的模块化最佳实践，代码结构清晰：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs nix">AI_Log_Merger<span class="hljs-symbol">/</span><br>├── main.py              <span class="hljs-comment"># 根目录入口，委托给 src.main</span><br>├── requirements.txt     <span class="hljs-comment"># 唯一外部依赖：python-docx</span><br>├── input<span class="hljs-symbol">/</span>               <span class="hljs-comment"># 放置待合并的聊天记录</span><br>├── output<span class="hljs-symbol">/</span>              <span class="hljs-comment"># 合并后的文件自动保存到这里</span><br>└── src<span class="hljs-symbol">/</span><br>    ├── __init__.py<br>    ├── config.py         <span class="hljs-comment"># 全局配置常量</span><br>    ├── main.py           <span class="hljs-comment"># CLI + GUI 双模式主入口</span><br>    ├── gui.py            <span class="hljs-comment"># Tkinter 图形界面</span><br>    ├── modules<span class="hljs-symbol">/</span><br>    │   └── merger.py     <span class="hljs-comment"># 核心合并逻辑</span><br>    └── utils<span class="hljs-symbol">/</span><br>        ├── file_io.py    <span class="hljs-comment"># 文件读写工具（.md/.txt/.docx）</span><br>        └── logger.py     <span class="hljs-comment"># 统一日志配置</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="设计亮点"><a href="#设计亮点" class="headerlink" title="设计亮点"></a>设计亮点</h3><ol>
+<li><p><strong>单一职责、层次分明</strong>  </p>
+<ul>
+<li><code>config.py</code> 只管全局常量  </li>
+<li><code>merger.py</code> 只负责合并逻辑  </li>
+<li><code>file_io.py</code> 只处理读写  </li>
+<li>各模块之间通过清晰的接口通信</li>
+</ul>
+</li>
+<li><p><strong>CLI 与 GUI 双模式共存</strong><br>通过 <code>argparse</code> 解析参数：无 <code>--gui</code> 标志时走命令行逻辑，带标志时启动 Tkinter 界面。两种模式<strong>复用相同的合并引擎</strong>，避免了代码重复。</p>
+</li>
+<li><p><strong>极简依赖</strong><br>唯一的第三方依赖是 <code>python-docx</code>（用来读写 Word 文件），其余功能全部使用 Python 标准库完成，包括 <code>pathlib</code>、<code>argparse</code>、<code>logging</code>、<code>tkinter</code> 等。</p>
+</li>
+</ol>
+<hr>
+<h2 id="🚀-使用方法"><a href="#🚀-使用方法" class="headerlink" title="🚀 使用方法"></a>🚀 使用方法</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install -r requirements.txt<br></code></pre></td></tr></table></figure>
+
+<h3 id="方式一：最简单-—-自动模式"><a href="#方式一：最简单-—-自动模式" class="headerlink" title="方式一：最简单 — 自动模式"></a>方式一：最简单 — 自动模式</h3><p>把聊天日志文件放入 <code>input/</code> 文件夹，然后一行命令搞定：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python main.py<br></code></pre></td></tr></table></figure>
+
+<p>程序自动检测 <code>input/</code> 中所有支持的文件，按文件名排序后合并，输出到 <code>output/merged_output.md</code>。</p>
+<h3 id="方式二：指定输出格式"><a href="#方式二：指定输出格式" class="headerlink" title="方式二：指定输出格式"></a>方式二：指定输出格式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 输出为 Word 文档</span><br>python main.py -o merged.docx<br><br><span class="hljs-comment"># 输出为纯文本</span><br>python main.py -o merged.txt<br></code></pre></td></tr></table></figure>
+
+<h3 id="方式三：手动指定文件"><a href="#方式三：手动指定文件" class="headerlink" title="方式三：手动指定文件"></a>方式三：手动指定文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python main.py -f chat_gpt.md gemini_log.txt -o output/result.docx<br></code></pre></td></tr></table></figure>
+
+<h3 id="方式四：图形界面"><a href="#方式四：图形界面" class="headerlink" title="方式四：图形界面"></a>方式四：图形界面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python main.py --gui<br></code></pre></td></tr></table></figure>
+
+<p>GUI 使用了 <strong>Catppuccin</strong> 风格的暗色配色方案，操作起来非常直观：</p>
+<ol>
+<li>点击 <strong>➕ 添加文件</strong> 选择要合并的聊天记录</li>
+<li>输入输出文件名，选择目标格式（<code>.md</code> &#x2F; <code>.txt</code> &#x2F; <code>.docx</code>）</li>
+<li>点击 <strong>🔀 合并 &amp; 导出</strong> 即可</li>
+</ol>
+<hr>
+<h2 id="🔍-技术实现细节"><a href="#🔍-技术实现细节" class="headerlink" title="🔍 技术实现细节"></a>🔍 技术实现细节</h2><h3 id="文件读写层-file-io-py"><a href="#文件读写层-file-io-py" class="headerlink" title="文件读写层 (file_io.py)"></a>文件读写层 (<code>file_io.py</code>)</h3><p>这是整个项目的 I&#x2F;O 基础设施，核心思路是 <strong>统一接口、按格式分发</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">read_file</span>(<span class="hljs-params">path: <span class="hljs-built_in">str</span> | Path</span>) -&gt; <span class="hljs-built_in">str</span>:<br>    <span class="hljs-string">&quot;&quot;&quot;根据扩展名自动选择读取策略&quot;&quot;&quot;</span><br>    ext = path.suffix.lower()<br>    <span class="hljs-keyword">if</span> ext <span class="hljs-keyword">in</span> &#123;<span class="hljs-string">&quot;.md&quot;</span>, <span class="hljs-string">&quot;.txt&quot;</span>&#125;:<br>        <span class="hljs-keyword">return</span> path.read_text(encoding=<span class="hljs-string">&quot;utf-8&quot;</span>)<br>    <span class="hljs-keyword">if</span> ext == <span class="hljs-string">&quot;.docx&quot;</span>:<br>        doc = Document(<span class="hljs-built_in">str</span>(path))<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;\n&quot;</span>.join(para.text <span class="hljs-keyword">for</span> para <span class="hljs-keyword">in</span> doc.paragraphs)<br></code></pre></td></tr></table></figure>
+
+<p>写入时同理——<code>.md</code> 和 <code>.txt</code> 直接写文本，<code>.docx</code> 则通过 <code>python-docx</code> 生成带样式的 Word 文档（使用微软雅黑字体、11pt 字号，分隔符行居中加粗）。</p>
+<h3 id="合并引擎-merger-py"><a href="#合并引擎-merger-py" class="headerlink" title="合并引擎 (merger.py)"></a>合并引擎 (<code>merger.py</code>)</h3><p>合并逻辑非常简洁——先读取所有文件内容，再用分隔符拼接：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">merge_files</span>(<span class="hljs-params">file_paths, separator=<span class="hljs-string">&quot;\\n\\n--- &#123;filename&#125; ---\\n\\n&quot;</span></span>):<br>    merged_parts = [read_file(fp) <span class="hljs-keyword">for</span> fp <span class="hljs-keyword">in</span> file_paths]<br>    <br>    result = []<br>    <span class="hljs-keyword">for</span> idx, (fp, text) <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(<span class="hljs-built_in">zip</span>(file_paths, merged_parts)):<br>        <span class="hljs-keyword">if</span> idx &gt; <span class="hljs-number">0</span>:<br>            result.append(separator.<span class="hljs-built_in">format</span>(filename=Path(fp).name))<br>        result.append(text)<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>.join(result)<br></code></pre></td></tr></table></figure>
+
+<p><code>{filename}</code> 占位符让分隔符可以自动包含源文件名，方便在合并后的文档中定位每段对话的来源。</p>
+<h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><p>工具定义了自定义异常 <code>UnsupportedFormatError</code>，并在 CLI 和 GUI 中统一捕获：</p>
+<ul>
+<li><code>FileNotFoundError</code> → <code>❌ 文件错误: 文件不存在: xxx.md</code></li>
+<li><code>UnsupportedFormatError</code> → <code>❌ 格式错误: 不支持的文件格式 &#39;.pdf&#39;</code></li>
+<li>未知错误 → 写入日志并给出通用提示</li>
+</ul>
+<hr>
+<h2 id="💡-小结与思考"><a href="#💡-小结与思考" class="headerlink" title="💡 小结与思考"></a>💡 小结与思考</h2><p>这个项目虽然体量不大，但我在开发过程中刻意遵循了几个原则：</p>
+<ol>
+<li><strong>Pythonic 风格</strong> — <code>pathlib</code> 替代 <code>os.path</code>，类型注解增强可读性，<code>__future__.annotations</code> 保证向前兼容。</li>
+<li><strong>够用就好</strong> — 没有引入多余的框架或工具链，<code>python-docx</code> 是唯一的外部依赖。</li>
+<li><strong>双模式无缝切换</strong> — 同一套核心代码同时服务于 CLI 用户和 GUI 用户。</li>
+<li><strong>用户体验优先</strong> — emoji 提示、自动创建文件夹、默认从 <code>input/</code> 文件夹读取……都是为了降低使用门槛。</li>
+</ol>
+<p>如果你也在日常工作中需要归档和整理 AI 对话记录，不妨试试 <strong>AI Log Merger</strong>。</p>
+<hr>
+<h2 id="📎-链接"><a href="#📎-链接" class="headerlink" title="📎 链接"></a>📎 链接</h2><ul>
+<li><strong>GitHub 仓库</strong>：<a target="_blank" rel="noopener" href="https://github.com/Daftsnake/AI_Log_Merger">AI_Log_Merger</a></li>
+<li><strong>依赖</strong>：<a target="_blank" rel="noopener" href="https://python-docx.readthedocs.io/">python-docx</a></li>
+</ul>
+<hr>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%A7%91%E6%8A%80%E5%AD%A6%E4%B9%A0%E6%96%87%E7%AB%A0/" class="category-chain-item">科技学习文章</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
+      
+        <a href="/tags/%E5%B7%A5%E5%85%B7/" class="print-no-link">#工具</a>
+      
+        <a href="/tags/%E7%94%9F%E6%B4%BB/" class="print-no-link">#生活</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>🔀 AI Log Merger — 一键合并你的 AI 聊天记录</div>
+      <div>http://example.com/2026/02/10/🔀 AI Log Merger — 一键合并你的 AI 聊天记录/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Daftsnake</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年2月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/02/08/Git%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B8%8E%E8%BF%9B%E9%98%B6%E6%8A%80%E5%B7%A7%E6%89%8B%E5%86%8C%EF%BC%88%E5%9F%BA%E4%BA%8E%20Pro%20Git%EF%BC%89/" title="Git 常用命令与进阶技巧手册（基于 Pro Git）">
+                        <span class="hidden-mobile">Git 常用命令与进阶技巧手册（基于 Pro Git）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
