@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>Git 入门与实操指南：从零到协作</title>
+    <link href="/2026/02/13/Git%20%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E6%93%8D%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%88%B0%E5%8D%8F%E4%BD%9C/"/>
+    <url>/2026/02/13/Git%20%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E6%93%8D%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%88%B0%E5%8D%8F%E4%BD%9C/</url>
+    
+    <content type="html"><![CDATA[<p>Git 入门与实操指南：从零到协作</p><p>这份指南旨在帮助你从零开始建立 Git 工作流。Git 不仅仅是备份工具，它更像是一台“代码时光机”，记录你项目的每一步演进。</p><h1 id="一、-环境开启：安装与配置"><a href="#一、-环境开启：安装与配置" class="headerlink" title="一、 环境开启：安装与配置"></a>一、 环境开启：安装与配置</h1><p>在开始使用 Git 之前，你需要先在电脑上搭建好环境。</p><h2 id="1-1-安装-Git"><a href="#1-1-安装-Git" class="headerlink" title="1.1 安装 Git"></a>1.1 安装 Git</h2><p>Windows: 前往 git-scm.com 下载并安装。安装完成后，在文件夹空白处右键，你会看到 “Git Bash Here”，这就是你以后操作 Git 的主要窗口。<br>macOS: 在终端输入 git –version，如果未安装，系统会提示你进行安装。</p><h2 id="1-2-配置“名片”"><a href="#1-2-配置“名片”" class="headerlink" title="1.2 配置“名片”"></a>1.2 配置“名片”</h2><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;"><p>Git 需要知道每次提交是谁做的。打开 Git Bash（或终端），输入以下命令：</p><ul><li><p>配置全局用户名<br>git config –global user.name “你的名字”</p></li><li><p>配置全局邮箱<br>git config –global user.email “你的邮箱@example.com”</p></li><li><p>确认配置<br>git config –list</p></div></li></ul><h1 id="二、-开启项目：初始化与克隆"><a href="#二、-开启项目：初始化与克隆" class="headerlink" title="二、 开启项目：初始化与克隆"></a>二、 开启项目：初始化与克隆</h1><p>你有两种方式开始一个 Git 项目。</p><h2 id="2-1-方式-A：本地新建项目-git-init"><a href="#2-1-方式-A：本地新建项目-git-init" class="headerlink" title="2.1 方式 A：本地新建项目 (git init)"></a>2.1 方式 A：本地新建项目 (git init)</h2><p>如果你本地已经有一个文件夹，想让 Git 开始管理它：</p><p>进入该文件夹。</p><p>右键选择 Git Bash Here。</p><p>输入：git init。<br>此时文件夹内会出现一个隐藏的 .git 文件夹，这代表仓库已建立。</p><h2 id="2-2-方式-B：从云端拉取-git-clone"><a href="#2-2-方式-B：从云端拉取-git-clone" class="headerlink" title="2.2 方式 B：从云端拉取 (git clone)"></a>2.2 方式 B：从云端拉取 (git clone)</h2><p>如果你想参与别人的项目，或者把 GitHub&#x2F;GitLab 上的代码拉下来：</p><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">git clone <仓库的URL地址></div><h1 id="三、-核心工作流：存入“时光机”"><a href="#三、-核心工作流：存入“时光机”" class="headerlink" title="三、 核心工作流：存入“时光机”"></a>三、 核心工作流：存入“时光机”</h1><p>Git 的工作逻辑分为三个区域：工作区 (Working Directory) -&gt; 暂存区 (Staging Area) -&gt; 版本库 (Git Directory)。</p><h2 id="第一步：查看现状"><a href="#第一步：查看现状" class="headerlink" title="第一步：查看现状"></a>第一步：查看现状</h2><p>在任何操作前后，都建议养成输入 git status 的习惯，查看哪些文件被修改了，哪些还没被追踪。</p><h2 id="第二步：添加至暂存区"><a href="#第二步：添加至暂存区" class="headerlink" title="第二步：添加至暂存区"></a>第二步：添加至暂存区</h2><p>就像打包行李一样，你先把想提交的文件放入“包裹”：</p><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">git add <文件名>   # 添加单个文件<p>git add .         # 添加当前目录下所有修改</p></div><h2 id="第三步：正式提交"><a href="#第三步：正式提交" class="headerlink" title="第三步：正式提交"></a>第三步：正式提交</h2><p>将“包裹”封箱并贴上标签：</p><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">git commit -m "描述你这次做了什么（例如：修复了登录页的Bug）"</div><h1 id="四、-分支管理：并行开发"><a href="#四、-分支管理：并行开发" class="headerlink" title="四、 分支管理：并行开发"></a>四、 分支管理：并行开发</h1><p>分支是 Git 的灵魂。它允许你在不干扰主代码（master&#x2F;main）的情况下，开启一个“平行世界”开发新功能。</p><h2 id="4-1-创建与切换"><a href="#4-1-创建与切换" class="headerlink" title="4.1 创建与切换"></a>4.1 创建与切换</h2><h3 id="创建并切换到一个名为-dev-的新分支"><a href="#创建并切换到一个名为-dev-的新分支" class="headerlink" title="创建并切换到一个名为 dev 的新分支"></a>创建并切换到一个名为 dev 的新分支</h3><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">git checkout -b dev</div><h3 id="或者使用新版命令"><a href="#或者使用新版命令" class="headerlink" title="或者使用新版命令"></a>或者使用新版命令</h3><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">git switch -c dev</div><h2 id="4-2-合并分支"><a href="#4-2-合并分支" class="headerlink" title="4.2 合并分支"></a>4.2 合并分支</h2><p>当你在 dev 分支写好了功能，想把它合并回主分支时：</p><p>先切回主分支：git checkout master</p><p>合并 dev：git merge dev</p><h1 id="五、-远程协作：同步到云端"><a href="#五、-远程协作：同步到云端" class="headerlink" title="五、 远程协作：同步到云端"></a>五、 远程协作：同步到云端</h1><p>当你需要和队友合作，或者备份到 GitHub 时：</p><p>关联远程仓库（仅需做一次）：</p><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">git remote add origin <仓库URL></div><p>推送代码：</p><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">git push -u origin master</div><p>当队友更新了代码，你需要拉取最新代码同步到本地：</p><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">git pull origin master</div><h1 id="六、-常用避坑与“后悔药”"><a href="#六、-常用避坑与“后悔药”" class="headerlink" title="六、 常用避坑与“后悔药”"></a>六、 常用避坑与“后悔药”</h1><h2 id="6-1-代码写乱了，想回到上次提交的状态"><a href="#6-1-代码写乱了，想回到上次提交的状态" class="headerlink" title="6.1 代码写乱了，想回到上次提交的状态"></a>6.1 代码写乱了，想回到上次提交的状态</h2><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">git restore <文件名></div><h2 id="6-2-刚提交完发现有个错别字，想改掉又不产生新提交"><a href="#6-2-刚提交完发现有个错别字，想改掉又不产生新提交" class="headerlink" title="6.2 刚提交完发现有个错别字，想改掉又不产生新提交"></a>6.2 刚提交完发现有个错别字，想改掉又不产生新提交</h2><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">git commit --amend</div><h2 id="6-3-临时要去修-Bug，但现在的代码还没写完"><a href="#6-3-临时要去修-Bug，但现在的代码还没写完" class="headerlink" title="6.3 临时要去修 Bug，但现在的代码还没写完"></a>6.3 临时要去修 Bug，但现在的代码还没写完</h2><p>你可以把当前的进度“存入保险箱”：</p><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">git stash        # 存起来git stash pop    # 忙完回来，取出来继续写</div><h1 id="七、-总结：每日必用口诀"><a href="#七、-总结：每日必用口诀" class="headerlink" title="七、 总结：每日必用口诀"></a>七、 总结：每日必用口诀</h1><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">git pull (上班第一件事，同步他人进展)<p>编写代码…</p><p>git status (看一眼改了啥)</p><p>git add . (打包)</p><p>git commit -m “…” (写备注)</p><p>git push (下班前发给云端)</p></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>科技学习文章</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Git</tag>
+      
+      <tag>教程</tag>
+      
+      <tag>学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>🔀 AI Log Merger — 一键合并你的 AI 聊天记录</title>
     <link href="/2026/02/10/%F0%9F%94%80%20AI%20Log%20Merger%20%E2%80%94%20%E4%B8%80%E9%94%AE%E5%90%88%E5%B9%B6%E4%BD%A0%E7%9A%84%20AI%20%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95/"/>
     <url>/2026/02/10/%F0%9F%94%80%20AI%20Log%20Merger%20%E2%80%94%20%E4%B8%80%E9%94%AE%E5%90%88%E5%B9%B6%E4%BD%A0%E7%9A%84%20AI%20%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95/</url>
@@ -239,9 +268,9 @@
     
     <tags>
       
-      <tag>编程</tag>
-      
       <tag>Python</tag>
+      
+      <tag>编程</tag>
       
       <tag>理财</tag>
       
