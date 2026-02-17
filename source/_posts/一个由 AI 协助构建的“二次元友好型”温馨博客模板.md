@@ -29,7 +29,7 @@ categories: [科技学习文章]
 
 # ✨ 核心特性
 
-1. 技术栈 (The Tech Stack)
+## 1. 技术栈 (The Tech Stack)
 
 紧跟目前的现代前端潮流，保证了高性能和开发体验：
 
@@ -41,7 +41,7 @@ MDX：在 Markdown 里直接写 React 组件，内容创作的终极形态。
 
 TypeScript：类型安全，代码维护更放心。
 
-2. 设计哲学：Warm & Cozy
+## 2. 设计哲学：Warm & Cozy
 
 不同于常见的冷色调，这个 Starter 默认采用了一套“奶油色”主题：
 
@@ -51,9 +51,10 @@ TypeScript：类型安全，代码维护更放心。
 
 圆角与阴影：大量的 rounded-2xl 和柔和的阴影，拒绝尖锐的棱角。
 
-3. 开箱即用的架构
+## 3. 开箱即用的架构
 
 AI 帮我生成了非常标准的目录结构，你不需要操心配置，直接在 src/content 文件夹里丢 .mdx 文件就能生成文章。
+<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
 src/
 ├── app/          # Next.js App Router 页面
@@ -61,31 +62,39 @@ src/
 ├── content/      # 你的博客文章 (MDX)
 └── styles/       # 全局样式
 
+</div>
 
 # 🚀 快速开始
 
 如果你也想拥有一个温馨的个人小站，只需三步：
 
 克隆仓库
+<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
 git clone [https://github.com/Daftsnake/nextjs-warm-starter.git](https://github.com/Daftsnake/nextjs-warm-starter.git)
 cd nextjs-warm-starter
 
+</div>
 
 安装依赖
+<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
 npm install
 或者 yarn install / pnpm install
 
+</div>
 
 启动项目
 
+<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
+
 npm run dev
 
+</div>
 
 打开浏览器访问 "http://localhost:3000 "，你就能看到那个温馨的界面了。
 
-📝 它是如何构建的？
+# 📝 它是如何构建的？
 
 这个项目的诞生过程本身就很有趣。我并没有从零开始手写每一个 div，而是编写了一份包含：
 
@@ -96,6 +105,7 @@ npm run dev
 功能需求（MDX 集成、响应式布局）
 
 ...的详细 Prompt，然后交给 AI 生成了初始骨架。
+
 
 # 🤝 欢迎 Star 和 PR
 

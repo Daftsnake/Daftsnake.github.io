@@ -23,7 +23,7 @@ categories: [科技学习文章]
 
 安装过程中的“决定性瞬间”
 
-运行安装包时，界面底部有一个复选框：Add Python.exe to PATH。
+运行安装包时，界面底部有一个复选框：<div style="background: #f4f3fa; padding: 15px; border-radius: 5px; font-family: monospace;">Add Python.exe to PATH。</div>
 
 必须勾选。
 
@@ -37,12 +37,15 @@ categories: [科技学习文章]
 
 # 二、 验证：测试是否安装成功
 
-安装完成后，不要想当然地认为它能用。我们需要用终端进行“证伪”。
+安装完成后，不要想当然地认为它能用。我们需要用终端进行检查。
 
 打开终端（Win + R，输入 cmd 或 powershell），输入：
 
+<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
+
 **python --version**
 
+</div>
 
 预期结果：输出 Python 3.11.x。
 
@@ -60,12 +63,15 @@ categories: [科技学习文章]
 
 在你的项目目录下，执行：
 
-# 创建虚拟环境（名为 .venv）
+<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
+
+#创建虚拟环境（名为 .venv）
 **python -m venv .venv**
 
-# 激活虚拟环境 (Windows PowerShell)
+#激活虚拟环境 (Windows PowerShell)
 **.venv\Scripts\Activate.ps1**
 
+</div>
 
 看到命令行前面出现 (.venv) 字样，说明你已经进入了安全沙箱。此时安装的任何库，都不会污染你的全局环境。
 

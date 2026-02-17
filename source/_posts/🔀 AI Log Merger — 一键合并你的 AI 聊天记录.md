@@ -5,13 +5,13 @@ tags: [AI, 工具,生活]
 categories: [科技学习文章]
 ---
 
----
+
 
 > 你用过 ChatGPT 和 Gemini 对话后，是否也面临过聊天记录散落在各种文件里的尴尬？  
 > 一个 Markdown，一个 Word 文档，又一个纯文本……  
 > **AI Log Merger** 就是为了解决这个痛点而诞生的。
 
----
+
 
 ## 🤔 为什么做这个工具？
 
@@ -83,22 +83,27 @@ AI_Log_Merger/
 ## 🚀 使用方法
 
 ### 安装
+<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
 ```bash
 pip install -r requirements.txt
 ```
+</div>
 
 ### 方式一：最简单 — 自动模式
 
 把聊天日志文件放入 `input/` 文件夹，然后一行命令搞定：
+<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
 ```bash
 python main.py
 ```
+</div>
 
 程序自动检测 `input/` 中所有支持的文件，按文件名排序后合并，输出到 `output/merged_output.md`。
 
 ### 方式二：指定输出格式
+<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
 ```bash
 # 输出为 Word 文档
@@ -107,18 +112,23 @@ python main.py -o merged.docx
 # 输出为纯文本
 python main.py -o merged.txt
 ```
+</div>
 
 ### 方式三：手动指定文件
+<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
 ```bash
 python main.py -f chat_gpt.md gemini_log.txt -o output/result.docx
 ```
+</div>
 
 ### 方式四：图形界面
+<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
 ```bash
 python main.py --gui
 ```
+</div>
 
 GUI 使用了 **Catppuccin** 风格的暗色配色方案，操作起来非常直观：
 
@@ -133,6 +143,7 @@ GUI 使用了 **Catppuccin** 风格的暗色配色方案，操作起来非常直
 ### 文件读写层 (`file_io.py`)
 
 这是整个项目的 I/O 基础设施，核心思路是 **统一接口、按格式分发**：
+<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
 ```python
 def read_file(path: str | Path) -> str:
@@ -144,12 +155,14 @@ def read_file(path: str | Path) -> str:
         doc = Document(str(path))
         return "\n".join(para.text for para in doc.paragraphs)
 ```
+</div>
 
 写入时同理——`.md` 和 `.txt` 直接写文本，`.docx` 则通过 `python-docx` 生成带样式的 Word 文档（使用微软雅黑字体、11pt 字号，分隔符行居中加粗）。
 
 ### 合并引擎 (`merger.py`)
 
 合并逻辑非常简洁——先读取所有文件内容，再用分隔符拼接：
+<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
 ```python
 def merge_files(file_paths, separator="\\n\\n--- {filename} ---\\n\\n"):
@@ -164,6 +177,8 @@ def merge_files(file_paths, separator="\\n\\n--- {filename} ---\\n\\n"):
 ```
 
 `{filename}` 占位符让分隔符可以自动包含源文件名，方便在合并后的文档中定位每段对话的来源。
+
+</div>
 
 ### 错误处理
 
