@@ -19,24 +19,24 @@
   <meta name="author" content="Daftsnake">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Git 入门与实操指南：从零到协作 这份指南旨在帮助你从零开始建立 Git 工作流。Git 不仅仅是备份工具，它更像是一台“代码时光机”，记录你项目的每一步演进。 一、 环境开启：安装与配置在开始使用 Git 之前，你需要先在电脑上搭建好环境。 1.1 安装 GitWindows: 前往 git-scm.com 下载并安装。安装完成后，在文件夹空白处右键，你会看到 “Git Bash Here”，">
+    <meta name="description" content="在 AI 时代，我们经常需要把大量的 PDF 资料喂给 ChatGPT 或 Claude 进行分析。但我发现，很多 PDF 扫描件在 OCR 识别后，输出的文本充满了换行错误、乱码和页码干扰，AI 读起来非常费劲。 为了解决这个问题，我使用 antigravity 编写了 Book Wash。它不仅能批量完成 OCR 识别，更核心的功能是我为它设计的“文本清洗管道”，能把杂乱的 PDF 彻底净化。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git 入门与实操指南：从零到协作">
-<meta property="og:url" content="http://example.com/2026/02/13/Git%20%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E6%93%8D%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%88%B0%E5%8D%8F%E4%BD%9C/index.html">
+<meta property="og:title" content="我用 antigravity 写了个工具：让扫描版 PDF 变成 AI 丝滑阅读的纯文本">
+<meta property="og:url" content="http://example.com/2026/02/18/%E6%88%91%E7%94%A8%20antigravity%20%E5%86%99%E4%BA%86%E4%B8%AA%E5%B7%A5%E5%85%B7%EF%BC%9A%E8%AE%A9%E6%89%AB%E6%8F%8F%E7%89%88%20PDF%20%E5%8F%98%E6%88%90%20AI%20%E4%B8%9D%E6%BB%91%E9%98%85%E8%AF%BB%E7%9A%84%E7%BA%AF%E6%96%87%E6%9C%AC/index.html">
 <meta property="og:site_name" content="Daftsnake的小窝">
-<meta property="og:description" content="Git 入门与实操指南：从零到协作 这份指南旨在帮助你从零开始建立 Git 工作流。Git 不仅仅是备份工具，它更像是一台“代码时光机”，记录你项目的每一步演进。 一、 环境开启：安装与配置在开始使用 Git 之前，你需要先在电脑上搭建好环境。 1.1 安装 GitWindows: 前往 git-scm.com 下载并安装。安装完成后，在文件夹空白处右键，你会看到 “Git Bash Here”，">
+<meta property="og:description" content="在 AI 时代，我们经常需要把大量的 PDF 资料喂给 ChatGPT 或 Claude 进行分析。但我发现，很多 PDF 扫描件在 OCR 识别后，输出的文本充满了换行错误、乱码和页码干扰，AI 读起来非常费劲。 为了解决这个问题，我使用 antigravity 编写了 Book Wash。它不仅能批量完成 OCR 识别，更核心的功能是我为它设计的“文本清洗管道”，能把杂乱的 PDF 彻底净化。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-02-13T13:50:00.000Z">
-<meta property="article:modified_time" content="2026-02-13T14:14:08.922Z">
+<meta property="article:published_time" content="2026-02-17T17:15:00.000Z">
+<meta property="article:modified_time" content="2026-02-17T17:21:07.255Z">
 <meta property="article:author" content="Daftsnake">
-<meta property="article:tag" content="Git">
+<meta property="article:tag" content="AI">
 <meta property="article:tag" content="学习">
 <meta property="article:tag" content="教程">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Git 入门与实操指南：从零到协作 - Daftsnake的小窝</title>
+  <title>我用 antigravity 写了个工具：让扫描版 PDF 变成 AI 丝滑阅读的纯文本 - Daftsnake的小窝</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Git 入门与实操指南：从零到协作"></span>
+            <span id="subtitle" data-typed-text="我用 antigravity 写了个工具：让扫描版 PDF 变成 AI 丝滑阅读的纯文本"></span>
           
         </div>
 
@@ -213,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-02-13 21:50" pubdate>
-          2026年2月13日 晚上
+        <time datetime="2026-02-18 01:15" pubdate>
+          2026年2月18日 凌晨
         </time>
       </span>
     
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          852 字
+          904 字
         
       </span>
     
@@ -273,101 +273,50 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Git 入门与实操指南：从零到协作</h1>
+            <h1 id="seo-header">我用 antigravity 写了个工具：让扫描版 PDF 变成 AI 丝滑阅读的纯文本</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Git 入门与实操指南：从零到协作</p>
-<p>这份指南旨在帮助你从零开始建立 Git 工作流。Git 不仅仅是备份工具，它更像是一台“代码时光机”，记录你项目的每一步演进。</p>
-<h1 id="一、-环境开启：安装与配置"><a href="#一、-环境开启：安装与配置" class="headerlink" title="一、 环境开启：安装与配置"></a>一、 环境开启：安装与配置</h1><p>在开始使用 Git 之前，你需要先在电脑上搭建好环境。</p>
-<h2 id="1-1-安装-Git"><a href="#1-1-安装-Git" class="headerlink" title="1.1 安装 Git"></a>1.1 安装 Git</h2><p>Windows: 前往 git-scm.com 下载并安装。安装完成后，在文件夹空白处右键，你会看到 “Git Bash Here”，这就是你以后操作 Git 的主要窗口。<br>macOS: 在终端输入 git –version，如果未安装，系统会提示你进行安装。</p>
-<h2 id="1-2-配置“名片”"><a href="#1-2-配置“名片”" class="headerlink" title="1.2 配置“名片”"></a>1.2 配置“名片”</h2><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-
-<p>Git 需要知道每次提交是谁做的。打开 Git Bash（或终端），输入以下命令：</p>
-<ul>
-<li><p>配置全局用户名<br>git config –global user.name “你的名字”</p>
-</li>
-<li><p>配置全局邮箱<br>git config –global user.email “你的邮箱@example.com”</p>
-</li>
-<li><p>确认配置<br>git config –list</p>
-</div></li>
-</ul>
-<h1 id="二、-开启项目：初始化与克隆"><a href="#二、-开启项目：初始化与克隆" class="headerlink" title="二、 开启项目：初始化与克隆"></a>二、 开启项目：初始化与克隆</h1><p>你有两种方式开始一个 Git 项目。</p>
-<h2 id="2-1-方式-A：本地新建项目-git-init"><a href="#2-1-方式-A：本地新建项目-git-init" class="headerlink" title="2.1 方式 A：本地新建项目 (git init)"></a>2.1 方式 A：本地新建项目 (git init)</h2><p>如果你本地已经有一个文件夹，想让 Git 开始管理它：</p>
-<p>进入该文件夹。</p>
-<p>右键选择 Git Bash Here。</p>
-<p>输入：git init。<br>此时文件夹内会出现一个隐藏的 .git 文件夹，这代表仓库已建立。</p>
-<h2 id="2-2-方式-B：从云端拉取-git-clone"><a href="#2-2-方式-B：从云端拉取-git-clone" class="headerlink" title="2.2 方式 B：从云端拉取 (git clone)"></a>2.2 方式 B：从云端拉取 (git clone)</h2><p>如果你想参与别人的项目，或者把 GitHub&#x2F;GitLab 上的代码拉下来：</p>
+                <p>在 AI 时代，我们经常需要把大量的 PDF 资料喂给 ChatGPT 或 Claude 进行分析。但我发现，很多 PDF 扫描件在 OCR 识别后，输出的文本充满了换行错误、乱码和页码干扰，AI 读起来非常费劲。</p>
+<p>为了解决这个问题，我使用 antigravity 编写了 Book Wash。它不仅能批量完成 OCR 识别，更核心的功能是我为它设计的“文本清洗管道”，能把杂乱的 PDF 彻底净化。</p>
+<h1 id="🌟-我为什么要写-Book-Wash？"><a href="#🌟-我为什么要写-Book-Wash？" class="headerlink" title="🌟 我为什么要写 Book Wash？"></a>🌟 我为什么要写 Book Wash？</h1><p>市面上的 OCR 工具很多，但我总觉得它们离“直接可用”还差一步。在开发 Book Wash 时，我把重点放在了**“清洗”**能力上。它不仅仅是文字识别，更是通过 8 个阶段的过滤，去除了所有的干扰噪声。</p>
+<h2 id="1-我设计的双后端架构"><a href="#1-我设计的双后端架构" class="headerlink" title="1. 我设计的双后端架构"></a>1. 我设计的双后端架构</h2><p>在编写代码时，我考虑到了环境兼容性，因此实现了智能检测：</p>
+<p>首选 ocrmypdf：这是我最推荐的模式，它能在保持 PDF 原始结构的同时，生成极高质量的文字层。</p>
+<p>备选 pytesseract：如果你的环境比较简单，它也能提供稳定的兜底支持。</p>
+<h2 id="2-独家-8-阶段文本清洗管道"><a href="#2-独家-8-阶段文本清洗管道" class="headerlink" title="2. 独家 8 阶段文本清洗管道"></a>2. 独家 8 阶段文本清洗管道</h2><p>这是我最引以为傲的部分。原始 OCR 的输出往往没法直接看，所以我构建了一个自动化的清洗流程：</p>
+<p>格式统一：我会自动移除控制字符，并将全角字符转为半角。</p>
+<p>深度去噪：我会剔除那些看不见的零宽字符和乱码噪声。</p>
+<p>智能修复：我会修正 OCR 常见的标点错误，比如把莫名其妙的两个句号变成一个。</p>
+<p>干扰剔除：我会精准识别并移除页码、页眉和页脚（例如 - 12 - 这种）。</p>
+<p>段落重组：这是对 AI 最友好的功能。我会自动把被 OCR 错误切断的句子重新拼回完整的段落。</p>
+<p>间距优化：我加入了中英文自动空格逻辑，让文本看起来更整洁。</p>
+<h1 id="🚀-想要试试？操作非常简单"><a href="#🚀-想要试试？操作非常简单" class="headerlink" title="🚀 想要试试？操作非常简单"></a>🚀 想要试试？操作非常简单</h1><p>为了让大家用起来更方便，我提供了两种运行方式：</p>
+<h2 id="方式一：Docker-一键运行（我最推荐的方式）"><a href="#方式一：Docker-一键运行（我最推荐的方式）" class="headerlink" title="方式一：Docker 一键运行（我最推荐的方式）"></a>方式一：Docker 一键运行（我最推荐的方式）</h2><p>如果你安装了 Docker，你甚至不需要折腾 Python 环境：</p>
+<p>把 PDF 丢进 book&#x2F; 文件夹。</p>
+<p>Windows 用户：直接双击我写好的 一键OCR识别.bat。</p>
+<p>收工：去 output&#x2F; 文件夹拿清洗好的 TXT 就行。</p>
+<h2 id="方式二：本地-Python-运行"><a href="#方式二：本地-Python-运行" class="headerlink" title="方式二：本地 Python 运行"></a>方式二：本地 Python 运行</h2><p>如果你是开发者，也可以直接调用我写的脚本：</p>
 <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-git clone <仓库的URL地址>
+#默认识别中英文
+
+<p>python src&#x2F;modules&#x2F;ocr_pdf.py</p>
+<p>#如果需要识别日文<br>python src&#x2F;modules&#x2F;ocr_pdf.py jpn+eng</p>
 </div>
 
-<h1 id="三、-核心工作流：存入“时光机”"><a href="#三、-核心工作流：存入“时光机”" class="headerlink" title="三、 核心工作流：存入“时光机”"></a>三、 核心工作流：存入“时光机”</h1><p>Git 的工作逻辑分为三个区域：工作区 (Working Directory) -&gt; 暂存区 (Staging Area) -&gt; 版本库 (Git Directory)。</p>
-<h2 id="第一步：查看现状"><a href="#第一步：查看现状" class="headerlink" title="第一步：查看现状"></a>第一步：查看现状</h2><p>在任何操作前后，都建议养成输入 git status 的习惯，查看哪些文件被修改了，哪些还没被追踪。</p>
-<h2 id="第二步：添加至暂存区"><a href="#第二步：添加至暂存区" class="headerlink" title="第二步：添加至暂存区"></a>第二步：添加至暂存区</h2><p>就像打包行李一样，你先把想提交的文件放入“包裹”：</p>
+<h1 id="⚙️-我的技术实现思路"><a href="#⚙️-我的技术实现思路" class="headerlink" title="⚙️ 我的技术实现思路"></a>⚙️ 我的技术实现思路</h1><p>我在构建 Book Wash 时遵循了几个原则：</p>
+<p>异常隔离：我设计了批量处理逻辑，即使其中一个 PDF 处理失败，也不会影响剩下文件的进度。</p>
+<p>进度透明：我在控制台加入了实时进度显示，让你知道现在的处理状态。</p>
+<p>AI 优先：我所有的清洗规则都是为了输出最高质量的 LLM 训练或检索素材。</p>
+<h1 id="📊-结语"><a href="#📊-结语" class="headerlink" title="📊 结语"></a>📊 结语</h1><p>如果你也像我一样，手里有大量的古籍、论文扫描件，或者想要构建个人知识库，希望我写的这个工具能帮你省下处理杂乱文本的时间。</p>
+<p>项目结构参考：</p>
 <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-git add <文件名>   # 添加单个文件
 
-<p>git add .         # 添加当前目录下所有修改</p>
+<p>book&#x2F;：放你的原始 PDF<br>output&#x2F;：拿你的干净 TXT<br>src&#x2F;modules&#x2F;：这里有我写的核心逻辑</p>
 </div>
+这是我用 antigravity 开发的一份心意，欢迎大家尝试并给出建议！
 
-<h2 id="第三步：正式提交"><a href="#第三步：正式提交" class="headerlink" title="第三步：正式提交"></a>第三步：正式提交</h2><p>将“包裹”封箱并贴上标签：</p>
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-git commit -m "描述你这次做了什么（例如：修复了登录页的Bug）"
-</div>
 
-<h1 id="四、-分支管理：并行开发"><a href="#四、-分支管理：并行开发" class="headerlink" title="四、 分支管理：并行开发"></a>四、 分支管理：并行开发</h1><p>分支是 Git 的灵魂。它允许你在不干扰主代码（master&#x2F;main）的情况下，开启一个“平行世界”开发新功能。</p>
-<h2 id="4-1-创建与切换"><a href="#4-1-创建与切换" class="headerlink" title="4.1 创建与切换"></a>4.1 创建与切换</h2><h3 id="创建并切换到一个名为-dev-的新分支"><a href="#创建并切换到一个名为-dev-的新分支" class="headerlink" title="创建并切换到一个名为 dev 的新分支"></a>创建并切换到一个名为 dev 的新分支</h3><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-git checkout -b dev
-</div>
-
-<h3 id="或者使用新版命令"><a href="#或者使用新版命令" class="headerlink" title="或者使用新版命令"></a>或者使用新版命令</h3><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-git switch -c dev
-</div>
-
-<h2 id="4-2-合并分支"><a href="#4-2-合并分支" class="headerlink" title="4.2 合并分支"></a>4.2 合并分支</h2><p>当你在 dev 分支写好了功能，想把它合并回主分支时：</p>
-<p>先切回主分支：git checkout master</p>
-<p>合并 dev：git merge dev</p>
-<h1 id="五、-远程协作：同步到云端"><a href="#五、-远程协作：同步到云端" class="headerlink" title="五、 远程协作：同步到云端"></a>五、 远程协作：同步到云端</h1><p>当你需要和队友合作，或者备份到 GitHub 时：</p>
-<p>关联远程仓库（仅需做一次）：</p>
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-git remote add origin <仓库URL>
-</div>
-
-<p>推送代码：</p>
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-git push -u origin master
-</div>
-
-<p>当队友更新了代码，你需要拉取最新代码同步到本地：</p>
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-git pull origin master
-</div>
-
-<h1 id="六、-常用避坑与“后悔药”"><a href="#六、-常用避坑与“后悔药”" class="headerlink" title="六、 常用避坑与“后悔药”"></a>六、 常用避坑与“后悔药”</h1><h2 id="6-1-代码写乱了，想回到上次提交的状态"><a href="#6-1-代码写乱了，想回到上次提交的状态" class="headerlink" title="6.1 代码写乱了，想回到上次提交的状态"></a>6.1 代码写乱了，想回到上次提交的状态</h2><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-git restore <文件名>
-</div>
-
-<h2 id="6-2-刚提交完发现有个错别字，想改掉又不产生新提交"><a href="#6-2-刚提交完发现有个错别字，想改掉又不产生新提交" class="headerlink" title="6.2 刚提交完发现有个错别字，想改掉又不产生新提交"></a>6.2 刚提交完发现有个错别字，想改掉又不产生新提交</h2><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-git commit --amend
-</div>
-
-<h2 id="6-3-临时要去修-Bug，但现在的代码还没写完"><a href="#6-3-临时要去修-Bug，但现在的代码还没写完" class="headerlink" title="6.3 临时要去修 Bug，但现在的代码还没写完"></a>6.3 临时要去修 Bug，但现在的代码还没写完</h2><p>你可以把当前的进度“存入保险箱”：</p>
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-git stash        # 存起来
-git stash pop    # 忙完回来，取出来继续写
-</div>
-
-<h1 id="七、-总结：每日必用口诀"><a href="#七、-总结：每日必用口诀" class="headerlink" title="七、 总结：每日必用口诀"></a>七、 总结：每日必用口诀</h1><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-git pull (上班第一件事，同步他人进展)
-
-<p>编写代码…</p>
-<p>git status (看一眼改了啥)</p>
-<p>git add . (打包)</p>
-<p>git commit -m “…” (写备注)</p>
-<p>git push (下班前发给云端)</p>
-</div>
                 
               </div>
             
@@ -400,11 +349,11 @@ git pull (上班第一件事，同步他人进展)
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Git/" class="print-no-link">#Git</a>
-      
         <a href="/tags/%E6%95%99%E7%A8%8B/" class="print-no-link">#教程</a>
       
         <a href="/tags/%E5%AD%A6%E4%B9%A0/" class="print-no-link">#学习</a>
+      
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
       
     </div>
   
@@ -416,8 +365,8 @@ git pull (上班第一件事，同步他人进展)
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Git 入门与实操指南：从零到协作</div>
-      <div>http://example.com/2026/02/13/Git 入门与实操指南：从零到协作/</div>
+      <div>我用 antigravity 写了个工具：让扫描版 PDF 变成 AI 丝滑阅读的纯文本</div>
+      <div>http://example.com/2026/02/18/我用 antigravity 写了个工具：让扫描版 PDF 变成 AI 丝滑阅读的纯文本/</div>
     </div>
     <div class="license-meta">
       
@@ -429,7 +378,7 @@ git pull (上班第一件事，同步他人进展)
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年2月13日</div>
+          <div>2026年2月18日</div>
         </div>
       
       
@@ -461,18 +410,12 @@ git pull (上班第一件事，同步他人进展)
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/02/18/%E6%88%91%E7%94%A8%20antigravity%20%E5%86%99%E4%BA%86%E4%B8%AA%E5%B7%A5%E5%85%B7%EF%BC%9A%E8%AE%A9%E6%89%AB%E6%8F%8F%E7%89%88%20PDF%20%E5%8F%98%E6%88%90%20AI%20%E4%B8%9D%E6%BB%91%E9%98%85%E8%AF%BB%E7%9A%84%E7%BA%AF%E6%96%87%E6%9C%AC/" title="我用 antigravity 写了个工具：让扫描版 PDF 变成 AI 丝滑阅读的纯文本">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">我用 antigravity 写了个工具：让扫描版 PDF 变成 AI 丝滑阅读的纯文本</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/02/10/%F0%9F%94%80%20AI%20Log%20Merger%20%E2%80%94%20%E4%B8%80%E9%94%AE%E5%90%88%E5%B9%B6%E4%BD%A0%E7%9A%84%20AI%20%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95/" title="🔀 AI Log Merger — 一键合并你的 AI 聊天记录">
-                        <span class="hidden-mobile">🔀 AI Log Merger — 一键合并你的 AI 聊天记录</span>
+                      <a href="/2026/02/13/Git%20%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E6%93%8D%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%88%B0%E5%8D%8F%E4%BD%9C/" title="Git 入门与实操指南：从零到协作">
+                        <span class="hidden-mobile">Git 入门与实操指南：从零到协作</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

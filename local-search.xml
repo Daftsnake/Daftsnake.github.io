@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>我用 antigravity 写了个工具：让扫描版 PDF 变成 AI 丝滑阅读的纯文本</title>
+    <link href="/2026/02/18/%E6%88%91%E7%94%A8%20antigravity%20%E5%86%99%E4%BA%86%E4%B8%AA%E5%B7%A5%E5%85%B7%EF%BC%9A%E8%AE%A9%E6%89%AB%E6%8F%8F%E7%89%88%20PDF%20%E5%8F%98%E6%88%90%20AI%20%E4%B8%9D%E6%BB%91%E9%98%85%E8%AF%BB%E7%9A%84%E7%BA%AF%E6%96%87%E6%9C%AC/"/>
+    <url>/2026/02/18/%E6%88%91%E7%94%A8%20antigravity%20%E5%86%99%E4%BA%86%E4%B8%AA%E5%B7%A5%E5%85%B7%EF%BC%9A%E8%AE%A9%E6%89%AB%E6%8F%8F%E7%89%88%20PDF%20%E5%8F%98%E6%88%90%20AI%20%E4%B8%9D%E6%BB%91%E9%98%85%E8%AF%BB%E7%9A%84%E7%BA%AF%E6%96%87%E6%9C%AC/</url>
+    
+    <content type="html"><![CDATA[<p>在 AI 时代，我们经常需要把大量的 PDF 资料喂给 ChatGPT 或 Claude 进行分析。但我发现，很多 PDF 扫描件在 OCR 识别后，输出的文本充满了换行错误、乱码和页码干扰，AI 读起来非常费劲。</p><p>为了解决这个问题，我使用 antigravity 编写了 Book Wash。它不仅能批量完成 OCR 识别，更核心的功能是我为它设计的“文本清洗管道”，能把杂乱的 PDF 彻底净化。</p><h1 id="🌟-我为什么要写-Book-Wash？"><a href="#🌟-我为什么要写-Book-Wash？" class="headerlink" title="🌟 我为什么要写 Book Wash？"></a>🌟 我为什么要写 Book Wash？</h1><p>市面上的 OCR 工具很多，但我总觉得它们离“直接可用”还差一步。在开发 Book Wash 时，我把重点放在了**“清洗”**能力上。它不仅仅是文字识别，更是通过 8 个阶段的过滤，去除了所有的干扰噪声。</p><h2 id="1-我设计的双后端架构"><a href="#1-我设计的双后端架构" class="headerlink" title="1. 我设计的双后端架构"></a>1. 我设计的双后端架构</h2><p>在编写代码时，我考虑到了环境兼容性，因此实现了智能检测：</p><p>首选 ocrmypdf：这是我最推荐的模式，它能在保持 PDF 原始结构的同时，生成极高质量的文字层。</p><p>备选 pytesseract：如果你的环境比较简单，它也能提供稳定的兜底支持。</p><h2 id="2-独家-8-阶段文本清洗管道"><a href="#2-独家-8-阶段文本清洗管道" class="headerlink" title="2. 独家 8 阶段文本清洗管道"></a>2. 独家 8 阶段文本清洗管道</h2><p>这是我最引以为傲的部分。原始 OCR 的输出往往没法直接看，所以我构建了一个自动化的清洗流程：</p><p>格式统一：我会自动移除控制字符，并将全角字符转为半角。</p><p>深度去噪：我会剔除那些看不见的零宽字符和乱码噪声。</p><p>智能修复：我会修正 OCR 常见的标点错误，比如把莫名其妙的两个句号变成一个。</p><p>干扰剔除：我会精准识别并移除页码、页眉和页脚（例如 - 12 - 这种）。</p><p>段落重组：这是对 AI 最友好的功能。我会自动把被 OCR 错误切断的句子重新拼回完整的段落。</p><p>间距优化：我加入了中英文自动空格逻辑，让文本看起来更整洁。</p><h1 id="🚀-想要试试？操作非常简单"><a href="#🚀-想要试试？操作非常简单" class="headerlink" title="🚀 想要试试？操作非常简单"></a>🚀 想要试试？操作非常简单</h1><p>为了让大家用起来更方便，我提供了两种运行方式：</p><h2 id="方式一：Docker-一键运行（我最推荐的方式）"><a href="#方式一：Docker-一键运行（我最推荐的方式）" class="headerlink" title="方式一：Docker 一键运行（我最推荐的方式）"></a>方式一：Docker 一键运行（我最推荐的方式）</h2><p>如果你安装了 Docker，你甚至不需要折腾 Python 环境：</p><p>把 PDF 丢进 book&#x2F; 文件夹。</p><p>Windows 用户：直接双击我写好的 一键OCR识别.bat。</p><p>收工：去 output&#x2F; 文件夹拿清洗好的 TXT 就行。</p><h2 id="方式二：本地-Python-运行"><a href="#方式二：本地-Python-运行" class="headerlink" title="方式二：本地 Python 运行"></a>方式二：本地 Python 运行</h2><p>如果你是开发者，也可以直接调用我写的脚本：</p><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">#默认识别中英文<p>python src&#x2F;modules&#x2F;ocr_pdf.py</p><p>#如果需要识别日文<br>python src&#x2F;modules&#x2F;ocr_pdf.py jpn+eng</p></div><h1 id="⚙️-我的技术实现思路"><a href="#⚙️-我的技术实现思路" class="headerlink" title="⚙️ 我的技术实现思路"></a>⚙️ 我的技术实现思路</h1><p>我在构建 Book Wash 时遵循了几个原则：</p><p>异常隔离：我设计了批量处理逻辑，即使其中一个 PDF 处理失败，也不会影响剩下文件的进度。</p><p>进度透明：我在控制台加入了实时进度显示，让你知道现在的处理状态。</p><p>AI 优先：我所有的清洗规则都是为了输出最高质量的 LLM 训练或检索素材。</p><h1 id="📊-结语"><a href="#📊-结语" class="headerlink" title="📊 结语"></a>📊 结语</h1><p>如果你也像我一样，手里有大量的古籍、论文扫描件，或者想要构建个人知识库，希望我写的这个工具能帮你省下处理杂乱文本的时间。</p><p>项目结构参考：</p><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;"><p>book&#x2F;：放你的原始 PDF<br>output&#x2F;：拿你的干净 TXT<br>src&#x2F;modules&#x2F;：这里有我写的核心逻辑</p></div>这是我用 antigravity 开发的一份心意，欢迎大家尝试并给出建议！]]></content>
+    
+    
+    <categories>
+      
+      <category>科技学习文章</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>教程</tag>
+      
+      <tag>学习</tag>
+      
+      <tag>AI</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Git 入门与实操指南：从零到协作</title>
     <link href="/2026/02/13/Git%20%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E6%93%8D%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%88%B0%E5%8D%8F%E4%BD%9C/"/>
     <url>/2026/02/13/Git%20%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E6%93%8D%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%88%B0%E5%8D%8F%E4%BD%9C/</url>
