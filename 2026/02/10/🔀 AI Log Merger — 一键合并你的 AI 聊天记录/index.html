@@ -19,15 +19,15 @@
   <meta name="author" content="Daftsnake">
   <meta name="keywords" content="">
   
-    <meta name="description" content="你用过 ChatGPT 和 Gemini 对话后，是否也面临过聊天记录散落在各种文件里的尴尬？一个 Markdown，一个 Word 文档，又一个纯文本……AI Log Merger 就是为了解决这个痛点而诞生的。   🤔 为什么做这个工具？在 AI 时代，我们与不同模型进行对话已经成为日常：今天用 ChatGPT 头脑风暴，明天用 Gemini 做代码审查，有时还从网页端导出聊天记录做归档">
+    <meta name="description" content="你用过 ChatGPT 和 Gemini 对话后，是否也面临过聊天记录散落在各种文件里的尴尬？一个 Markdown，一个 Word 文档，又一个纯文本……AI Log Merger 就是为了解决这个痛点而诞生的。  🤔 为什么做这个工具？在 AI 时代，我们与不同模型进行对话已经成为日常：今天用 ChatGPT 头脑风暴，明天用 Gemini 做代码审查，有时还从网页端导出聊天记录做归档。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="🔀 AI Log Merger — 一键合并你的 AI 聊天记录">
 <meta property="og:url" content="http://example.com/2026/02/10/%F0%9F%94%80%20AI%20Log%20Merger%20%E2%80%94%20%E4%B8%80%E9%94%AE%E5%90%88%E5%B9%B6%E4%BD%A0%E7%9A%84%20AI%20%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Daftsnake的小窝">
-<meta property="og:description" content="你用过 ChatGPT 和 Gemini 对话后，是否也面临过聊天记录散落在各种文件里的尴尬？一个 Markdown，一个 Word 文档，又一个纯文本……AI Log Merger 就是为了解决这个痛点而诞生的。   🤔 为什么做这个工具？在 AI 时代，我们与不同模型进行对话已经成为日常：今天用 ChatGPT 头脑风暴，明天用 Gemini 做代码审查，有时还从网页端导出聊天记录做归档">
+<meta property="og:description" content="你用过 ChatGPT 和 Gemini 对话后，是否也面临过聊天记录散落在各种文件里的尴尬？一个 Markdown，一个 Word 文档，又一个纯文本……AI Log Merger 就是为了解决这个痛点而诞生的。  🤔 为什么做这个工具？在 AI 时代，我们与不同模型进行对话已经成为日常：今天用 ChatGPT 头脑风暴，明天用 Gemini 做代码审查，有时还从网页端导出聊天记录做归档。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-02-10T15:30:00.000Z">
-<meta property="article:modified_time" content="2026-02-10T15:32:22.789Z">
+<meta property="article:modified_time" content="2026-02-17T17:28:00.131Z">
 <meta property="article:author" content="Daftsnake">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="工具">
@@ -278,11 +278,9 @@
             
               <div class="markdown-body">
                 
-                <hr>
-<blockquote>
+                <blockquote>
 <p>你用过 ChatGPT 和 Gemini 对话后，是否也面临过聊天记录散落在各种文件里的尴尬？<br>一个 Markdown，一个 Word 文档，又一个纯文本……<br><strong>AI Log Merger</strong> 就是为了解决这个痛点而诞生的。</p>
 </blockquote>
-<hr>
 <h2 id="🤔-为什么做这个工具？"><a href="#🤔-为什么做这个工具？" class="headerlink" title="🤔 为什么做这个工具？"></a>🤔 为什么做这个工具？</h2><p>在 AI 时代，我们与不同模型进行对话已经成为日常：今天用 <strong>ChatGPT</strong> 头脑风暴，明天用 <strong>Gemini</strong> 做代码审查，有时还从网页端导出聊天记录做归档。</p>
 <p>问题随之而来 ——</p>
 <ul>
@@ -344,17 +342,32 @@
 </li>
 </ol>
 <hr>
-<h2 id="🚀-使用方法"><a href="#🚀-使用方法" class="headerlink" title="🚀 使用方法"></a>🚀 使用方法</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install -r requirements.txt<br></code></pre></td></tr></table></figure>
+<h2 id="🚀-使用方法"><a href="#🚀-使用方法" class="headerlink" title="🚀 使用方法"></a>🚀 使用方法</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install -r requirements.txt<br></code></pre></td></tr></table></figure>
+</div>
 
 <h3 id="方式一：最简单-—-自动模式"><a href="#方式一：最简单-—-自动模式" class="headerlink" title="方式一：最简单 — 自动模式"></a>方式一：最简单 — 自动模式</h3><p>把聊天日志文件放入 <code>input/</code> 文件夹，然后一行命令搞定：</p>
+<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
+
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python main.py<br></code></pre></td></tr></table></figure>
+</div>
 
 <p>程序自动检测 <code>input/</code> 中所有支持的文件，按文件名排序后合并，输出到 <code>output/merged_output.md</code>。</p>
-<h3 id="方式二：指定输出格式"><a href="#方式二：指定输出格式" class="headerlink" title="方式二：指定输出格式"></a>方式二：指定输出格式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 输出为 Word 文档</span><br>python main.py -o merged.docx<br><br><span class="hljs-comment"># 输出为纯文本</span><br>python main.py -o merged.txt<br></code></pre></td></tr></table></figure>
+<h3 id="方式二：指定输出格式"><a href="#方式二：指定输出格式" class="headerlink" title="方式二：指定输出格式"></a>方式二：指定输出格式</h3><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
-<h3 id="方式三：手动指定文件"><a href="#方式三：手动指定文件" class="headerlink" title="方式三：手动指定文件"></a>方式三：手动指定文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python main.py -f chat_gpt.md gemini_log.txt -o output/result.docx<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 输出为 Word 文档</span><br>python main.py -o merged.docx<br><br><span class="hljs-comment"># 输出为纯文本</span><br>python main.py -o merged.txt<br></code></pre></td></tr></table></figure>
+</div>
 
-<h3 id="方式四：图形界面"><a href="#方式四：图形界面" class="headerlink" title="方式四：图形界面"></a>方式四：图形界面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python main.py --gui<br></code></pre></td></tr></table></figure>
+<h3 id="方式三：手动指定文件"><a href="#方式三：手动指定文件" class="headerlink" title="方式三：手动指定文件"></a>方式三：手动指定文件</h3><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python main.py -f chat_gpt.md gemini_log.txt -o output/result.docx<br></code></pre></td></tr></table></figure>
+</div>
+
+<h3 id="方式四：图形界面"><a href="#方式四：图形界面" class="headerlink" title="方式四：图形界面"></a>方式四：图形界面</h3><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python main.py --gui<br></code></pre></td></tr></table></figure>
+</div>
 
 <p>GUI 使用了 <strong>Catppuccin</strong> 风格的暗色配色方案，操作起来非常直观：</p>
 <ol>
@@ -364,13 +377,20 @@
 </ol>
 <hr>
 <h2 id="🔍-技术实现细节"><a href="#🔍-技术实现细节" class="headerlink" title="🔍 技术实现细节"></a>🔍 技术实现细节</h2><h3 id="文件读写层-file-io-py"><a href="#文件读写层-file-io-py" class="headerlink" title="文件读写层 (file_io.py)"></a>文件读写层 (<code>file_io.py</code>)</h3><p>这是整个项目的 I&#x2F;O 基础设施，核心思路是 <strong>统一接口、按格式分发</strong>：</p>
+<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
+
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">read_file</span>(<span class="hljs-params">path: <span class="hljs-built_in">str</span> | Path</span>) -&gt; <span class="hljs-built_in">str</span>:<br>    <span class="hljs-string">&quot;&quot;&quot;根据扩展名自动选择读取策略&quot;&quot;&quot;</span><br>    ext = path.suffix.lower()<br>    <span class="hljs-keyword">if</span> ext <span class="hljs-keyword">in</span> &#123;<span class="hljs-string">&quot;.md&quot;</span>, <span class="hljs-string">&quot;.txt&quot;</span>&#125;:<br>        <span class="hljs-keyword">return</span> path.read_text(encoding=<span class="hljs-string">&quot;utf-8&quot;</span>)<br>    <span class="hljs-keyword">if</span> ext == <span class="hljs-string">&quot;.docx&quot;</span>:<br>        doc = Document(<span class="hljs-built_in">str</span>(path))<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;\n&quot;</span>.join(para.text <span class="hljs-keyword">for</span> para <span class="hljs-keyword">in</span> doc.paragraphs)<br></code></pre></td></tr></table></figure>
+</div>
 
 <p>写入时同理——<code>.md</code> 和 <code>.txt</code> 直接写文本，<code>.docx</code> 则通过 <code>python-docx</code> 生成带样式的 Word 文档（使用微软雅黑字体、11pt 字号，分隔符行居中加粗）。</p>
 <h3 id="合并引擎-merger-py"><a href="#合并引擎-merger-py" class="headerlink" title="合并引擎 (merger.py)"></a>合并引擎 (<code>merger.py</code>)</h3><p>合并逻辑非常简洁——先读取所有文件内容，再用分隔符拼接：</p>
+<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
+
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">merge_files</span>(<span class="hljs-params">file_paths, separator=<span class="hljs-string">&quot;\\n\\n--- &#123;filename&#125; ---\\n\\n&quot;</span></span>):<br>    merged_parts = [read_file(fp) <span class="hljs-keyword">for</span> fp <span class="hljs-keyword">in</span> file_paths]<br>    <br>    result = []<br>    <span class="hljs-keyword">for</span> idx, (fp, text) <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(<span class="hljs-built_in">zip</span>(file_paths, merged_parts)):<br>        <span class="hljs-keyword">if</span> idx &gt; <span class="hljs-number">0</span>:<br>            result.append(separator.<span class="hljs-built_in">format</span>(filename=Path(fp).name))<br>        result.append(text)<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>.join(result)<br></code></pre></td></tr></table></figure>
 
 <p><code>{filename}</code> 占位符让分隔符可以自动包含源文件名，方便在合并后的文档中定位每段对话的来源。</p>
+</div>
+
 <h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><p>工具定义了自定义异常 <code>UnsupportedFormatError</code>，并在 CLI 和 GUI 中统一捕获：</p>
 <ul>
 <li><code>FileNotFoundError</code> → <code>❌ 文件错误: 文件不存在: xxx.md</code></li>

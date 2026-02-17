@@ -27,7 +27,7 @@
 <meta property="og:description" content="最近看到一个视频，是有关于构建Agentd的，视频里尝试对Anthropic 和 OpenAI 的 Agent 架构方案手搓一个个人的agent，视频里为他的经验，而文章为我的个人看法和对他视频经验的结合。 一、 核心准则：能用 API 解决的，别碰 Agent很多开发者容易产生“架构幻觉”。比如只是做一个标题总结，却非要上一套 “计划-执行” 模式。 避坑准则： AI 本身具有非确定性，架构每多">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-02-03T19:30:00.000Z">
-<meta property="article:modified_time" content="2026-02-03T20:05:41.141Z">
+<meta property="article:modified_time" content="2026-02-17T17:35:18.347Z">
 <meta property="article:author" content="Daftsnake">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="科技">
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          904 字
+          906 字
         
       </span>
     
@@ -285,16 +285,10 @@
 <p>Agent： 面对“开放性问题”，需要根据场景调用不同技能，且需要用户实时介入纠偏。</p>
 <h1 id="三、-以-Skills-为核心：解决“注意力牺牲”与-Token-浪费"><a href="#三、-以-Skills-为核心：解决“注意力牺牲”与-Token-浪费" class="headerlink" title="三、 以 Skills 为核心：解决“注意力牺牲”与 Token 浪费"></a>三、 以 Skills 为核心：解决“注意力牺牲”与 Token 浪费</h1><p>视频中提到的“上下文工程（Context Engineering）”听起来很深奥，但其工程化落地的最佳实践就是 Agent Skills。</p>
 <p>当你的 Agent 挂载了太多工具，系统提示词会变得臃肿，导致模型注意力涣散（越做越乱）。我的看法是：Agent Skills 就是针对这一问题的特效药。</p>
-<ol>
-<li>模块化技能管理</li>
-</ol>
-<p>与其手撸复杂的 Sub-agent 架构，不如将功能封装成一个个独立的 Skills。</p>
+<h2 id="1-模块化技能管理"><a href="#1-模块化技能管理" class="headerlink" title="1. 模块化技能管理"></a>1. 模块化技能管理</h2><p>与其手撸复杂的 Sub-agent 架构，不如将功能封装成一个个独立的 Skills。</p>
 <p>按需调用： 只有在特定场景下才激活对应的 Skill，避免将所有工具定义一次性塞入 Context，从而大幅节省 Token。</p>
 <p>隔离干扰： 视觉 Skill 只负责视觉，代码 Skill 只负责逻辑。通过 Skill 的颗粒度控制，天然实现了上下文隔离。</p>
-<ol start="2">
-<li>拥抱“官方工具集”</li>
-</ol>
-<p>实战中，很多开发者试图从零构建调度架构。其实，官方提供的 Agent Skills（如 OpenAI 或主流 Agent 平台内置的插件库）往往是更好的选择。 这些官方工具已经针对 Token 消耗、描述精度和调用稳定性做了深度优化。利用成熟的官方 Skills，比自己设计不成熟的 Sub-agent 节点要高效得多。</p>
+<h2 id="2-拥抱“官方工具集”"><a href="#2-拥抱“官方工具集”" class="headerlink" title="2. 拥抱“官方工具集”"></a>2. 拥抱“官方工具集”</h2><p>实战中，很多开发者试图从零构建调度架构。其实，官方提供的 Agent Skills（如 OpenAI 或主流 Agent 平台内置的插件库）往往是更好的选择。 这些官方工具已经针对 Token 消耗、描述精度和调用稳定性做了深度优化。利用成熟的官方 Skills，比自己设计不成熟的 Sub-agent 节点要高效得多。</p>
 <h1 id="四、-从“小”开始：拒绝闭门造车"><a href="#四、-从“小”开始：拒绝闭门造车" class="headerlink" title="四、 从“小”开始：拒绝闭门造车"></a>四、 从“小”开始：拒绝闭门造车</h1><p>不要一上来就用重型框架设计复杂的流转图。</p>
 <p>先建立 Baseline： 用最基础的 AI SDK 跑通对话。</p>
 <p>技能填充： 发现模型能力短板（如缺实时数据）时，再像插拔 U 盘一样接入一个特定的 Skill。</p>

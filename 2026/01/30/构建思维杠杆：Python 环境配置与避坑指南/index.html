@@ -27,7 +27,7 @@
 <meta property="og:description" content="编程语言本质上是思维的延伸，是逻辑在数字世界的投影。 对于大数据专业的学生或任何试图用代码构建系统的人来说，Python 不仅仅是一个解释器，它是我们与计算交流的翻译器。很多人倒在了第一步——环境配置上，不是因为难，而是因为缺乏对“系统路径”和“环境隔离”的认知。 本文基于 Windows 11 环境，剥离掉那些冗余的废话，只讲如何构建一个干净、可控、逻辑自洽的 Python 开发地基。 一、 核">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-01-29T17:20:00.000Z">
-<meta property="article:modified_time" content="2026-01-29T17:29:12.397Z">
+<meta property="article:modified_time" content="2026-02-17T17:32:20.332Z">
 <meta property="article:author" content="Daftsnake">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Windows">
@@ -288,15 +288,19 @@
 <p>直接访问 Python 官网。</p>
 <p>避坑：不要盲目追求最新版（如 Python 3.13+），除非你确定你需要的库（如 TensorFlow, PyTorch 等）已经适配。对于大数据和 AI 开发，3.10 或 3.11 目前是兼容性与性能的局部最优解。</p>
 <p>安装过程中的“决定性瞬间”</p>
-<p>运行安装包时，界面底部有一个复选框：Add Python.exe to PATH。</p>
+<p>运行安装包时，界面底部有一个复选框：<div style="background: #f4f3fa; padding: 15px; border-radius: 5px; font-family: monospace;">Add Python.exe to PATH。</div></p>
 <p>必须勾选。</p>
 <p>逻辑审计：如果你不勾选，你的系统（CMD&#x2F;PowerShell）就找不到 Python 的位置。你后续在终端输入的每一次 python 指令都会报错。虽然事后可以手动配置环境变量，但那是低效的补救。最好在初始阶段就准备好。</p>
 <p>自定义安装 (Customize installation)</p>
 <p>建议更改安装路径到根目录，例如 C:\Python311，而不是放在 AppData 的用户文件夹里，到时后找路径很麻烦。</p>
 <p>理由：路径越短，字符溢出的风险越低，且在权限管理上更可控。</p>
-<h1 id="二、-验证：测试是否安装成功"><a href="#二、-验证：测试是否安装成功" class="headerlink" title="二、 验证：测试是否安装成功"></a>二、 验证：测试是否安装成功</h1><p>安装完成后，不要想当然地认为它能用。我们需要用终端进行“证伪”。</p>
+<h1 id="二、-验证：测试是否安装成功"><a href="#二、-验证：测试是否安装成功" class="headerlink" title="二、 验证：测试是否安装成功"></a>二、 验证：测试是否安装成功</h1><p>安装完成后，不要想当然地认为它能用。我们需要用终端进行检查。</p>
 <p>打开终端（Win + R，输入 cmd 或 powershell），输入：</p>
+<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
+
 <p><strong>python –version</strong></p>
+</div>
+
 <p>预期结果：输出 Python 3.11.x。</p>
 <p>错误现象：没有任何反应，或者跳转到微软应用商店。</p>
 <p>根因：环境变量未生效，或者微软商店的别名拦截了命令。去“设置 -&gt; 应用 -&gt; 高级应用设置 -&gt; 应用执行别名”，关掉 Python 的开关。</p>
@@ -304,8 +308,12 @@
 <p>后果：当你同时开发项目 A（需要 Pandas 1.x）和项目 B（需要 Pandas 2.x）时，全局环境会发生逻辑冲突，系统崩溃。</p>
 <p>解决方案：为每一个项目创造独立的“平行宇宙”。</p>
 <p>在你的项目目录下，执行：</p>
-<h1 id="创建虚拟环境（名为-venv）"><a href="#创建虚拟环境（名为-venv）" class="headerlink" title="创建虚拟环境（名为 .venv）"></a>创建虚拟环境（名为 .venv）</h1><p><strong>python -m venv .venv</strong></p>
-<h1 id="激活虚拟环境-Windows-PowerShell"><a href="#激活虚拟环境-Windows-PowerShell" class="headerlink" title="激活虚拟环境 (Windows PowerShell)"></a>激活虚拟环境 (Windows PowerShell)</h1><p><strong>.venv\Scripts\Activate.ps1</strong></p>
+<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
+
+<p>#创建虚拟环境（名为 .venv）<br><strong>python -m venv .venv</strong></p>
+<p>#激活虚拟环境 (Windows PowerShell)<br><strong>.venv\Scripts\Activate.ps1</strong></p>
+</div>
+
 <p>看到命令行前面出现 (.venv) 字样，说明你已经进入了安全沙箱。此时安装的任何库，都不会污染你的全局环境。</p>
 <h1 id="四、-工具链：VS-Code"><a href="#四、-工具链：VS-Code" class="headerlink" title="四、 工具链：VS Code"></a>四、 工具链：VS Code</h1><p>对于 Windows 11 用户，Visual Studio Code (VS Code) 是目前性价比最高的编辑器。</p>
 <p>插件：安装官方的 Python 插件。</p>
