@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>Git 进阶：数据清理、范围配置与隐私保护补充教程</title>
+    <link href="/2026/03/02/Git%20%E8%BF%9B%E9%98%B6%EF%BC%9A%E6%95%B0%E6%8D%AE%E6%B8%85%E7%90%86%E3%80%81%E8%8C%83%E5%9B%B4%E9%85%8D%E7%BD%AE%E4%B8%8E%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4%E8%A1%A5%E5%85%85%E6%95%99%E7%A8%8B/"/>
+    <url>/2026/03/02/Git%20%E8%BF%9B%E9%98%B6%EF%BC%9A%E6%95%B0%E6%8D%AE%E6%B8%85%E7%90%86%E3%80%81%E8%8C%83%E5%9B%B4%E9%85%8D%E7%BD%AE%E4%B8%8E%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4%E8%A1%A5%E5%85%85%E6%95%99%E7%A8%8B/</url>
+    
+    <content type="html"><![CDATA[<p>在日常使用 Git 的过程中，除了基础的 add 和 commit，我们经常会遇到仓库体积过大、配置冲突或是不小心泄露敏感信息的情况。本教程总结了解决这些问题的进阶技巧。</p><h1 id="一、-仓库维护与数据清理"><a href="#一、-仓库维护与数据清理" class="headerlink" title="一、 仓库维护与数据清理"></a>一、 仓库维护与数据清理</h1><p>随着提交次数的增加，Git 仓库会产生冗余的“松散对象”。定期清理可以提升操作速度并减小体积。</p><h2 id="1-深度垃圾回收"><a href="#1-深度垃圾回收" class="headerlink" title="1. 深度垃圾回收"></a>1. 深度垃圾回收</h2><p>当你觉得仓库反应迟钝时，可以运行：</p><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;"><p>git gc –prune&#x3D;now –aggressive</p></div><ul><li><p>–prune&#x3D;now: 立即删除所有孤立的无用对象。</p></li><li><p>–aggressive: 进行更深度的压缩优化。</p></li></ul><h2 id="2-查看仓库真实占用"><a href="#2-查看仓库真实占用" class="headerlink" title="2. 查看仓库真实占用"></a>2. 查看仓库真实占用</h2><p>了解 .git 文件夹中各类对象的大小：</p><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;"><p>git count-objects -vH</p></div><h2 id="3-清理过时的远程追踪分支"><a href="#3-清理过时的远程追踪分支" class="headerlink" title="3. 清理过时的远程追踪分支"></a>3. 清理过时的远程追踪分支</h2><p>如果远程仓库删除了分支，本地依然显示 origin&#x2F;xxx，可以使用：</p><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;"><p>git fetch –prune</p></div><h1 id="二、-Git-配置的三个维度"><a href="#二、-Git-配置的三个维度" class="headerlink" title="二、 Git 配置的三个维度"></a>二、 Git 配置的三个维度</h1><p>Git 的配置分为三个层级，优先级由高到低。你可以根据需求灵活切换配置范围。</p><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;"><table><thead><tr><th>范围 (Scope)</th><th>命令参数功能描述</th><th>配置文件位置</th><th>适用场景</th></tr></thead><tbody><tr><td>本地 (Local)</td><td>–local</td><td>.git&#x2F;config</td><td>仅对当前项目生效（如：公司项目的特定邮箱）</td></tr><tr><td>全局 (Global)</td><td>–global</td><td>~&#x2F;.gitconfig</td><td>对当前用户的所有项目生效（最常用）</td></tr><tr><td>系统 (System)</td><td>–system</td><td>&#x2F;etc&#x2F;gitconfig</td><td>对整台电脑的所有用户生效（极少使用）</td></tr></tbody></table></div><h1 id="三、-隐私文件保护与忽略机制"><a href="#三、-隐私文件保护与忽略机制" class="headerlink" title="三、 隐私文件保护与忽略机制"></a>三、 隐私文件保护与忽略机制</h1><p>保护 API 密钥、数据库密码和个人配置是开发者的基本素养。</p><h2 id="1-核心工具：-gitignore"><a href="#1-核心工具：-gitignore" class="headerlink" title="1. 核心工具：.gitignore"></a>1. 核心工具：.gitignore</h2><p>在项目根目录创建 .gitignore 文件。以下是一个适合博客项目的通用模板：</p><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;"><p>#隐私与密钥<br>.env<br>*.pem<br>*.key<br>secrets.txt</p><p>#操作系统临时文件<br>.DS_Store<br>Thumbs.db</p><p>#依赖与构建产物<br>node_modules&#x2F;<br>public&#x2F;<br>dist&#x2F;<br>.cache&#x2F;</p></div><h2 id="2-秘密忽略：-git-info-exclude"><a href="#2-秘密忽略：-git-info-exclude" class="headerlink" title="2. 秘密忽略：.git&#x2F;info&#x2F;exclude"></a>2. 秘密忽略：.git&#x2F;info&#x2F;exclude</h2><p>如果你有一些只想在自己电脑上忽略，而不希望出现在项目 .gitignore（即不让同事看到）的文件，可以将其写入 <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">.git&#x2F;info&#x2F;exclude。</div></p><h2 id="3-补救措施：忽略已提交的文件"><a href="#3-补救措施：忽略已提交的文件" class="headerlink" title="3. 补救措施：忽略已提交的文件"></a>3. 补救措施：忽略已提交的文件</h2><p>如果你已经把隐私文件提交了，单纯修改 .gitignore 是无效的。你需要先从暂存区移除它：</p><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;"><p>#停止追踪但保留本地文件<br>git rm –cached 隐私文件名<br>#然后提交更新<br>git commit -m “Remove sensitive file from tracking”</p></div><h1 id="四、-综合实践：从零构建一个受保护的仓库"><a href="#四、-综合实践：从零构建一个受保护的仓库" class="headerlink" title="四、 综合实践：从零构建一个受保护的仓库"></a>四、 综合实践：从零构建一个受保护的仓库</h1><p>为了巩固上述知识，请按照以下步骤在你的博客目录下进行实操演练。</p><h2 id="步骤-1：初始化与局部配置"><a href="#步骤-1：初始化与局部配置" class="headerlink" title="步骤 1：初始化与局部配置"></a>步骤 1：初始化与局部配置</h2><p>首先，我们将文件夹变为 Git 仓库，并为该项目设置独立的提交者信息。</p><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;"><p>#进入目录<br>cd ~&#x2F;Desktop&#x2F;blog</p><p>#初始化<br>git init</p><p>#设置仅在此仓库生效的邮箱（不会影响你的全局 GitHub 账号）<br>git config –local user.email “<a href="mailto:&#x62;&#108;&#111;&#x67;&#x2d;&#x61;&#x64;&#x6d;&#105;&#x6e;&#64;&#101;&#120;&#x61;&#x6d;&#x70;&#x6c;&#101;&#x2e;&#99;&#x6f;&#x6d;">blog-admin@example.com</a>“</p></div><h2 id="步骤-2：建立隐私防线"><a href="#步骤-2：建立隐私防线" class="headerlink" title="步骤 2：建立隐私防线"></a>步骤 2：建立隐私防线</h2><p>创建忽略规则，防止敏感数据被误传。</p><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;"><p>#创建 .gitignore 并写入规则<br>echo “.env” &gt;&gt; .gitignore<br>echo “secrets.txt” &gt;&gt; .gitignore</p><p>#创建一个测试隐私文件<br>echo “password123” &gt; secrets.txt</p></div><h2 id="3-验证忽略效果"><a href="#3-验证忽略效果" class="headerlink" title="3. 验证忽略效果"></a>3. 验证忽略效果</h2><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;"><p>#查看状态<br>git status</p></div><p>观察点： 你会发现 secrets.txt 不在 “Untracked files” 列表中，说明忽略成功。</p><h2 id="4-首次提交与数据检查"><a href="#4-首次提交与数据检查" class="headerlink" title="4. 首次提交与数据检查"></a>4. 首次提交与数据检查</h2><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;"><p>git add .<br>git commit -m “Initial commit with local config and gitignore”</p><p>#查看此时的对象数量和占用<br>git count-objects -vH</p></div><h2 id="5-模拟维护清理"><a href="#5-模拟维护清理" class="headerlink" title="5. 模拟维护清理"></a>5. 模拟维护清理</h2><p>假设你进行了一系列删除和修改操作，现在对仓库进行一次体检：</p><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;"><p>git gc –prune&#x3D;now</p></div><h1 id="五、-常见问题处理"><a href="#五、-常见问题处理" class="headerlink" title="五、 常见问题处理"></a>五、 常见问题处理</h1><h2 id="1-错误：fatal-not-a-git-repository"><a href="#1-错误：fatal-not-a-git-repository" class="headerlink" title="1. 错误：fatal: not a git repository"></a>1. 错误：fatal: not a git repository</h2><p>现象： 运行 Git 命令时提示不是仓库。<br>原因： 当前目录或父目录没有 .git 文件夹。<br>解决：</p><p>确认路径是否正确。</p><p>若是新项目，需先运行 <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">git init 初始化。</div></p><h2 id="2-彻底删除历史中的大文件"><a href="#2-彻底删除历史中的大文件" class="headerlink" title="2. 彻底删除历史中的大文件"></a>2. 彻底删除历史中的大文件</h2><p>如果仓库因为历史记录里的某个大文件而变得沉重，推荐使用 git-filter-repo 工具（需额外安装）：</p><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;"><p>git filter-repo –path 路径&#x2F;大文件名 –invert-paths</p></div><p>注意：此操作会改变历史提交 ID，执行前请务必备份。</p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>先忽略，后提交：新项目开始时第一件事就是写 .gitignore。</p><p>定期 gc：让仓库保持苗条。</p><p>区分 Scope：不要在全局配置里写死公司的邮箱。</p><p>希望这份补充教程能帮助你更好地管理你的博客源码！</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>科技学习文章</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Git</tag>
+      
+      <tag>教程</tag>
+      
+      <tag>学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>穿越时空的政治透视镜：硬核解读《马基雅维利时刻》与现代政治的隐秘逻辑</title>
     <link href="/2026/02/25/%E7%A9%BF%E8%B6%8A%E6%97%B6%E7%A9%BA%E7%9A%84%E6%94%BF%E6%B2%BB%E9%80%8F%E8%A7%86%E9%95%9C%EF%BC%9A%E7%A1%AC%E6%A0%B8%E8%A7%A3%E8%AF%BB%E3%80%8A%E9%A9%AC%E5%9F%BA%E9%9B%85%E7%BB%B4%E5%88%A9%E6%97%B6%E5%88%BB%E3%80%8B%E4%B8%8E%E7%8E%B0%E4%BB%A3%E6%94%BF%E6%B2%BB%E7%9A%84%E9%9A%90%E7%A7%98%E9%80%BB%E8%BE%91/"/>
     <url>/2026/02/25/%E7%A9%BF%E8%B6%8A%E6%97%B6%E7%A9%BA%E7%9A%84%E6%94%BF%E6%B2%BB%E9%80%8F%E8%A7%86%E9%95%9C%EF%BC%9A%E7%A1%AC%E6%A0%B8%E8%A7%A3%E8%AF%BB%E3%80%8A%E9%A9%AC%E5%9F%BA%E9%9B%85%E7%BB%B4%E5%88%A9%E6%97%B6%E5%88%BB%E3%80%8B%E4%B8%8E%E7%8E%B0%E4%BB%A3%E6%94%BF%E6%B2%BB%E7%9A%84%E9%9A%90%E7%A7%98%E9%80%BB%E8%BE%91/</url>
@@ -105,9 +134,9 @@
     
     <tags>
       
-      <tag>教程</tag>
-      
       <tag>Git</tag>
+      
+      <tag>教程</tag>
       
       <tag>学习</tag>
       
@@ -134,9 +163,9 @@
     
     <tags>
       
-      <tag>AI</tag>
-      
       <tag>工具</tag>
+      
+      <tag>AI</tag>
       
       <tag>生活</tag>
       
@@ -163,9 +192,9 @@
     
     <tags>
       
-      <tag>教程</tag>
-      
       <tag>Git</tag>
+      
+      <tag>教程</tag>
       
       <tag>开发环境</tag>
       
@@ -196,11 +225,11 @@
     
     <tags>
       
+      <tag>教程</tag>
+      
       <tag>网页</tag>
       
       <tag>开源</tag>
-      
-      <tag>教程</tag>
       
     </tags>
     
