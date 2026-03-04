@@ -19,24 +19,24 @@
   <meta name="author" content="Daftsnake">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在日常使用 Git 的过程中，除了基础的 add 和 commit，我们经常会遇到仓库体积过大、配置冲突或是不小心泄露敏感信息的情况。本教程总结了解决这些问题的进阶技巧。 一、 仓库维护与数据清理随着提交次数的增加，Git 仓库会产生冗余的“松散对象”。定期清理可以提升操作速度并减小体积。 1. 深度垃圾回收当你觉得仓库反应迟钝时，可以运行：   git gc –prune&#x3D;now –a">
+    <meta name="description" content="最近在折腾 OpenClaw，这是一个本地优先的个人 AI 助手。它可以接入 WhatsApp、Telegram、Discord 等社交平台，让大模型在后台帮忙处理消息甚至执行本地脚本。 功能确实很强大，但由于它需要较高的系统操作权限，安全隐患不容忽视。今年初，OpenClaw 曝出过严重的漏洞（如 ClawJacked）。如果按默认配置直接运行，一旦误点恶意链接，本地环境极易被接管。 这篇文章记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git 进阶：数据清理、范围配置与隐私保护补充教程">
-<meta property="og:url" content="http://example.com/2026/03/02/Git%20%E8%BF%9B%E9%98%B6%EF%BC%9A%E6%95%B0%E6%8D%AE%E6%B8%85%E7%90%86%E3%80%81%E8%8C%83%E5%9B%B4%E9%85%8D%E7%BD%AE%E4%B8%8E%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4%E8%A1%A5%E5%85%85%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:title" content="OpenClaw 踩坑实录：安装教程与必备的安全加固指南">
+<meta property="og:url" content="http://example.com/2026/03/05/OpenClaw%20%E8%B8%A9%E5%9D%91%E5%AE%9E%E5%BD%95%EF%BC%9A%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%E4%B8%8E%E5%BF%85%E5%A4%87%E7%9A%84%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA%E6%8C%87%E5%8D%97/index.html">
 <meta property="og:site_name" content="Daftsnake的小窝">
-<meta property="og:description" content="在日常使用 Git 的过程中，除了基础的 add 和 commit，我们经常会遇到仓库体积过大、配置冲突或是不小心泄露敏感信息的情况。本教程总结了解决这些问题的进阶技巧。 一、 仓库维护与数据清理随着提交次数的增加，Git 仓库会产生冗余的“松散对象”。定期清理可以提升操作速度并减小体积。 1. 深度垃圾回收当你觉得仓库反应迟钝时，可以运行：   git gc –prune&#x3D;now –a">
+<meta property="og:description" content="最近在折腾 OpenClaw，这是一个本地优先的个人 AI 助手。它可以接入 WhatsApp、Telegram、Discord 等社交平台，让大模型在后台帮忙处理消息甚至执行本地脚本。 功能确实很强大，但由于它需要较高的系统操作权限，安全隐患不容忽视。今年初，OpenClaw 曝出过严重的漏洞（如 ClawJacked）。如果按默认配置直接运行，一旦误点恶意链接，本地环境极易被接管。 这篇文章记">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-03-01T16:50:00.000Z">
-<meta property="article:modified_time" content="2026-03-01T17:14:44.894Z">
+<meta property="article:published_time" content="2026-03-04T18:19:00.000Z">
+<meta property="article:modified_time" content="2026-03-04T19:09:28.168Z">
 <meta property="article:author" content="Daftsnake">
-<meta property="article:tag" content="Git">
-<meta property="article:tag" content="学习">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Openclaw">
 <meta property="article:tag" content="教程">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Git 进阶：数据清理、范围配置与隐私保护补充教程 - Daftsnake的小窝</title>
+  <title>OpenClaw 踩坑实录：安装教程与必备的安全加固指南 - Daftsnake的小窝</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Git 进阶：数据清理、范围配置与隐私保护补充教程"></span>
+            <span id="subtitle" data-typed-text="OpenClaw 踩坑实录：安装教程与必备的安全加固指南"></span>
           
         </div>
 
@@ -213,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-03-02 00:50" pubdate>
-          2026年3月2日 凌晨
+        <time datetime="2026-03-05 02:19" pubdate>
+          2026年3月5日 凌晨
         </time>
       </span>
     
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          1.3k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          10 分钟
+          11 分钟
         
       </span>
     
@@ -273,138 +273,92 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Git 进阶：数据清理、范围配置与隐私保护补充教程</h1>
+            <h1 id="seo-header">OpenClaw 踩坑实录：安装教程与必备的安全加固指南</h1>
             
             
               <div class="markdown-body">
                 
-                <p>在日常使用 Git 的过程中，除了基础的 add 和 commit，我们经常会遇到仓库体积过大、配置冲突或是不小心泄露敏感信息的情况。本教程总结了解决这些问题的进阶技巧。</p>
-<h1 id="一、-仓库维护与数据清理"><a href="#一、-仓库维护与数据清理" class="headerlink" title="一、 仓库维护与数据清理"></a>一、 仓库维护与数据清理</h1><p>随着提交次数的增加，Git 仓库会产生冗余的“松散对象”。定期清理可以提升操作速度并减小体积。</p>
-<h2 id="1-深度垃圾回收"><a href="#1-深度垃圾回收" class="headerlink" title="1. 深度垃圾回收"></a>1. 深度垃圾回收</h2><p>当你觉得仓库反应迟钝时，可以运行：</p>
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
+                <p>最近在折腾 <strong>OpenClaw</strong>，这是一个本地优先的个人 AI 助手。它可以接入 WhatsApp、Telegram、Discord 等社交平台，让大模型在后台帮忙处理消息甚至执行本地脚本。</p>
+<p>功能确实很强大，但由于它需要较高的系统操作权限，安全隐患不容忽视。今年初，OpenClaw 曝出过严重的漏洞（如 ClawJacked）。如果按默认配置直接运行，一旦误点恶意链接，本地环境极易被接管。</p>
+<p>这篇文章记录了我的安装流程，以及如何进行必要的安全隔离与加固，希望能帮准备使用这款工具的朋友少走弯路。</p>
+<div class="note note-info">
+            <p><strong>阅读提示</strong>：本文涉及一些基础的终端命令操作。如果你对命令行不太熟悉，可以直接复制下方代码框中的命令执行。</p>
+          </div>
 
-<p>git gc –prune&#x3D;now –aggressive</p>
-</div>
+<h2 id="1-基础安装流程"><a href="#1-基础安装流程" class="headerlink" title="1. 基础安装流程"></a><strong>1. 基础安装流程</strong></h2><div class="note note-danger">
+            <p><strong>安全预警</strong>：近期搜索引擎和某些第三方社区中出现了带有恶意程序的 OpenClaw 伪造包。请务必使用官方的 npm 命令进行安装，不要下载来路不明的“一键安装包”。</p>
+          </div>
 
+<h3 id="准备-Node-js-环境"><a href="#准备-Node-js-环境" class="headerlink" title="准备 Node.js 环境"></a><strong>准备 Node.js 环境</strong></h3><p>OpenClaw 依赖 Node.js 环境。</p>
 <ul>
-<li><p>–prune&#x3D;now: 立即删除所有孤立的无用对象。</p>
-</li>
-<li><p>–aggressive: 进行更深度的压缩优化。</p>
-</li>
+<li><strong>Mac 用户</strong>：直接打开自带的“终端”。  </li>
+<li><strong>Windows 用户</strong>：建议使用 WSL。在 PowerShell (管理员) 中运行 wsl --install ，重启后打开 Ubuntu 终端。</li>
 </ul>
-<h2 id="2-查看仓库真实占用"><a href="#2-查看仓库真实占用" class="headerlink" title="2. 查看仓库真实占用"></a>2. 查看仓库真实占用</h2><p>了解 .git 文件夹中各类对象的大小：</p>
+<p>在终端中依次执行以下命令来安装 Node.js 22：</p>
 <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
-<p>git count-objects -vH</p>
+<p># 下载并安装 nvm 环境管理器 (如果网络不通请开启代理)<br>curl -o- [<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh/](https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh)">https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh\](https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh)</a> | bash</p>
+<p># 重新加载配置<br>source ~&#x2F;.bashrc 2&gt;&#x2F;dev&#x2F;null || source ~&#x2F;.zshrc 2&gt;&#x2F;dev&#x2F;null</p>
+<p># 安装 Node.js 22<br>nvm install 22</p>
+<p># 验证安装结果（输出 v22.x.x 即表示成功）<br>node -v</p>
 </div>
 
-<h2 id="3-清理过时的远程追踪分支"><a href="#3-清理过时的远程追踪分支" class="headerlink" title="3. 清理过时的远程追踪分支"></a>3. 清理过时的远程追踪分支</h2><p>如果远程仓库删除了分支，本地依然显示 origin&#x2F;xxx，可以使用：</p>
+<h3 id="安装-OpenClaw"><a href="#安装-OpenClaw" class="headerlink" title="安装 OpenClaw"></a><strong>安装 OpenClaw</strong></h3><p>环境就绪后，通过 npm 全局安装最新版本：</p>
 <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
-<p>git fetch –prune</p>
+<p>npm install -g openclaw@latest</p>
 </div>
 
-<h1 id="二、-Git-配置的三个维度"><a href="#二、-Git-配置的三个维度" class="headerlink" title="二、 Git 配置的三个维度"></a>二、 Git 配置的三个维度</h1><p>Git 的配置分为三个层级，优先级由高到低。你可以根据需求灵活切换配置范围。</p>
+<p>运行初始化向导，按提示完成模型等基础设置：</p>
 <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
-<table>
-<thead>
-<tr>
-<th>范围 (Scope)</th>
-<th>命令参数功能描述</th>
-<th>配置文件位置</th>
-<th>适用场景</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>本地 (Local)</td>
-<td>–local</td>
-<td>.git&#x2F;config</td>
-<td>仅对当前项目生效（如：公司项目的特定邮箱）</td>
-</tr>
-<tr>
-<td>全局 (Global)</td>
-<td>–global</td>
-<td>~&#x2F;.gitconfig</td>
-<td>对当前用户的所有项目生效（最常用）</td>
-</tr>
-<tr>
-<td>系统 (System)</td>
-<td>–system</td>
-<td>&#x2F;etc&#x2F;gitconfig</td>
-<td>对整台电脑的所有用户生效（极少使用）</td>
-</tr>
-</tbody></table>
+<p>openclaw onboard --install-daemon</p>
 </div>
 
-<h1 id="三、-隐私文件保护与忽略机制"><a href="#三、-隐私文件保护与忽略机制" class="headerlink" title="三、 隐私文件保护与忽略机制"></a>三、 隐私文件保护与忽略机制</h1><p>保护 API 密钥、数据库密码和个人配置是开发者的基本素养。</p>
-<h2 id="1-核心工具：-gitignore"><a href="#1-核心工具：-gitignore" class="headerlink" title="1. 核心工具：.gitignore"></a>1. 核心工具：.gitignore</h2><p>在项目根目录创建 .gitignore 文件。以下是一个适合博客项目的通用模板：</p>
+<p><em>(加上 --install-daemon 参数会将其注册为后台服务，开机会自动启动。)</em></p>
+<p>可以通过发送一条简单的测试消息来验证是否安装成功：</p>
 <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
-<p>#隐私与密钥<br>.env<br>*.pem<br>*.key<br>secrets.txt</p>
-<p>#操作系统临时文件<br>.DS_Store<br>Thumbs.db</p>
-<p>#依赖与构建产物<br>node_modules&#x2F;<br>public&#x2F;<br>dist&#x2F;<br>.cache&#x2F;</p>
+<p>openclaw agent --message “你好，请用一句话介绍你自己。”</p>
 </div>
 
-<h2 id="2-秘密忽略：-git-info-exclude"><a href="#2-秘密忽略：-git-info-exclude" class="headerlink" title="2. 秘密忽略：.git&#x2F;info&#x2F;exclude"></a>2. 秘密忽略：.git&#x2F;info&#x2F;exclude</h2><p>如果你有一些只想在自己电脑上忽略，而不希望出现在项目 .gitignore（即不让同事看到）的文件，可以将其写入 <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">.git&#x2F;info&#x2F;exclude。</div></p>
-<h2 id="3-补救措施：忽略已提交的文件"><a href="#3-补救措施：忽略已提交的文件" class="headerlink" title="3. 补救措施：忽略已提交的文件"></a>3. 补救措施：忽略已提交的文件</h2><p>如果你已经把隐私文件提交了，单纯修改 .gitignore 是无效的。你需要先从暂存区移除它：</p>
+<h2 id="2-核心：安全加固"><a href="#2-核心：安全加固" class="headerlink" title="2. 核心：安全加固"></a><strong>2. 核心：安全加固</strong></h2><p>默认配置下，OpenClaw 拥有过高的操作权限。我们必须对其进行限制和隔离。</p>
+<h3 id="创建独立的受限用户"><a href="#创建独立的受限用户" class="headerlink" title="创建独立的受限用户"></a><strong>创建独立的受限用户</strong></h3><p>不要使用平时的主力账号或 Root 权限直接运行它。建议为它创建一个专用的、权限受限的系统账户。</p>
 <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
-<p>#停止追踪但保留本地文件<br>git rm –cached 隐私文件名<br>#然后提交更新<br>git commit -m “Remove sensitive file from tracking”</p>
+<p># 创建名为 openclaw_agent 的受限账户<br>sudo useradd -m -s &#x2F;bin&#x2F;bash openclaw_agent</p>
+<p># 切换到该账户<br>sudo su - openclaw_agent</p>
 </div>
 
-
-<h1 id="四、-综合实践：从零构建一个受保护的仓库"><a href="#四、-综合实践：从零构建一个受保护的仓库" class="headerlink" title="四、 综合实践：从零构建一个受保护的仓库"></a>四、 综合实践：从零构建一个受保护的仓库</h1><p>为了巩固上述知识，请按照以下步骤在你的博客目录下进行实操演练。</p>
-<h2 id="步骤-1：初始化与局部配置"><a href="#步骤-1：初始化与局部配置" class="headerlink" title="步骤 1：初始化与局部配置"></a>步骤 1：初始化与局部配置</h2><p>首先，我们将文件夹变为 Git 仓库，并为该项目设置独立的提交者信息。</p>
+<p><em>(注意：后续所有关于 OpenClaw 的配置修改，都需要先切换到这个账户下进行。)</em></p>
+<h3 id="环境变量管理-API-密钥"><a href="#环境变量管理-API-密钥" class="headerlink" title="环境变量管理 API 密钥"></a><strong>环境变量管理 API 密钥</strong></h3><p>绝对不要将 OpenAI 或 Anthropic 的 API Key 明文写在配置文件里，否则极易因为越权读取漏洞导致 Token 被盗刷。将它们写入环境变量是更安全的做法：</p>
 <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
-<p>#进入目录<br>cd ~&#x2F;Desktop&#x2F;blog</p>
-<p>#初始化<br>git init</p>
-<p>#设置仅在此仓库生效的邮箱（不会影响你的全局 GitHub 账号）<br>git config –local user.email “<a href="mailto:&#x62;&#108;&#111;&#x67;&#45;&#97;&#x64;&#109;&#105;&#110;&#x40;&#x65;&#120;&#97;&#x6d;&#112;&#108;&#x65;&#46;&#99;&#111;&#109;">blog-admin@example.com</a>“</p>
+<p># 将密钥写入配置文件（请替换为你自己的真实密钥）<br>echo ‘export OPENAI_API_KEY&#x3D;”sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx”‘ &gt;&gt; ~&#x2F;.bashrc<br>echo ‘export OPENAI_API_KEY&#x3D;”sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx”‘ &gt;&gt; ~&#x2F;.zshrc</p>
+<p># 刷新配置生效<br>source ~&#x2F;.bashrc 2&gt;&#x2F;dev&#x2F;null || source ~&#x2F;.zshrc 2&gt;&#x2F;dev&#x2F;null</p>
 </div>
 
-
-<h2 id="步骤-2：建立隐私防线"><a href="#步骤-2：建立隐私防线" class="headerlink" title="步骤 2：建立隐私防线"></a>步骤 2：建立隐私防线</h2><p>创建忽略规则，防止敏感数据被误传。</p>
+<h2 id="3-配置文件与渠道接入"><a href="#3-配置文件与渠道接入" class="headerlink" title="3. 配置文件与渠道接入"></a><strong>3. 配置文件与渠道接入</strong></h2><p>OpenClaw 的核心行为由<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;"> ~&#x2F;.openclaw&#x2F;openclaw.json </div>文件控制。接下来我们需要修改这个文件，关闭不必要的网络暴露，并设置通讯软件的接入规则。</p>
+<p>使用 nano 编辑器打开文件：</p>
 <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
-<p>#创建 .gitignore 并写入规则<br>echo “.env” &gt;&gt; .gitignore<br>echo “secrets.txt” &gt;&gt; .gitignore</p>
-<p>#创建一个测试隐私文件<br>echo “password123” &gt; secrets.txt</p>
+<p>nano ~&#x2F;.openclaw&#x2F;openclaw.json</p>
 </div>
 
-
-<h2 id="3-验证忽略效果"><a href="#3-验证忽略效果" class="headerlink" title="3. 验证忽略效果"></a>3. 验证忽略效果</h2><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-
-<p>#查看状态<br>git status</p>
-</div>
-
-<p>观察点： 你会发现 secrets.txt 不在 “Untracked files” 列表中，说明忽略成功。</p>
-<h2 id="4-首次提交与数据检查"><a href="#4-首次提交与数据检查" class="headerlink" title="4. 首次提交与数据检查"></a>4. 首次提交与数据检查</h2><div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-
-<p>git add .<br>git commit -m “Initial commit with local config and gitignore”</p>
-<p>#查看此时的对象数量和占用<br>git count-objects -vH</p>
-</div>
-
-
-<h2 id="5-模拟维护清理"><a href="#5-模拟维护清理" class="headerlink" title="5. 模拟维护清理"></a>5. 模拟维护清理</h2><p>假设你进行了一系列删除和修改操作，现在对仓库进行一次体检：</p>
+<p>为避免 JSON 格式错误（比如漏写逗号），你可以先清空原文件内容，直接复制以下我整理好的安全配置模板，然后将里面的 ID 和 Token 替换成你自己的。</p>
 <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
-<p>git gc –prune&#x3D;now</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><br>&#123;<br>  <span class="hljs-comment">// json5 ==========================================</span><br>  <span class="hljs-comment">// 1. 网关与安全设置</span><br>  <span class="hljs-comment">// ==========================================</span><br>  <span class="hljs-attr">gateway</span>: &#123;<br>    <span class="hljs-attr">bind</span>: <span class="hljs-string">&quot;loopback&quot;</span>, <span class="hljs-comment">// 强制仅本地访问，勿改</span><br>    <span class="hljs-attr">auth</span>: &#123;<br>      <span class="hljs-attr">mode</span>: <span class="hljs-string">&quot;password&quot;</span>, <span class="hljs-comment">// 开启密码保护</span><br>      <span class="hljs-attr">allowTailscale</span>: <span class="hljs-literal">false</span><br>    &#125;<br>  &#125;,<br><br>  <span class="hljs-comment">// ==========================================</span><br>  <span class="hljs-comment">// 2. 隔离沙箱设置</span><br>  <span class="hljs-comment">// ==========================================</span><br>  <span class="hljs-attr">agents</span>: &#123;<br>    <span class="hljs-attr">defaults</span>: &#123;<br>      <span class="hljs-attr">sandbox</span>: &#123;<br>        <span class="hljs-attr">mode</span>: <span class="hljs-string">&quot;non-main&quot;</span> <span class="hljs-comment">// 强制在 Docker 沙箱中运行</span><br>      &#125;<br>    &#125;<br>  &#125;,<br><br>  <span class="hljs-comment">// ==========================================</span><br>  <span class="hljs-comment">// 3. 通讯渠道接入 (按需修改或保留)</span><br>  <span class="hljs-comment">// ==========================================</span><br>  <span class="hljs-attr">channels</span>: &#123;<br>    <br>    <span class="hljs-comment">// ---- Telegram ----</span><br>    <span class="hljs-attr">telegram</span>: &#123;<br>      <span class="hljs-attr">botToken</span>: <span class="hljs-string">&quot;替换为_BotFather_获取的_Token&quot;</span>, <br>      <span class="hljs-attr">dmPolicy</span>: <span class="hljs-string">&quot;pairing&quot;</span>, <span class="hljs-comment">// 开启配令人模式，防止陌生人调用</span><br>      <span class="hljs-attr">allowFrom</span>: [<span class="hljs-string">&quot;替换为你的纯数字ID&quot;</span>], <span class="hljs-comment">// (可通过 @userinfobot 获取)</span><br>      <span class="hljs-attr">streaming</span>: <span class="hljs-string">&quot;partial&quot;</span> <br>    &#125;,<br><br>    <span class="hljs-comment">// ---- Discord ----</span><br>    <span class="hljs-attr">discord</span>: &#123;<br>      <span class="hljs-attr">token</span>: <span class="hljs-string">&quot;替换为_Discord_Bot_Token&quot;</span>,<br>      <span class="hljs-attr">dmPolicy</span>: <span class="hljs-string">&quot;pairing&quot;</span>,<br>      <span class="hljs-attr">allowFrom</span>: [<span class="hljs-string">&quot;替换为你的用户数字ID&quot;</span>] <span class="hljs-comment">// (在开发者模式下右键头像获取)</span><br>    &#125;,<br><br>    <span class="hljs-comment">// ---- WhatsApp ----</span><br>    <span class="hljs-attr">whatsapp</span>: &#123;<br>      <span class="hljs-attr">allowFrom</span>: [<span class="hljs-string">&quot;+8613800138000&quot;</span>], <span class="hljs-comment">// 替换为你带区号的手机号</span><br>      <span class="hljs-attr">groupPolicy</span>: <span class="hljs-string">&quot;allowlist&quot;</span>, <br>      <span class="hljs-attr">groups</span>: &#123;<br>        <span class="hljs-string">&quot;1234567890-123456@g.us&quot;</span>: &#123; <span class="hljs-attr">requireMention</span>: <span class="hljs-literal">true</span> &#125; <br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
 </div>
 
-<h1 id="五、-常见问题处理"><a href="#五、-常见问题处理" class="headerlink" title="五、 常见问题处理"></a>五、 常见问题处理</h1><h2 id="1-错误：fatal-not-a-git-repository"><a href="#1-错误：fatal-not-a-git-repository" class="headerlink" title="1. 错误：fatal: not a git repository"></a>1. 错误：fatal: not a git repository</h2><p>现象： 运行 Git 命令时提示不是仓库。<br>原因： 当前目录或父目录没有 .git 文件夹。<br>解决：</p>
-<p>确认路径是否正确。</p>
-<p>若是新项目，需先运行 <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">git init 初始化。</div></p>
-<h2 id="2-彻底删除历史中的大文件"><a href="#2-彻底删除历史中的大文件" class="headerlink" title="2. 彻底删除历史中的大文件"></a>2. 彻底删除历史中的大文件</h2><p>如果仓库因为历史记录里的某个大文件而变得沉重，推荐使用 git-filter-repo 工具（需额外安装）：</p>
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
+<p>修改完成后，按  Ctrl+O ，回车保存，然后按 Ctrl+X 退出编辑器。</p>
+<div class="note note-warning">
+            <p><strong>必须重启服务</strong></p><p>配置文件的修改不会实时生效，编辑完成后需要在终端执行以下命令重启网关：</p><p>openclaw gateway --port 18789</p>
+          </div>
 
-<p>git filter-repo –path 路径&#x2F;大文件名 –invert-paths</p>
-</div>
-
-<p>注意：此操作会改变历史提交 ID，执行前请务必备份。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>先忽略，后提交：新项目开始时第一件事就是写 .gitignore。</p>
-<p>定期 gc：让仓库保持苗条。</p>
-<p>区分 Scope：不要在全局配置里写死公司的邮箱。</p>
-<p>希望这份补充教程能帮助你更好地管理你的博客源码！</p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a><strong>写在最后</strong></h2><p>以上就是 OpenClaw 的基本配置和安全加固流程。</p>
+<p>让 AI 深入参与到本地系统和社交软件中确实能带来极大的便利，但涉及本地执行权限时，安全隔离永远是第一位的。希望这份记录能对你有所帮助。</p>
 
                 
               </div>
@@ -438,11 +392,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Git/" class="print-no-link">#Git</a>
-      
         <a href="/tags/%E6%95%99%E7%A8%8B/" class="print-no-link">#教程</a>
       
-        <a href="/tags/%E5%AD%A6%E4%B9%A0/" class="print-no-link">#学习</a>
+        <a href="/tags/Openclaw/" class="print-no-link">#Openclaw</a>
+      
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
       
     </div>
   
@@ -454,8 +408,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Git 进阶：数据清理、范围配置与隐私保护补充教程</div>
-      <div>http://example.com/2026/03/02/Git 进阶：数据清理、范围配置与隐私保护补充教程/</div>
+      <div>OpenClaw 踩坑实录：安装教程与必备的安全加固指南</div>
+      <div>http://example.com/2026/03/05/OpenClaw 踩坑实录：安装教程与必备的安全加固指南/</div>
     </div>
     <div class="license-meta">
       
@@ -467,7 +421,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年3月2日</div>
+          <div>2026年3月5日</div>
         </div>
       
       
@@ -499,18 +453,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/03/05/OpenClaw%20%E8%B8%A9%E5%9D%91%E5%AE%9E%E5%BD%95%EF%BC%9A%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%E4%B8%8E%E5%BF%85%E5%A4%87%E7%9A%84%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA%E6%8C%87%E5%8D%97/" title="OpenClaw 踩坑实录：安装教程与必备的安全加固指南">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">OpenClaw 踩坑实录：安装教程与必备的安全加固指南</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/02/25/%E7%A9%BF%E8%B6%8A%E6%97%B6%E7%A9%BA%E7%9A%84%E6%94%BF%E6%B2%BB%E9%80%8F%E8%A7%86%E9%95%9C%EF%BC%9A%E7%A1%AC%E6%A0%B8%E8%A7%A3%E8%AF%BB%E3%80%8A%E9%A9%AC%E5%9F%BA%E9%9B%85%E7%BB%B4%E5%88%A9%E6%97%B6%E5%88%BB%E3%80%8B%E4%B8%8E%E7%8E%B0%E4%BB%A3%E6%94%BF%E6%B2%BB%E7%9A%84%E9%9A%90%E7%A7%98%E9%80%BB%E8%BE%91/" title="穿越时空的政治透视镜：硬核解读《马基雅维利时刻》与现代政治的隐秘逻辑">
-                        <span class="hidden-mobile">穿越时空的政治透视镜：硬核解读《马基雅维利时刻》与现代政治的隐秘逻辑</span>
+                      <a href="/2026/03/02/Git%20%E8%BF%9B%E9%98%B6%EF%BC%9A%E6%95%B0%E6%8D%AE%E6%B8%85%E7%90%86%E3%80%81%E8%8C%83%E5%9B%B4%E9%85%8D%E7%BD%AE%E4%B8%8E%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4%E8%A1%A5%E5%85%85%E6%95%99%E7%A8%8B/" title="Git 进阶：数据清理、范围配置与隐私保护补充教程">
+                        <span class="hidden-mobile">Git 进阶：数据清理、范围配置与隐私保护补充教程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
