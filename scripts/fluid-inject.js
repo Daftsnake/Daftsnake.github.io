@@ -27,7 +27,7 @@ hexo.extend.filter.register('theme_inject', function (injects) {
 <% if (is_home()) { %>
 <aside id="home-aside" class="home-aside" hidden>
   <section class="aside-card profile-card">
-    <img class="profile-avatar" src="<%= url_for(theme.about.avatar) %>" alt="avatar" loading="lazy">
+    <img class="profile-avatar" src="<%= url_for(theme.about.avatar) %>" alt="avatar" data-nolazyload>
     <div class="profile-name"><%- theme.about.name || config.author %></div>
     <div class="profile-intro"><%- theme.about.intro %></div>
     <div class="profile-stats">

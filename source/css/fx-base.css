@@ -8,25 +8,25 @@
   --fx-radius-sm: 12px;
   --fx-ease: cubic-bezier(.22, 1, .36, 1);
   --fx-spring: cubic-bezier(.34, 1.56, .64, 1);
-  --fx-primary: #7c6cf0;
-  --fx-pink: #ff7eb3;
-  --fx-grad: linear-gradient(135deg, #7c6cf0 0%, #ff7eb3 55%, #ffb26b 100%);
-  --fx-tint: rgba(124, 108, 240, .10);
-  --fx-tint-strong: rgba(124, 108, 240, .18);
-  --glass-bg: rgba(255, 255, 255, .58);
-  --glass-bg-strong: rgba(255, 255, 255, .80);
-  --glass-border: rgba(255, 255, 255, .75);
-  --glass-shadow: 0 12px 32px -14px rgba(76, 60, 160, .28), 0 2px 8px rgba(76, 60, 160, .06);
-  --glass-shadow-hover: 0 22px 46px -16px rgba(124, 108, 240, .42), 0 4px 12px rgba(76, 60, 160, .08);
+  --fx-primary: #6875f5;
+  --fx-pink: #8b7cf6;
+  --fx-grad: linear-gradient(135deg, #5b7cfa 0%, #7c6cf0 55%, #4bb3fd 100%);
+  --fx-tint: rgba(104, 117, 245, .09);
+  --fx-tint-strong: rgba(104, 117, 245, .16);
+  --glass-bg: rgba(255, 255, 255, .64);
+  --glass-bg-strong: rgba(255, 255, 255, .84);
+  --glass-border: rgba(255, 255, 255, .80);
+  --glass-shadow: 0 12px 32px -14px rgba(60, 76, 145, .20), 0 2px 8px rgba(60, 76, 145, .05);
+  --glass-shadow-hover: 0 22px 46px -16px rgba(104, 117, 245, .32), 0 4px 12px rgba(60, 76, 145, .07);
   --glass-blur: 18px;
 
   /* 覆盖 Fluid 变量（浅色） */
-  --body-bg-color: #f4f2fb;
-  --board-bg-color: rgba(255, 255, 255, .78);
-  --navbar-text-color: #2b2f4a;
-  --subtitle-color: #2b2f4a;
-  --link-hover-color: #7c6cf0;
-  --link-hover-bg-color: rgba(124, 108, 240, .08);
+  --body-bg-color: #f6f8fd;
+  --board-bg-color: rgba(255, 255, 255, .80);
+  --navbar-text-color: #2b3248;
+  --subtitle-color: #2b3248;
+  --link-hover-color: #6875f5;
+  --link-hover-bg-color: rgba(104, 117, 245, .08);
 }
 
 [data-user-color-scheme="dark"] {
@@ -97,9 +97,30 @@ body {
   background-clip: text;
   color: transparent;
 }
-.typed-cursor { color: var(--fx-primary); }
+.typed-cursor,
+.typed-cursor.typed-cursor--blink {
+  color: var(--fx-primary);
+  font-weight: 500;
+  animation: fxCursorBlink 2.2s ease-in-out infinite !important;
+  -webkit-animation: fxCursorBlink 2.2s ease-in-out infinite !important;
+}
+@keyframes fxCursorBlink {
+  0%, 100% { opacity: .82; }
+  50%      { opacity: .08; }
+}
 .banner-text .post-meta, .banner-text .mt-1, .banner-text .mt-3 { opacity: .85; }
-.scroll-down-bar i { color: var(--navbar-text-color); }
+.scroll-down-bar { bottom: 1.2rem; height: 3.5rem; }
+.scroll-down-bar i.iconfont {
+  color: var(--navbar-text-color);
+  font-size: 1.5rem;
+  padding-top: .5rem;
+  top: 0 !important;
+  animation: fxScrollDown 2.8s ease-in-out infinite !important;
+}
+@keyframes fxScrollDown {
+  0%, 100% { transform: translateY(0); opacity: .75; }
+  50%      { transform: translateY(5px); opacity: .35; }
+}
 
 /* ---------- 进场 / 离场 虚化 ---------- */
 @keyframes fxBlurIn {
@@ -269,8 +290,44 @@ main, .banner-text, footer {
   box-shadow: var(--glass-shadow);
   overflow: hidden;
 }
-.modal-content .form-control,
-#local-search-input { border-radius: 999px; }
+#modalSearch .md-form {
+  margin-top: .75rem;
+  margin-bottom: 1.25rem;
+}
+#modalSearch .md-form label {
+  position: static;
+  display: block;
+  margin: 0 0 8px 6px;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--sec-text-color);
+}
+#modalSearch #local-search-input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 44px;
+  padding: 8px 18px;
+  margin-bottom: 0;
+  border-radius: 999px;
+  border: 1.5px solid var(--glass-border);
+  background-color: var(--fx-tint);
+  color: var(--text-color);
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  transition: border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
+}
+#modalSearch #local-search-input:focus {
+  border-color: var(--fx-primary);
+  background-color: var(--glass-bg-strong);
+  box-shadow: 0 0 0 3px var(--fx-tint-strong) !important;
+}
+#modalSearch #local-search-input:focus + label {
+  color: var(--fx-primary);
+}
+#modalSearch .md-form {
+  display: flex;
+  flex-direction: column-reverse;
+}
 #local-search-result .list-group-item { border-radius: var(--fx-radius-sm); }
 
 /* 图片放大 */
