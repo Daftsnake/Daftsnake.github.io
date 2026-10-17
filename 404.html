@@ -59,6 +59,11 @@
 
 
 
+  
+<link rel="stylesheet" href="/css/fx-base.css">
+<link rel="stylesheet" href="/css/fx-pages.css">
+
+
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
@@ -76,11 +81,21 @@
 
 
   
+<meta name="theme-color" content="#f4f2fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#12131c" media="(prefers-color-scheme: dark)">
+<script>
+  (function () {
+    var d = document.documentElement;
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('fx-enter');
+  })();
+</script>
 <meta name="generator" content="Hexo 8.1.1"></head>
 
 
 <body>
   
+<canvas id="flow-bg" aria-hidden="true"></canvas>
+<div id="fx-veil" aria-hidden="true"></div>
 
   <header>
     
@@ -319,6 +334,11 @@
 
 
 
+  
+<script src="/js/bg-flow.js"></script>
+<script src="/js/page-fx.js"></script>
+
+
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
@@ -326,6 +346,7 @@
 
 
   
+
 
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
