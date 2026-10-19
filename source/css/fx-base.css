@@ -27,6 +27,15 @@
   --subtitle-color: #2b3248;
   --link-hover-color: #6875f5;
   --link-hover-bg-color: rgba(104, 117, 245, .08);
+
+  /* 代码块变量（浅色） */
+  --code-bg: #f4f6fc;
+  --code-text: #2d3748;
+  --code-border: rgba(104, 117, 245, 0.16);
+  --code-link: #4f46e5;
+  --code-comment: #718096;
+  --code-shadow: 0 4px 16px -4px rgba(60, 76, 145, 0.10);
+  --highlight-bg-color: #f4f6fc;
 }
 
 [data-user-color-scheme="dark"] {
@@ -43,6 +52,15 @@
   --subtitle-color: #f0f1f7;
   --link-hover-color: #a99dff;
   --link-hover-bg-color: rgba(150, 135, 255, .12);
+
+  /* 代码块变量（深色） */
+  --code-bg: #141624;
+  --code-text: #e2e8f0;
+  --code-border: rgba(255, 255, 255, 0.09);
+  --code-link: #93c5fd;
+  --code-comment: #94a3b8;
+  --code-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.55);
+  --highlight-bg-color: #141624;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -60,6 +78,15 @@
     --subtitle-color: #f0f1f7;
     --link-hover-color: #a99dff;
     --link-hover-bg-color: rgba(150, 135, 255, .12);
+
+    /* 代码块变量（深色） */
+    --code-bg: #141624;
+    --code-text: #e2e8f0;
+    --code-border: rgba(255, 255, 255, 0.09);
+    --code-link: #93c5fd;
+    --code-comment: #94a3b8;
+    --code-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.55);
+    --highlight-bg-color: #141624;
   }
 }
 

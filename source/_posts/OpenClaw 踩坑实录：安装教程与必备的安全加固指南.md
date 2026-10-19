@@ -43,49 +43,41 @@ OpenClaw 依赖 Node.js 环境。
 
 在终端中依次执行以下命令来安装 Node.js 22：
 
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
+```bash
+# 下载并安装 nvm 环境管理器 (如果网络不通请开启代理)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
-\# 下载并安装 nvm 环境管理器 (如果网络不通请开启代理)  
-curl \-o- \[https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh\](https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh) | bash
+# 重新加载配置
+source ~/.bashrc 2>/dev/null || source ~/.zshrc 2>/dev/null
 
-\# 重新加载配置  
-source \~/.bashrc 2\>/dev/null || source \~/.zshrc 2\>/dev/null
-
-\# 安装 Node.js 22  
+# 安装 Node.js 22
 nvm install 22
 
-\# 验证安装结果（输出 v22.x.x 即表示成功）  
-node \-v
-
-</div>
+# 验证安装结果（输出 v22.x.x 即表示成功）
+node -v
+```
 
 ### **安装 OpenClaw**
 
 环境就绪后，通过 npm 全局安装最新版本：
 
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-
-npm install \-g openclaw@latest
-
-</div>
+```bash
+npm install -g openclaw@latest
+```
 
 运行初始化向导，按提示完成模型等基础设置：
 
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
+```bash
+openclaw onboard --install-daemon
+```
 
-openclaw onboard \--install-daemon
-
-</div>
-
-*(加上 \--install-daemon 参数会将其注册为后台服务，开机会自动启动。)*
+*(加上 --install-daemon 参数会将其注册为后台服务，开机会自动启动。)*
 
 可以通过发送一条简单的测试消息来验证是否安装成功：
 
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-
-openclaw agent \--message "你好，请用一句话介绍你自己。"
-
-</div>
+```bash
+openclaw agent --message "你好，请用一句话介绍你自己。"
+```
 
 ## **2\. 核心：安全加固**
 
@@ -95,15 +87,13 @@ openclaw agent \--message "你好，请用一句话介绍你自己。"
 
 不要使用平时的主力账号或 Root 权限直接运行它。建议为它创建一个专用的、权限受限的系统账户。
 
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
+```bash
+# 创建名为 openclaw_agent 的受限账户
+sudo useradd -m -s /bin/bash openclaw_agent
 
-\# 创建名为 openclaw\_agent 的受限账户  
-sudo useradd \-m \-s /bin/bash openclaw\_agent
-
-\# 切换到该账户  
-sudo su \- openclaw\_agent
-
-</div>
+# 切换到该账户
+sudo su - openclaw_agent
+```
 
 *(注意：后续所有关于 OpenClaw 的配置修改，都需要先切换到这个账户下进行。)*
 
@@ -111,32 +101,26 @@ sudo su \- openclaw\_agent
 
 绝对不要将 OpenAI 或 Anthropic 的 API Key 明文写在配置文件里，否则极易因为越权读取漏洞导致 Token 被盗刷。将它们写入环境变量是更安全的做法：
 
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
+```bash
+# 将密钥写入配置文件（请替换为你自己的真实密钥）
+echo 'export OPENAI_API_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"' >> ~/.bashrc
+echo 'export OPENAI_API_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"' >> ~/.zshrc
 
-\# 将密钥写入配置文件（请替换为你自己的真实密钥）  
-echo 'export OPENAI\_API\_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"' \>\> \~/.bashrc  
-echo 'export OPENAI\_API\_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"' \>\> \~/.zshrc
-
-\# 刷新配置生效  
-source \~/.bashrc 2\>/dev/null || source \~/.zshrc 2\>/dev/null
-
-</div>
+# 刷新配置生效
+source ~/.bashrc 2>/dev/null || source ~/.zshrc 2>/dev/null
+```
 
 ## **3\. 配置文件与渠道接入**
 
-OpenClaw 的核心行为由<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;"> \~/.openclaw/openclaw.json </div>文件控制。接下来我们需要修改这个文件，关闭不必要的网络暴露，并设置通讯软件的接入规则。
+OpenClaw 的核心行为由 `~/.openclaw/openclaw.json` 文件控制。接下来我们需要修改这个文件，关闭不必要的网络暴露，并设置通讯软件的接入规则。
 
 使用 nano 编辑器打开文件：
 
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-
-nano \~/.openclaw/openclaw.json
-
-</div>
+```bash
+nano ~/.openclaw/openclaw.json
+```
 
 为避免 JSON 格式错误（比如漏写逗号），你可以先清空原文件内容，直接复制以下我整理好的安全配置模板，然后将里面的 ID 和 Token 替换成你自己的。
-
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
 ```javascript
 
@@ -196,9 +180,7 @@ nano \~/.openclaw/openclaw.json
 
 ```
 
-</div>
-
-修改完成后，按  Ctrl+O ，回车保存，然后按 Ctrl+X 退出编辑器。
+修改完成后，按 Ctrl+O ，回车保存，然后按 Ctrl+X 退出编辑器。
 
 {% note warning %}
 
@@ -206,9 +188,9 @@ nano \~/.openclaw/openclaw.json
 
 配置文件的修改不会实时生效，编辑完成后需要在终端执行以下命令重启网关：
 
-
-openclaw gateway \--port 18789
-
+```bash
+openclaw gateway --port 18789
+```
 
 {% endnote %}
 

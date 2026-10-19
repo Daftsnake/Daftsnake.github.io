@@ -91,7 +91,7 @@ dist/
 
 ## 2. 秘密忽略：.git/info/exclude
 
-如果你有一些只想在自己电脑上忽略，而不希望出现在项目 .gitignore（即不让同事看到）的文件，可以将其写入 <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">.git/info/exclude。</div>
+如果你有一些只想在自己电脑上忽略，而不希望出现在项目 .gitignore（即不让同事看到）的文件，可以将其写入 `.git/info/exclude`。
 
 ## 3. 补救措施：忽略已提交的文件
 
@@ -189,7 +189,7 @@ git gc --prune=now
 
 确认路径是否正确。
 
-若是新项目，需先运行 <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">git init 初始化。</div>
+若是新项目，需先运行 `git init` 初始化。
 
 ## 2. 彻底删除历史中的大文件
 

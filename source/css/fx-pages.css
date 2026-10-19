@@ -340,38 +340,323 @@
   overflow: hidden;
 }
 
+/* ---------- 文章页代码区块与仿代码容器 ---------- */
 .markdown-body pre,
 .markdown-body .highlight,
-figure.highlight {
-  border-radius: var(--fx-radius) !important;
+figure.highlight,
+.markdown-body .code-wrapper {
+  border-radius: var(--fx-radius-sm, 12px) !important;
+  border: 1px solid var(--code-border) !important;
+  box-shadow: var(--code-shadow) !important;
+  transition: background-color .3s ease, border-color .3s ease, box-shadow .3s ease;
   overflow: hidden;
-  box-shadow: 0 8px 24px -10px rgba(20, 18, 40, .18);
-}
-.markdown-body code:not(pre code) {
-  border-radius: 8px;
-  padding: .18em .48em;
-  background-color: var(--fx-tint);
+  margin: 1.25rem 0 !important;
 }
 
-/* 版权框 & 上下篇 */
+.markdown-body .code-wrapper pre,
+.markdown-body figure.highlight,
+.markdown-body figure.highlight td.gutter,
+.markdown-body figure.highlight td.code,
+.markdown-body figure.highlight td.code pre {
+  background-color: var(--code-bg) !important;
+}
+
+[data-user-color-scheme="dark"] .markdown-body .hljs,
+[data-user-color-scheme="dark"] .markdown-body .code-wrapper pre,
+[data-user-color-scheme="dark"] .markdown-body figure.highlight,
+[data-user-color-scheme="dark"] .markdown-body figure.highlight td.gutter,
+[data-user-color-scheme="dark"] .markdown-body figure.highlight td.code,
+[data-user-color-scheme="dark"] .markdown-body figure.highlight td.code pre,
+[data-user-color-scheme="dark"] .markdown-body pre code {
+  background-color: var(--code-bg) !important;
+  color: var(--code-text) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-user-color-scheme]) .markdown-body .hljs,
+  :root:not([data-user-color-scheme]) .markdown-body .code-wrapper pre,
+  :root:not([data-user-color-scheme]) .markdown-body figure.highlight,
+  :root:not([data-user-color-scheme]) .markdown-body figure.highlight td.gutter,
+  :root:not([data-user-color-scheme]) .markdown-body figure.highlight td.code,
+  :root:not([data-user-color-scheme]) .markdown-body figure.highlight td.code pre,
+  :root:not([data-user-color-scheme]) .markdown-body pre code {
+    background-color: var(--code-bg) !important;
+    color: var(--code-text) !important;
+  }
+}
+
+/* 自定义与内联样式的代码块容器（覆盖 Markdown 中写死的 style="background: #f5f5f5..."） */
+.markdown-body div[style*="monospace"],
+.markdown-body div[style*="background: #f5f5f5"],
+.markdown-body div[style*="background:#f5f5f5"],
+.markdown-body div[style*="background: #f4f3fa"],
+.markdown-body div[style*="background:#f4f3fa"],
+div[style*="font-family: monospace"],
+div[style*="font-family:monospace"] {
+  background-color: var(--code-bg) !important;
+  color: var(--code-text) !important;
+  border: 1px solid var(--code-border) !important;
+  border-radius: var(--fx-radius-sm, 12px) !important;
+  box-shadow: var(--code-shadow) !important;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", "Courier New", monospace !important;
+  font-size: .92rem !important;
+  line-height: 1.65 !important;
+  margin: 1.25rem 0 !important;
+  padding: 16px 20px !important;
+  overflow-x: auto !important;
+  transition: background-color .3s ease, border-color .3s ease, color .3s ease;
+}
+
+/* 内部段落与文本格式统一 */
+.markdown-body div[style*="monospace"] p,
+.markdown-body div[style*="background: #f5f5f5"] p,
+.markdown-body div[style*="background:#f5f5f5"] p,
+.markdown-body div[style*="background: #f4f3fa"] p,
+.markdown-body div[style*="background:#f4f3fa"] p {
+  color: inherit !important;
+  font-family: inherit !important;
+  margin: 0 0 .55rem 0 !important;
+  line-height: inherit !important;
+}
+
+.markdown-body div[style*="monospace"] p:last-child,
+.markdown-body div[style*="background: #f5f5f5"] p:last-child,
+.markdown-body div[style*="background:#f5f5f5"] p:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* 内部链接保持对比度与可读性 */
+.markdown-body div[style*="monospace"] a,
+.markdown-body div[style*="background: #f5f5f5"] a,
+.markdown-body div[style*="background:#f5f5f5"] a {
+  color: var(--code-link) !important;
+  text-decoration: underline !important;
+  word-break: break-all;
+}
+.markdown-body div[style*="monospace"] a:hover,
+.markdown-body div[style*="background: #f5f5f5"] a:hover {
+  filter: brightness(1.2);
+}
+
+/* 内部嵌入表格适配 */
+.markdown-body div[style*="monospace"] table,
+.markdown-body div[style*="background: #f5f5f5"] table {
+  background: transparent !important;
+  color: inherit !important;
+  margin: 0 !important;
+}
+.markdown-body div[style*="monospace"] th,
+.markdown-body div[style*="monospace"] td,
+.markdown-body div[style*="background: #f5f5f5"] th,
+.markdown-body div[style*="background: #f5f5f5"] td {
+  border-color: var(--code-border) !important;
+  color: inherit !important;
+}
+
+/* 外层 div 嵌套已有的 highlight 或 pre 代码块时，清除外层重复的背景与边距 */
+.markdown-body div[style*="monospace"]:has(figure.highlight),
+.markdown-body div[style*="monospace"]:has(pre),
+.markdown-body div[style*="background: #f5f5f5"]:has(figure.highlight),
+.markdown-body div[style*="background: #f5f5f5"]:has(pre),
+.markdown-body div[style*="background:#f5f5f5"]:has(figure.highlight),
+.markdown-body div[style*="background:#f5f5f5"]:has(pre) {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+/* 行内代码 */
+.markdown-body code:not(pre code) {
+  border-radius: 6px;
+  padding: .2em .5em;
+  background-color: var(--fx-tint);
+  color: var(--text-color);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: .88em;
+  border: 1px solid var(--code-border);
+}
+
+/* 版权框：去除无效网址链接，仅保留文章标题 */
 .license-box {
   border-radius: var(--fx-radius) !important;
   background-color: var(--fx-tint) !important;
   border: 1px solid var(--glass-border);
+  padding: 18px 22px !important;
 }
+
+.license-box .license-title {
+  margin-bottom: .85rem !important;
+}
+
+.license-box .license-title div:nth-child(1) {
+  font-weight: 700 !important;
+  font-size: 1.05rem !important;
+  color: var(--text-color) !important;
+  line-height: 1.4 !important;
+  margin-bottom: 0 !important;
+}
+
+.license-box .license-title div:nth-child(2),
+.license-box .license-title div:last-child:not(:first-child) {
+  display: none !important;
+}
+/* 上下篇导航：左右对称布局 & 箭头缓动控制 */
 .post-prevnext {
-  gap: 12px;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: space-between !important;
+  align-items: stretch !important;
+  gap: 16px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
 }
+
 .post-prevnext .post-prev,
 .post-prevnext .post-next {
-  border-radius: var(--fx-radius-sm);
-  padding: 10px 14px;
-  transition: background-color .25s ease, transform .3s var(--fx-spring);
+  flex: 1 1 0% !important;
+  max-width: calc(50% - 8px) !important;
+  width: calc(50% - 8px) !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
 }
-.post-prevnext .post-prev:hover,
-.post-prevnext .post-next:hover {
-  background-color: var(--fx-tint);
-  transform: translateY(-2px);
+
+.post-prevnext .post-prev {
+  justify-content: flex-start !important;
+}
+
+.post-prevnext .post-next {
+  justify-content: flex-end !important;
+}
+
+.post-prevnext .post-prev a,
+.post-prevnext .post-next a {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 12px 18px !important;
+  border-radius: var(--fx-radius-sm, 14px) !important;
+  background-color: var(--glass-bg, rgba(255, 255, 255, 0.65)) !important;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: var(--glass-shadow) !important;
+  transition: transform .35s var(--fx-spring), background-color .25s ease, border-color .25s ease, box-shadow .35s ease, color .25s ease !important;
+  color: var(--text-color) !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+[data-user-color-scheme="dark"] .post-prevnext .post-prev a,
+[data-user-color-scheme="dark"] .post-prevnext .post-next a {
+  background-color: var(--glass-bg) !important;
+  border-color: var(--glass-border) !important;
+  box-shadow: var(--glass-shadow) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-user-color-scheme]) .post-prevnext .post-prev a,
+  :root:not([data-user-color-scheme]) .post-prevnext .post-next a {
+    background-color: var(--glass-bg) !important;
+    border-color: var(--glass-border) !important;
+    box-shadow: var(--glass-shadow) !important;
+  }
+}
+
+.post-prevnext .post-prev a:hover,
+.post-prevnext .post-next a:hover {
+  background-color: var(--glass-bg-strong) !important;
+  border-color: var(--link-hover-color) !important;
+  color: var(--link-hover-color) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: var(--glass-shadow-hover) !important;
+}
+
+/* 左右对称的文本对齐 */
+.post-prevnext .post-prev a {
+  text-align: left !important;
+}
+
+.post-prevnext .post-next a {
+  text-align: right !important;
+  justify-content: flex-end !important;
+}
+
+.post-prevnext .post-prev a span.hidden-mobile,
+.post-prevnext .post-prev a span.visible-mobile {
+  flex: 1 !important;
+  min-width: 0 !important;
+  text-align: left !important;
+  line-height: 1.45 !important;
+}
+
+.post-prevnext .post-next a span.hidden-mobile,
+.post-prevnext .post-next a span.visible-mobile {
+  flex: 1 !important;
+  min-width: 0 !important;
+  text-align: right !important;
+  line-height: 1.45 !important;
+}
+
+/* 箭头图标细节与缓和动画（2.4s 慢速柔和脉动，避免快速闪烁） */
+.post-prevnext .post-prev i,
+.post-prevnext .post-next i {
+  font-size: 1.25rem !important;
+  color: var(--fx-primary) !important;
+  flex-shrink: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform .35s var(--fx-spring), opacity .3s ease, color .25s ease !important;
+}
+
+.post-prevnext .post-prev i {
+  margin-right: 10px !important;
+  margin-left: 0 !important;
+}
+
+.post-prevnext .post-next i {
+  margin-left: 10px !important;
+  margin-right: 0 !important;
+}
+
+@keyframes post-prev-anim-smooth {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.95;
+  }
+  50% {
+    transform: translateX(-4px);
+    opacity: 0.55;
+  }
+}
+
+@keyframes post-next-anim-smooth {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.95;
+  }
+  50% {
+    transform: translateX(4px);
+    opacity: 0.55;
+  }
+}
+
+.post-prevnext .post-prev:hover i,
+.post-prevnext .post-prev:active i {
+  -webkit-animation: post-prev-anim-smooth 2.4s ease-in-out infinite !important;
+  animation: post-prev-anim-smooth 2.4s ease-in-out infinite !important;
+}
+
+.post-prevnext .post-next:hover i,
+.post-prevnext .post-next:active i {
+  -webkit-animation: post-next-anim-smooth 2.4s ease-in-out infinite !important;
+  animation: post-next-anim-smooth 2.4s ease-in-out infinite !important;
 }
 
 /* ---------- 归档 / 分类 / 标签 / 关于 / 友链 ---------- */
@@ -462,6 +747,34 @@ figure.highlight {
 #scroll-top-button:hover {
   transform: translateY(-4px) scale(1.06);
   box-shadow: var(--glass-shadow-hover) !important;
+}
+
+#scroll-top-button i {
+  font-size: 26px !important;
+  color: var(--sec-text-color) !important;
+  transition: transform .35s var(--fx-spring), color .25s ease !important;
+}
+
+#scroll-top-button:hover i {
+  color: var(--fx-primary) !important;
+}
+
+/* 回到顶部箭头慢速平滑缓动（2.4s 呼吸感，避免 1s 快速抽搐晃动） */
+@keyframes scroll-top-smooth {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.95;
+  }
+  50% {
+    transform: translateY(-4px);
+    opacity: 0.55;
+  }
+}
+
+#scroll-top-button:hover i,
+#scroll-top-button:active i {
+  -webkit-animation: scroll-top-smooth 2.4s ease-in-out infinite !important;
+  animation: scroll-top-smooth 2.4s ease-in-out infinite !important;
 }
 
 .footer-inner {

@@ -23,7 +23,7 @@ categories: [科技学习文章]
 
 安装过程中的“决定性瞬间”
 
-运行安装包时，界面底部有一个复选框：<div style="background: #f4f3fa; padding: 15px; border-radius: 5px; font-family: monospace;">Add Python.exe to PATH。</div>
+运行安装包时，界面底部有一个复选框：`Add Python.exe to PATH`。
 
 必须勾选。
 
