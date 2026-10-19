@@ -98,6 +98,19 @@
       });
     });
 
+    // 回到顶部：柔和平滑滚动（优化原生 400ms 过于仓促生硬的回弹体验）
+    var scrollTopBtn = document.getElementById('scroll-top-button');
+    if (scrollTopBtn) {
+      scrollTopBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        window.scrollTo({
+          top: 0,
+          behavior: reduceMotion ? 'auto' : 'smooth'
+        });
+      }, true);
+    }
+
     // 滚动浮现
     if (reduceMotion || !('IntersectionObserver' in window)) return;
     var targets = document.querySelectorAll(

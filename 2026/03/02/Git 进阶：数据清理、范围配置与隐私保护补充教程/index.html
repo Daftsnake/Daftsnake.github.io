@@ -27,7 +27,7 @@
 <meta property="og:description" content="在日常使用 Git 的过程中，除了基础的 add 和 commit，我们经常会遇到仓库体积过大、配置冲突或是不小心泄露敏感信息的情况。本教程总结了解决这些问题的进阶技巧。 一、 仓库维护与数据清理随着提交次数的增加，Git 仓库会产生冗余的“松散对象”。定期清理可以提升操作速度并减小体积。 1. 深度垃圾回收当你觉得仓库反应迟钝时，可以运行：   git gc –prune&#x3D;now –a">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-03-01T16:50:00.000Z">
-<meta property="article:modified_time" content="2026-03-01T17:14:44.894Z">
+<meta property="article:modified_time" content="2026-10-19T18:17:20.497Z">
 <meta property="article:author" content="Daftsnake">
 <meta property="article:tag" content="Git">
 <meta property="article:tag" content="学习">
@@ -361,7 +361,7 @@
 <p>#依赖与构建产物<br>node_modules&#x2F;<br>public&#x2F;<br>dist&#x2F;<br>.cache&#x2F;</p>
 </div>
 
-<h2 id="2-秘密忽略：-git-info-exclude"><a href="#2-秘密忽略：-git-info-exclude" class="headerlink" title="2. 秘密忽略：.git&#x2F;info&#x2F;exclude"></a>2. 秘密忽略：.git&#x2F;info&#x2F;exclude</h2><p>如果你有一些只想在自己电脑上忽略，而不希望出现在项目 .gitignore（即不让同事看到）的文件，可以将其写入 <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">.git&#x2F;info&#x2F;exclude。</div></p>
+<h2 id="2-秘密忽略：-git-info-exclude"><a href="#2-秘密忽略：-git-info-exclude" class="headerlink" title="2. 秘密忽略：.git&#x2F;info&#x2F;exclude"></a>2. 秘密忽略：.git&#x2F;info&#x2F;exclude</h2><p>如果你有一些只想在自己电脑上忽略，而不希望出现在项目 .gitignore（即不让同事看到）的文件，可以将其写入 <code>.git/info/exclude</code>。</p>
 <h2 id="3-补救措施：忽略已提交的文件"><a href="#3-补救措施：忽略已提交的文件" class="headerlink" title="3. 补救措施：忽略已提交的文件"></a>3. 补救措施：忽略已提交的文件</h2><p>如果你已经把隐私文件提交了，单纯修改 .gitignore 是无效的。你需要先从暂存区移除它：</p>
 <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 
@@ -375,7 +375,7 @@
 
 <p>#进入目录<br>cd ~&#x2F;Desktop&#x2F;blog</p>
 <p>#初始化<br>git init</p>
-<p>#设置仅在此仓库生效的邮箱（不会影响你的全局 GitHub 账号）<br>git config –local user.email “<a href="mailto:&#98;&#108;&#x6f;&#103;&#x2d;&#97;&#x64;&#109;&#105;&#x6e;&#x40;&#101;&#120;&#97;&#x6d;&#x70;&#x6c;&#101;&#46;&#x63;&#111;&#109;">blog-admin@example.com</a>“</p>
+<p>#设置仅在此仓库生效的邮箱（不会影响你的全局 GitHub 账号）<br>git config –local user.email “<a href="mailto:&#98;&#108;&#x6f;&#x67;&#45;&#97;&#100;&#109;&#105;&#110;&#64;&#x65;&#120;&#x61;&#109;&#112;&#x6c;&#101;&#x2e;&#x63;&#111;&#x6d;">blog-admin@example.com</a>“</p>
 </div>
 
 
@@ -408,7 +408,7 @@
 
 <h1 id="五、-常见问题处理"><a href="#五、-常见问题处理" class="headerlink" title="五、 常见问题处理"></a>五、 常见问题处理</h1><h2 id="1-错误：fatal-not-a-git-repository"><a href="#1-错误：fatal-not-a-git-repository" class="headerlink" title="1. 错误：fatal: not a git repository"></a>1. 错误：fatal: not a git repository</h2><p>现象： 运行 Git 命令时提示不是仓库。<br>原因： 当前目录或父目录没有 .git 文件夹。<br>解决：</p>
 <p>确认路径是否正确。</p>
-<p>若是新项目，需先运行 <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">git init 初始化。</div></p>
+<p>若是新项目，需先运行 <code>git init</code> 初始化。</p>
 <h2 id="2-彻底删除历史中的大文件"><a href="#2-彻底删除历史中的大文件" class="headerlink" title="2. 彻底删除历史中的大文件"></a>2. 彻底删除历史中的大文件</h2><p>如果仓库因为历史记录里的某个大文件而变得沉重，推荐使用 git-filter-repo 工具（需额外安装）：</p>
 <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
 

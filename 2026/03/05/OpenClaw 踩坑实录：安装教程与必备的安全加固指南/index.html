@@ -27,7 +27,7 @@
 <meta property="og:description" content="最近在折腾 OpenClaw，这是一个本地优先的个人 AI 助手。它可以接入 WhatsApp、Telegram、Discord 等社交平台，让大模型在后台帮忙处理消息甚至执行本地脚本。 功能确实很强大，但由于它需要较高的系统操作权限，安全隐患不容忽视。今年初，OpenClaw 曝出过严重的漏洞（如 ClawJacked）。如果按默认配置直接运行，一旦误点恶意链接，本地环境极易被接管。 这篇文章记">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-03-04T18:19:00.000Z">
-<meta property="article:modified_time" content="2026-03-04T19:09:28.168Z">
+<meta property="article:modified_time" content="2026-10-19T18:16:46.984Z">
 <meta property="article:author" content="Daftsnake">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="Openclaw">
@@ -310,66 +310,36 @@
 <li><strong>Windows 用户</strong>：建议使用 WSL。在 PowerShell (管理员) 中运行 wsl --install ，重启后打开 Ubuntu 终端。</li>
 </ul>
 <p>在终端中依次执行以下命令来安装 Node.js 22：</p>
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-
-<p># 下载并安装 nvm 环境管理器 (如果网络不通请开启代理)<br>curl -o- [<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh/](https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh)">https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh\](https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh)</a> | bash</p>
-<p># 重新加载配置<br>source ~&#x2F;.bashrc 2&gt;&#x2F;dev&#x2F;null || source ~&#x2F;.zshrc 2&gt;&#x2F;dev&#x2F;null</p>
-<p># 安装 Node.js 22<br>nvm install 22</p>
-<p># 验证安装结果（输出 v22.x.x 即表示成功）<br>node -v</p>
-</div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 下载并安装 nvm 环境管理器 (如果网络不通请开启代理)</span><br>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash<br><br><span class="hljs-comment"># 重新加载配置</span><br><span class="hljs-built_in">source</span> ~/.bashrc 2&gt;/dev/null || <span class="hljs-built_in">source</span> ~/.zshrc 2&gt;/dev/null<br><br><span class="hljs-comment"># 安装 Node.js 22</span><br>nvm install 22<br><br><span class="hljs-comment"># 验证安装结果（输出 v22.x.x 即表示成功）</span><br>node -v<br></code></pre></td></tr></table></figure>
 
 <h3 id="安装-OpenClaw"><a href="#安装-OpenClaw" class="headerlink" title="安装 OpenClaw"></a><strong>安装 OpenClaw</strong></h3><p>环境就绪后，通过 npm 全局安装最新版本：</p>
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-
-<p>npm install -g openclaw@latest</p>
-</div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install -g openclaw@latest<br></code></pre></td></tr></table></figure>
 
 <p>运行初始化向导，按提示完成模型等基础设置：</p>
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">openclaw onboard --install-daemon<br></code></pre></td></tr></table></figure>
 
-<p>openclaw onboard --install-daemon</p>
-</div>
-
-<p><em>(加上 --install-daemon 参数会将其注册为后台服务，开机会自动启动。)</em></p>
+<p><em>(加上 –install-daemon 参数会将其注册为后台服务，开机会自动启动。)</em></p>
 <p>可以通过发送一条简单的测试消息来验证是否安装成功：</p>
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-
-<p>openclaw agent --message “你好，请用一句话介绍你自己。”</p>
-</div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">openclaw agent --message <span class="hljs-string">&quot;你好，请用一句话介绍你自己。&quot;</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="2-核心：安全加固"><a href="#2-核心：安全加固" class="headerlink" title="2. 核心：安全加固"></a><strong>2. 核心：安全加固</strong></h2><p>默认配置下，OpenClaw 拥有过高的操作权限。我们必须对其进行限制和隔离。</p>
 <h3 id="创建独立的受限用户"><a href="#创建独立的受限用户" class="headerlink" title="创建独立的受限用户"></a><strong>创建独立的受限用户</strong></h3><p>不要使用平时的主力账号或 Root 权限直接运行它。建议为它创建一个专用的、权限受限的系统账户。</p>
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-
-<p># 创建名为 openclaw_agent 的受限账户<br>sudo useradd -m -s &#x2F;bin&#x2F;bash openclaw_agent</p>
-<p># 切换到该账户<br>sudo su - openclaw_agent</p>
-</div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 创建名为 openclaw_agent 的受限账户</span><br><span class="hljs-built_in">sudo</span> useradd -m -s /bin/bash openclaw_agent<br><br><span class="hljs-comment"># 切换到该账户</span><br><span class="hljs-built_in">sudo</span> su - openclaw_agent<br></code></pre></td></tr></table></figure>
 
 <p><em>(注意：后续所有关于 OpenClaw 的配置修改，都需要先切换到这个账户下进行。)</em></p>
 <h3 id="环境变量管理-API-密钥"><a href="#环境变量管理-API-密钥" class="headerlink" title="环境变量管理 API 密钥"></a><strong>环境变量管理 API 密钥</strong></h3><p>绝对不要将 OpenAI 或 Anthropic 的 API Key 明文写在配置文件里，否则极易因为越权读取漏洞导致 Token 被盗刷。将它们写入环境变量是更安全的做法：</p>
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 将密钥写入配置文件（请替换为你自己的真实密钥）</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;export OPENAI_API_KEY=&quot;sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&quot;&#x27;</span> &gt;&gt; ~/.bashrc<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;export OPENAI_API_KEY=&quot;sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&quot;&#x27;</span> &gt;&gt; ~/.zshrc<br><br><span class="hljs-comment"># 刷新配置生效</span><br><span class="hljs-built_in">source</span> ~/.bashrc 2&gt;/dev/null || <span class="hljs-built_in">source</span> ~/.zshrc 2&gt;/dev/null<br></code></pre></td></tr></table></figure>
 
-<p># 将密钥写入配置文件（请替换为你自己的真实密钥）<br>echo ‘export OPENAI_API_KEY&#x3D;”sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx”‘ &gt;&gt; ~&#x2F;.bashrc<br>echo ‘export OPENAI_API_KEY&#x3D;”sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx”‘ &gt;&gt; ~&#x2F;.zshrc</p>
-<p># 刷新配置生效<br>source ~&#x2F;.bashrc 2&gt;&#x2F;dev&#x2F;null || source ~&#x2F;.zshrc 2&gt;&#x2F;dev&#x2F;null</p>
-</div>
-
-<h2 id="3-配置文件与渠道接入"><a href="#3-配置文件与渠道接入" class="headerlink" title="3. 配置文件与渠道接入"></a><strong>3. 配置文件与渠道接入</strong></h2><p>OpenClaw 的核心行为由<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;"> ~&#x2F;.openclaw&#x2F;openclaw.json </div>文件控制。接下来我们需要修改这个文件，关闭不必要的网络暴露，并设置通讯软件的接入规则。</p>
+<h2 id="3-配置文件与渠道接入"><a href="#3-配置文件与渠道接入" class="headerlink" title="3. 配置文件与渠道接入"></a><strong>3. 配置文件与渠道接入</strong></h2><p>OpenClaw 的核心行为由 <code>~/.openclaw/openclaw.json</code> 文件控制。接下来我们需要修改这个文件，关闭不必要的网络暴露，并设置通讯软件的接入规则。</p>
 <p>使用 nano 编辑器打开文件：</p>
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-
-<p>nano ~&#x2F;.openclaw&#x2F;openclaw.json</p>
-</div>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nano ~/.openclaw/openclaw.json<br></code></pre></td></tr></table></figure>
 
 <p>为避免 JSON 格式错误（比如漏写逗号），你可以先清空原文件内容，直接复制以下我整理好的安全配置模板，然后将里面的 ID 和 Token 替换成你自己的。</p>
-<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: monospace;">
-
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><br>&#123;<br>  <span class="hljs-comment">// json5 ==========================================</span><br>  <span class="hljs-comment">// 1. 网关与安全设置</span><br>  <span class="hljs-comment">// ==========================================</span><br>  <span class="hljs-attr">gateway</span>: &#123;<br>    <span class="hljs-attr">bind</span>: <span class="hljs-string">&quot;loopback&quot;</span>, <span class="hljs-comment">// 强制仅本地访问，勿改</span><br>    <span class="hljs-attr">auth</span>: &#123;<br>      <span class="hljs-attr">mode</span>: <span class="hljs-string">&quot;password&quot;</span>, <span class="hljs-comment">// 开启密码保护</span><br>      <span class="hljs-attr">allowTailscale</span>: <span class="hljs-literal">false</span><br>    &#125;<br>  &#125;,<br><br>  <span class="hljs-comment">// ==========================================</span><br>  <span class="hljs-comment">// 2. 隔离沙箱设置</span><br>  <span class="hljs-comment">// ==========================================</span><br>  <span class="hljs-attr">agents</span>: &#123;<br>    <span class="hljs-attr">defaults</span>: &#123;<br>      <span class="hljs-attr">sandbox</span>: &#123;<br>        <span class="hljs-attr">mode</span>: <span class="hljs-string">&quot;non-main&quot;</span> <span class="hljs-comment">// 强制在 Docker 沙箱中运行</span><br>      &#125;<br>    &#125;<br>  &#125;,<br><br>  <span class="hljs-comment">// ==========================================</span><br>  <span class="hljs-comment">// 3. 通讯渠道接入 (按需修改或保留)</span><br>  <span class="hljs-comment">// ==========================================</span><br>  <span class="hljs-attr">channels</span>: &#123;<br>    <br>    <span class="hljs-comment">// ---- Telegram ----</span><br>    <span class="hljs-attr">telegram</span>: &#123;<br>      <span class="hljs-attr">botToken</span>: <span class="hljs-string">&quot;替换为_BotFather_获取的_Token&quot;</span>, <br>      <span class="hljs-attr">dmPolicy</span>: <span class="hljs-string">&quot;pairing&quot;</span>, <span class="hljs-comment">// 开启配令人模式，防止陌生人调用</span><br>      <span class="hljs-attr">allowFrom</span>: [<span class="hljs-string">&quot;替换为你的纯数字ID&quot;</span>], <span class="hljs-comment">// (可通过 @userinfobot 获取)</span><br>      <span class="hljs-attr">streaming</span>: <span class="hljs-string">&quot;partial&quot;</span> <br>    &#125;,<br><br>    <span class="hljs-comment">// ---- Discord ----</span><br>    <span class="hljs-attr">discord</span>: &#123;<br>      <span class="hljs-attr">token</span>: <span class="hljs-string">&quot;替换为_Discord_Bot_Token&quot;</span>,<br>      <span class="hljs-attr">dmPolicy</span>: <span class="hljs-string">&quot;pairing&quot;</span>,<br>      <span class="hljs-attr">allowFrom</span>: [<span class="hljs-string">&quot;替换为你的用户数字ID&quot;</span>] <span class="hljs-comment">// (在开发者模式下右键头像获取)</span><br>    &#125;,<br><br>    <span class="hljs-comment">// ---- WhatsApp ----</span><br>    <span class="hljs-attr">whatsapp</span>: &#123;<br>      <span class="hljs-attr">allowFrom</span>: [<span class="hljs-string">&quot;+8613800138000&quot;</span>], <span class="hljs-comment">// 替换为你带区号的手机号</span><br>      <span class="hljs-attr">groupPolicy</span>: <span class="hljs-string">&quot;allowlist&quot;</span>, <br>      <span class="hljs-attr">groups</span>: &#123;<br>        <span class="hljs-string">&quot;1234567890-123456@g.us&quot;</span>: &#123; <span class="hljs-attr">requireMention</span>: <span class="hljs-literal">true</span> &#125; <br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
-</div>
-
-<p>修改完成后，按  Ctrl+O ，回车保存，然后按 Ctrl+X 退出编辑器。</p>
+<p>修改完成后，按 Ctrl+O ，回车保存，然后按 Ctrl+X 退出编辑器。</p>
 <div class="note note-warning">
-            <p><strong>必须重启服务</strong></p><p>配置文件的修改不会实时生效，编辑完成后需要在终端执行以下命令重启网关：</p><p>openclaw gateway --port 18789</p>
+            <p><strong>必须重启服务</strong></p><p>配置文件的修改不会实时生效，编辑完成后需要在终端执行以下命令重启网关：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">openclaw gateway --port 18789<br></code></pre></td></tr></table></figure>
           </div>
 
 <h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a><strong>写在最后</strong></h2><p>以上就是 OpenClaw 的基本配置和安全加固流程。</p>
